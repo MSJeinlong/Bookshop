@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <!-- <link
+      rel="stylesheet"
+      href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css"
+    />
+    <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/popper.js/1.15.0/umd/popper.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script> -->
+
+    <link rel="stylesheet" href="bootstrap-4.3.1/css/bootstrap.min.css" />
+    <script src="jQuery-3.4.1/jquery-3.4.1.min.js"></script>
+    <script src="bootstrap-4.3.1/js/bootstrap.bundle.min.js"></script>
+    <script src="bootstrap-4.3.1/js/bootstrap.min.js"></script>
+    <style>
+      span {
+        color: red;
+      }
+    </style>
+
+    <title>购物车</title>
+  </head>
+  <body>
+    <div class="container-fluid">
+      <div class="card ">
+        <div class="card-header">
+          我的购物车
+        </div>
+        <div class="card-body">
+          <!-- <h5 class="card-title">Special title treatment</h5> -->
+          <table class="table table-striped table-borderless table-hover">
+            <caption></caption>
+            <thead>
+              <tr>
+                <th>全选</th>
+                <th>商品信息</th>
+                <th>单价(元)</th>
+                <th>数量</th>
+                <th>金额(元)</th>
+                <th>操作</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td>Mark</td>
+                <td>Otto</td>
+                <td>@mdo</td>
+                <td><span style="color: red;">¥200</span></td>
+                <td><a href="#">删除</a></td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>Jacob</td>
+                <td>Thornton</td>
+                <td>@fat</td>
+                <td><span style="color: red;">¥100</span></td>
+                <td><a href="#">删除</a></td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td>Larry</td>
+                <td>the Bird</td>
+                <td>@twitter</td>
+                <td><span style="color: red;">¥200</span></td>
+                <td><a href="#">删除</a></td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td>Larry</td>
+                <td>the Bird</td>
+                <td>@twitter</td>
+                <td><span style="color: red;">¥200</span></td>
+                <td><a href="#">删除</a></td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td>Larry</td>
+                <td>the Bird</td>
+                <td>@twitter</td>
+                <td><span style="color: red;">¥200</span></td>
+                <td><a href="#">删除</a></td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td>Larry</td>
+                <td>the Bird</td>
+                <td>@twitter</td>
+                <td><span style="color: red;">¥200</span></td>
+                <td><a href="#">删除</a></td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td>Larry</td>
+                <td>the Bird</td>
+                <td>@twitter</td>
+                <td><span style="color: red;">¥200</span></td>
+                <td><a href="#">删除</a></td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td>Larry</td>
+                <td>the Bird</td>
+                <td>@twitter</td>
+                <td><span style="color: red;">¥200</span></td>
+                <td><a href="#">删除</a></td>
+              </tr>
+              <tr>
+                <td>店铺合计</td>
+                <td colspan="3"></td>
+                <td colspan="2"><span style="color: red;">¥500</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="card-footer text-muted">
+          2 days ago
+        </div>
+      </div>
+
+      <!-- 结算栏固定在底部 -->
+      <nav class="navbar navbar-expand-sm bg-light navbar-light fixed-bottom">
+        <span class="navbar-text">
+          邮费: <span>￥50</span>&nbsp;
+          总计(包括邮费)：<span>￥1000</span>&nbsp;
+          <a href="#" class="btn btn-danger text-white">结算</a>
+        </span>
+      </nav>
+    </div>
+  </body>
+</html>

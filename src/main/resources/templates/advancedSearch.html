@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>高级搜索</title>
+    <link rel="stylesheet" href="bootstrap-4.3.1/css/bootstrap.min.css" />
+    <script src="jQuery-3.4.1/jquery-3.4.1.min.js"></script>
+    <script src="bootstrap-4.3.1/js/bootstrap.bundle.min.js"></script>
+    <script src="bootstrap-4.3.1/js/bootstrap.min.js"></script>
+  </head>
+  <body>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="card col-md-8 offset-2">
+
+          <div class="card-header">
+            高级搜索
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">搜索条件</h5>
+            <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+              <li class="nav-item">
+                <a
+                  class="nav-link active"
+                  id="pills-home-tab"
+                  data-toggle="pill"
+                  href="#pills-home"
+                  role="tab"
+                  aria-controls="pills-home"
+                  aria-selected="true"
+                  >纸质图书</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link"
+                  id="pills-profile-tab"
+                  data-toggle="pill"
+                  href="#pills-profile"
+                  role="tab"
+                  aria-controls="pills-profile"
+                  aria-selected="false"
+                  >电子图书</a
+                >
+              </li>
+            </ul>
+
+            <div class="tab-content" id="pills-tabContent">
+              <div
+                class="tab-pane fade show active"
+                id="pills-home"
+                role="tabpanel"
+                aria-labelledby="pills-home-tab"
+              >
+                <form>
+                  <div class="form-group row">
+                    <label for="bookName" class="col-sm-2 col-form-label"
+                      >书名</label
+                    >
+                    <div class="col-sm-8">
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="bookName"
+                      />
+                    </div>
+                  </div>
+
+                  <div class="form-group row">
+                    <label for="author" class="col-sm-2 col-form-label"
+                      >作者</label
+                    >
+                    <div class="col-sm-8">
+                      <input type="text"" class="form-control" id="author" />
+                    </div>
+                  </div>
+
+                  <div class="form-group row">
+                    <label for="author" class="col-sm-2 col-form-label"
+                      >译者</label
+                    >
+                    <div class="col-sm-8">
+                      <input type="text"" class=" form-control" id="translator"
+                      />
+                    </div>
+                  </div>
+
+                  <div class="form-group row">
+                    <label for="translator" class="col-sm-2 col-form-label"
+                      >关键字</label
+                    >
+                    <div class="col-sm-8">
+                      <input type="text"" class=" form-control" id="translator"
+                      />
+                    </div>
+                  </div>
+
+                  <div class="form-group row">
+                    <label for="publisher" class="col-sm-2 col-form-label"
+                      >出版社</label
+                    >
+                    <div class="col-sm-8">
+                      <input type="text"" class=" form-control" id="publisher"
+                      />
+                    </div>
+                  </div>
+
+                  <div class="form-group row">
+                    <label for="ISBN" class="col-sm-2 col-form-label"
+                      >ISBN</label
+                    >
+                    <div class="col-sm-8">
+                      <input type="number"" class="form-control" id="ISBN" />
+                    </div>
+                  </div>
+
+                  <div class="form-group row">
+                    <label for="bookType" class="col-sm-2 col-form-label"
+                      >图书类型</label
+                    >
+                    <div class="col-sm-6">
+                      <select id="bookType"" class="form-control">
+                        <option selected>文学</option>
+                        <option>理科</option>
+                        <option>科普</option>
+                        <option value="">儿童</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="form-group row">
+                    <label for="price" class="col-sm-2 col-form-label"
+                      >价格区间</label
+                    >
+                    <div class="col-sm-2">
+                      <input type="number"" class=" form-control" id="price1" />
+                    </div>
+                    <span> 至</span>
+                    <div class="col-sm-2">
+                      <input type="number"" class=" form-control" id="price2" />
+                    </div>
+                    <span> 元</span>
+                  </div>
+
+                <div class="form-group row">
+                    <label for="publishTime" class="col-sm-2 col-form-label">出版时间区间</label>
+                    <div class="col-sm-4">
+                        <input type="date"" class="form-control" id="publishTime1" />
+                    </div>
+                    <span>——</span>
+                    <div class="col-sm-4">
+                        <input type="date" class="form-control" id="publishTime2" />
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="offset-sm-2 col-md-3">
+                        <input class="btn btn-primary btn-block" type="submit" value="搜索">
+                    </div>
+                    <div class="col-md-3">
+                        <input class="btn btn-warning btn-block" type="reset" value="清空">
+                    </div>
+                </div>
+                </form>
+              </div>
+
+              <div
+                class="tab-pane fade"
+                id="pills-profile"
+                role="tabpanel"
+                aria-labelledby="pills-profile-tab"
+              >
+                <form>
+                    <div class="form-group row">
+                        <label for="bookName" class="col-sm-2 col-form-label">书名</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" id="bookName" />
+                        </div>
+                    </div>
+                
+                    <div class="form-group row">
+                        <label for="author" class="col-sm-2 col-form-label">作者</label>
+                        <div class="col-sm-8">
+                            <input type="text"" class="form-control" id="author" />
+                        </div>
+                    </div>
+                
+                    <div class="form-group row">
+                        <label for="author" class="col-sm-2 col-form-label">译者</label>
+                        <div class="col-sm-8">
+                            <input type="text"" class=" form-control" id="translator" />
+                        </div>
+                    </div>
+                
+                    <div class="form-group row">
+                        <label for="translator" class="col-sm-2 col-form-label">关键字</label>
+                        <div class="col-sm-8">
+                            <input type="text"" class=" form-control" id="translator" />
+                        </div>
+                    </div>
+                
+                    <div class="form-group row">
+                        <label for="publisher" class="col-sm-2 col-form-label">出版社</label>
+                        <div class="col-sm-8">
+                            <input type="text"" class=" form-control" id="publisher" />
+                        </div>
+                    </div>
+                
+                    <div class="form-group row">
+                        <label for="ISBN" class="col-sm-2 col-form-label">ISBN</label>
+                        <div class="col-sm-8">
+                            <input type="number"" class=" form-control" id="ISBN" />
+                        </div>
+                    </div>
+                
+                    <div class="form-group row">
+                        <label for="bookType" class="col-sm-2 col-form-label">图书类型</label>
+                        <div class="col-sm-6">
+                            <select id="bookType"" class=" form-control">
+                                <option selected>文学</option>
+                                <option>理科</option>
+                                <option>科普</option>
+                                <option value="">儿童</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="bookType" class="col-sm-2 col-form-label">电子书格式</label>
+                        <div class="col-sm-6">
+                            <select id="bookType"" class=" form-control">
+                                <option selected>PDF</option>
+                                <option>TXT</option>
+                                <option>HTML</option>
+                                <option value="">HLP</option>
+                                <option>CHM</option>
+                                <option>LIT</option>
+                                <option>CAJ</option>
+                            </select>
+                        </div>
+                    </div>
+                
+                    <div class="form-group row">
+                        <label for="price" class="col-sm-2 col-form-label">价格区间</label>
+                        <div class="col-sm-2">
+                            <input type="number"" class=" form-control" id="price1" />
+                        </div>
+                        <span> 至</span>
+                        <div class="col-sm-2">
+                            <input type="number"" class=" form-control" id="price2" />
+                        </div>
+                        <span> 元</span>
+                    </div>
+                
+                    <div class="form-group row">
+                        <label for="publishTime" class="col-sm-2 col-form-label">出版时间区间</label>
+                        <div class="col-sm-4">
+                            <input type="date"" class=" form-control" id="publishTime1" />
+                        </div>
+                        <span>——</span>
+                        <div class="col-sm-4">
+                            <input type="date" class="form-control" id="publishTime2" />
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="offset-sm-2 col-md-3">
+                            <input class="btn btn-primary btn-block" type="submit" value="搜索">
+                        </div>
+                        <div class="col-md-3">
+                            <input class="btn btn-warning btn-block" type="reset" value="清空">
+                        </div>
+                    </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+  </body>
+</html>

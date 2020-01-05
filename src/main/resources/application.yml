@@ -1,0 +1,20 @@
+
+spring:
+  datasource:
+    username: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/bookshop?serverTimezone=Asia/Shanghai&useSSL=false
+    password: root365
+    type: com.alibaba.druid.pool.DruidDataSource   #durid数据源
+  freemarker:
+    template-loader-path: classpath:/templates/
+    suffix: .ftl
+    cache: false
+  devtools:
+    restart:
+      enabled: true
+
+  pagehelper:
+    helperDialect: mysql                           #分页插件方言选择
+    reasonable: true                               #合理化参数，设为true时pageNum<=0 时会查第一页， pageNum>pages（超过总数时），会查询最后一页
+    supportMethodsArguments: true
