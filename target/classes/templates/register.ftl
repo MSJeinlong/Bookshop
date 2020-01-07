@@ -30,6 +30,8 @@
     <script>
         $(function() {
             $("small").hide();
+            $("#UserName").focus();
+            $("#telHelp").show();
             $("#UserName").click(function() {
                 $("#telHelp").show();
                 $("small[id!='telHelp']").hide();
@@ -175,6 +177,17 @@
                     <p>已有账号?&nbsp;<a href="/toUserLogin">返回登录页面</a></p>
                 </div>
             </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="offset-md-7 col-md-5">
+            <#if registerTips??>
+                <div class="alert alert-danger alert-dismissible" style="width:auto">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <strong>${registerTips}</strong>
+                </div>
+            </#if>
         </div>
     </div>
 </div>

@@ -23,6 +23,7 @@
     <result column="cardno" jdbcType="VARCHAR" property="cardno" />
     <result column="status" jdbcType="TINYINT" property="status" />
     <result column="login_time" jdbcType="TIMESTAMP" property="loginTime" />
+    <result column="sign_out_time" jdbcType="TIMESTAMP" property="signOutTime" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -85,7 +86,7 @@
   <sql id="Base_Column_List">
     user_id, cellphone, password, nickname, gender, email, qq, wechat, birthday, province1, 
     city1, district1, street1, province2, city2, district2, street2, postcode, cardno, 
-    status, login_time
+    status, login_time, sign_out_time
   </sql>
   <select id="selectByExample" parameterType="edu.gdpu.bookshop.bean.BsUserExample" resultMap="BaseResultMap">
     select
@@ -125,16 +126,16 @@
       province1, city1, district1, 
       street1, province2, city2, 
       district2, street2, postcode, 
-      cardno, status, login_time
-      )
+      cardno, status, login_time, 
+      sign_out_time)
     values (#{userId,jdbcType=INTEGER}, #{cellphone,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
       #{nickname,jdbcType=VARCHAR}, #{gender,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
       #{qq,jdbcType=VARCHAR}, #{wechat,jdbcType=VARCHAR}, #{birthday,jdbcType=DATE}, 
       #{province1,jdbcType=VARCHAR}, #{city1,jdbcType=VARCHAR}, #{district1,jdbcType=VARCHAR}, 
       #{street1,jdbcType=VARCHAR}, #{province2,jdbcType=VARCHAR}, #{city2,jdbcType=VARCHAR}, 
       #{district2,jdbcType=VARCHAR}, #{street2,jdbcType=VARCHAR}, #{postcode,jdbcType=VARCHAR}, 
-      #{cardno,jdbcType=VARCHAR}, #{status,jdbcType=TINYINT}, #{loginTime,jdbcType=TIMESTAMP}
-      )
+      #{cardno,jdbcType=VARCHAR}, #{status,jdbcType=TINYINT}, #{loginTime,jdbcType=TIMESTAMP}, 
+      #{signOutTime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="edu.gdpu.bookshop.bean.BsUser">
     insert into bs_user
@@ -202,6 +203,9 @@
       <if test="loginTime != null">
         login_time,
       </if>
+      <if test="signOutTime != null">
+        sign_out_time,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="userId != null">
@@ -266,6 +270,9 @@
       </if>
       <if test="loginTime != null">
         #{loginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="signOutTime != null">
+        #{signOutTime,jdbcType=TIMESTAMP},
       </if>
     </trim>
   </insert>
@@ -341,6 +348,9 @@
       <if test="record.loginTime != null">
         login_time = #{record.loginTime,jdbcType=TIMESTAMP},
       </if>
+      <if test="record.signOutTime != null">
+        sign_out_time = #{record.signOutTime,jdbcType=TIMESTAMP},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -368,7 +378,8 @@
       postcode = #{record.postcode,jdbcType=VARCHAR},
       cardno = #{record.cardno,jdbcType=VARCHAR},
       status = #{record.status,jdbcType=TINYINT},
-      login_time = #{record.loginTime,jdbcType=TIMESTAMP}
+      login_time = #{record.loginTime,jdbcType=TIMESTAMP},
+      sign_out_time = #{record.signOutTime,jdbcType=TIMESTAMP}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -436,6 +447,9 @@
       <if test="loginTime != null">
         login_time = #{loginTime,jdbcType=TIMESTAMP},
       </if>
+      <if test="signOutTime != null">
+        sign_out_time = #{signOutTime,jdbcType=TIMESTAMP},
+      </if>
     </set>
     where user_id = #{userId,jdbcType=INTEGER}
   </update>
@@ -460,7 +474,8 @@
       postcode = #{postcode,jdbcType=VARCHAR},
       cardno = #{cardno,jdbcType=VARCHAR},
       status = #{status,jdbcType=TINYINT},
-      login_time = #{loginTime,jdbcType=TIMESTAMP}
+      login_time = #{loginTime,jdbcType=TIMESTAMP},
+      sign_out_time = #{signOutTime,jdbcType=TIMESTAMP}
     where user_id = #{userId,jdbcType=INTEGER}
   </update>
 </mapper>

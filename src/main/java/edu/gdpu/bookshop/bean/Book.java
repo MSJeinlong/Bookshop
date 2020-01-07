@@ -30,6 +30,12 @@ public class Book {
 
     private String image;
 
+    private Integer isEbook;
+
+    private Date createTime;
+
+    private Date updateTime;
+
     public Integer getBookId() {
         return bookId;
     }
@@ -132,5 +138,29 @@ public class Book {
 
     public void setImage(String image) {
         this.image = image == null ? null : image.trim();
+    }
+
+    public Integer getIsEbook() {
+        return isEbook;
+    }
+
+    public void setIsEbook(Integer isEbook) {
+        this.isEbook = isEbook;
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public Date getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
     }
 }

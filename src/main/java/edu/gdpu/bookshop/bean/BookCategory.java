@@ -1,5 +1,7 @@
 package edu.gdpu.bookshop.bean;
 
+import java.util.Date;
+
 public class BookCategory {
     private Integer categoryId;
 
@@ -9,7 +11,9 @@ public class BookCategory {
 
     private Integer bookNums;
 
-    private Byte isEbook;
+    private Date createTime;
+
+    private Date updateTime;
 
     public Integer getCategoryId() {
         return categoryId;
@@ -43,11 +47,19 @@ public class BookCategory {
         this.bookNums = bookNums;
     }
 
-    public Byte getIsEbook() {
-        return isEbook;
+    public Date getCreateTime() {
+        return createTime;
     }
 
-    public void setIsEbook(Byte isEbook) {
-        this.isEbook = isEbook;
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public Date getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
     }
 }

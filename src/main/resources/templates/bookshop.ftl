@@ -5,14 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>网上书店系统</title>
-    <!-- <link
-      rel="stylesheet"
-      href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css"
-    />
-    <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://cdn.staticfile.org/popper.js/1.15.0/umd/popper.min.js"></script>
-    <script src="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script> -->
-    
       <link rel="stylesheet" href="/bootstrap-4.3.1/css/bootstrap.min.css" />
       <script src="/jQuery-3.4.1/jquery-3.4.1.min.js"></script>
       <script src="/bootstrap-4.3.1/js/bootstrap.bundle.min.js"></script>
@@ -37,7 +29,7 @@
   </head>
   <body>
     <div class="container-fluid">
-      <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
+      <nav class="navbar navbar-expand-sm bg-light navbar-light fixed-top">
         <a class="navbar-brand" href="#"></span>BOOKSHOP</a>
         <span class="navbar-text"
           >欢迎光临网上书店，请<a href="/toUserLogin" class="text-primary" data-toggle="tooltip" title="点击可进行登录或者注册!">登录</a
@@ -46,18 +38,22 @@
         <ul class="navbar-nav">
           <li class="nav-item active">
             <a class="nav-link" href="#"
-            ><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>购物车<span class="badge badge-light">0</span></a
+            >购物车<span class="badge badge-light">0</span></a
             >
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#"
-              ><span class="glyphicon glyphicon-list" aria-hidden="true"></span>我的订单<span class="badge badge-light">0</span></a
+              >我的订单<span class="badge badge-light">0</span></a
             >
           </li>
         </ul>
         <form action="#" class="form-inline" method="post">
-          <input class="form-control rounded-pill" type="search" placeholder="输入搜索内容" />
-          <button class="btn btn-success" type="button"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+            <div class="input-group">
+                <input type="search" class="form-control" aria-label="Text input with dropdown button">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-success " type="submit" >搜索</button>
+                </div>
+            </div>
         </form>
         <ul class="navbar-nav">
           <li class="nav-item">
@@ -67,13 +63,12 @@
 
         <ul class="navbar-nav nav-right">
             <li class="nav-item">
-                <a class="nav-link" href="/toUserInfo"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                <a class="nav-link" href="/toUserInfo"></span>
                     我的账号<#if bsUser??>:${bsUser.cellphone!""}</#if>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/userExit"><span class="glyphicon glyphicon-off
-" aria-hidden="true"></span>退出</a>
+                <a class="nav-link" href="/userExit">退出</a>
             </li>
         </ul>
       </nav>
@@ -115,53 +110,52 @@
                   </div>
               </div>
           </div>
-          <div class="col-lg-7">
+          <div class="col-lg-6">
           <div id="demo" class="carousel slide" data-ride="carousel">
             <!-- 指示符 -->
             <ul class="carousel-indicators">
               <li data-target="#demo" data-slide-to="0" class="active"></li>
               <li data-target="#demo" data-slide-to="1"></li>
               <li data-target="#demo" data-slide-to="2"></li>
+                <li data-target="#demo" data-slide-to="3"></li>
+                <li data-target="#demo" data-slide-to="4"></li>
+                <li data-target="#demo" data-slide-to="5"></li>
+                <li data-target="#demo" data-slide-to="6"></li>
             </ul>
 
             <!-- 轮播图片 -->
             <div class="carousel-inner">
               <div class="carousel-item active">
                 <img
-                  src="https://static.runoob.com/images/mix/img_fjords_wide.jpg"
+                  src="/image/slide/ppt1.jpg"
                 />
                 <!-- 轮播图片说明 -->
-                <div class="carousel-caption">
-                  <h5>First slide label</h5>
-                  <p>
-                    Nulla vitae elit libero, a pharetra augue mollis interdum.
-                  </p>
-                </div>
+
               </div>
               <div class="carousel-item">
                 <img
-                  src="https://static.runoob.com/images/mix/img_nature_wide.jpg"
+                  src="/image/slide/ppt2.jpg"
                 />
-                <!-- 轮播图片说明 -->
-                <div class="carousel-caption">
-                  <h5>Second slide label</h5>
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  </p>
-                </div>
+
               </div>
               <div class="carousel-item">
                 <img
-                  src="https://static.runoob.com/images/mix/img_mountains_wide.jpg"
+                  src="/image/slide/ppt3.jpg"
                 />
-                <div class="carousel-caption">
-                  <h5>Third slide label</h5>
-                  <p>
-                    Praesent commodo cursus magna, vel scelerisque nisl
-                    consectetur.
-                  </p>
-                </div>
+
               </div>
+                <div class="carousel-item">
+                    <img src="/image/slide/ppt4.jpg"/>
+
+                </div>
+                <div class="carousel-item">
+                    <img src="/image/slide/ppt5.jpg"/>
+
+                </div>
+                <div class="carousel-item">
+                    <img src="/image/slide/ppt6.jpg"/>
+                   
+                </div>
             </div>
 
             <!-- 左右切换按钮 -->

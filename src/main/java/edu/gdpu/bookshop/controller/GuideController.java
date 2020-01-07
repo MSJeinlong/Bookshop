@@ -1,6 +1,8 @@
 package edu.gdpu.bookshop.controller;
 
+import edu.gdpu.bookshop.bean.BookCategory;
 import edu.gdpu.bookshop.bean.BsUser;
+import edu.gdpu.bookshop.service.BookService;
 import edu.gdpu.bookshop.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,6 +17,9 @@ public class GuideController {
 
     @Resource
     private UserService userService;
+
+    @Resource
+    private BookService bookService;
 
     @RequestMapping("/toUserLogin")
     public String toLogin(){
@@ -76,4 +81,28 @@ public class GuideController {
     public String toUpdateAddress(){
         return "updateUserAddress";
     }
+
+    @RequestMapping("/toAddBookCategory")
+    public String toAddBookCategory(){
+        return "addBookCategory";
+    }
+
+    @RequestMapping("/toAdminManage")
+    public String toAdminManage(){
+        return "adminManage";
+    }
+
+    @RequestMapping("/toAdminLogin")
+    public String toAdminLogin(){
+        return "adminLogin";
+    }
+
+    @RequestMapping("/toAddBook")
+    public String toAddBook(HttpSession session){
+        //查找所有的图书类型
+        List<BookCategory> bookCategories = bookService.findAllBookcategorys();
+        session.setAttribute("bookCategories", bookCategories);
+        return "addBook";
+    }
+
 }

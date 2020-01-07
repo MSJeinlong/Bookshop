@@ -81,6 +81,7 @@ public class UserController {
     public String userExit(HttpSession session){
         BsUser user = (BsUser) session.getAttribute("bsUser");
         user.setStatus((byte)0);
+        user.setSignOutTime(new Date());
         //更新用户状态
         userService.updateUser(user);
         //移除该用户

@@ -1,5 +1,7 @@
 package edu.gdpu.bookshop.bean;
 
+import java.util.Date;
+
 public class Comment {
     private Integer commentId;
 
@@ -12,6 +14,8 @@ public class Comment {
     private Integer userId;
 
     private Integer bookId;
+
+    private Date createTime;
 
     public Integer getCommentId() {
         return commentId;
@@ -59,5 +63,13 @@ public class Comment {
 
     public void setBookId(Integer bookId) {
         this.bookId = bookId;
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
     }
 }

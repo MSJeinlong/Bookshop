@@ -1,6 +1,7 @@
 package edu.gdpu.bookshop.bean;
 
 import java.math.BigDecimal;
+import java.util.Date;
 
 public class Order {
     private Integer orderId;
@@ -16,6 +17,10 @@ public class Order {
     private Integer statusId;
 
     private Integer paywayId;
+
+    private Date createTime;
+
+    private Date updateTime;
 
     public Integer getOrderId() {
         return orderId;
@@ -71,5 +76,21 @@ public class Order {
 
     public void setPaywayId(Integer paywayId) {
         this.paywayId = paywayId;
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public Date getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
     }
 }

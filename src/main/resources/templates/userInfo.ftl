@@ -4,13 +4,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <!-- <link
-      rel="stylesheet"
-      href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css"
-    />
-    <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://cdn.staticfile.org/popper.js/1.15.0/umd/popper.min.js"></script>
-    <script src="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script> -->
 
     <link rel="stylesheet" href="/bootstrap-4.3.1/css/bootstrap.min.css" />
     <script src="/jQuery-3.4.1/jquery-3.4.1.min.js"></script>
@@ -102,8 +95,9 @@
                         >地址1:</label
                         >
                         <div class="col-sm-9">
-                            <label class="col-form-label">${bsUser.province1!""}${bsUser.city1!""}${bsUser.district1!""}${bsUser.street1!""}</label>
-                        </div>
+                            <input type="text" readonly class="form-control-plaintext" value="${bsUser.province1!""}${bsUser.city1!""}${bsUser.district1!""}${bsUser.street1!""}"/>
+                           <#-- <label class="col-form-label">${bsUser.province1!""}${bsUser.city1!""}${bsUser.district1!""}${bsUser.street1!""}</label>
+                        --></div>
                     </div>
 
                     <div class="form-group row">
@@ -111,8 +105,9 @@
                         >地址2:</label
                         >
                         <div class="col-sm-9">
-                            <label class="col-form-label">${bsUser.province2!""}${bsUser.city2!""}${bsUser.district2!""}${bsUser.street2!""}</label>
-                        </div>
+                            <input type="text" readonly class="form-control-plaintext"  value="${bsUser.province2!""}${bsUser.city2!""}${bsUser.district2!""}${bsUser.street2!""}"/>
+                            <#--<label class="col-form-label">${bsUser.province2!""}${bsUser.city2!""}${bsUser.district2!""}${bsUser.street2!""}</label>
+                     -->   </div>
                     </div>
 
                     <div class="row">
@@ -120,7 +115,7 @@
                             <a href="/toBookshop" class="btn btn-success btn-block">返回</a>
                         </div>
                         <div class="col-sm-3">
-                            <button type="submit" class="btn btn-primary btn-block">保存修改信息</button>
+                            <button type="submit" class="btn btn-primary btn-block">保存信息</button>
                             <#--<a href="/updateUserInfo" class="btn btn-primary btn-block"></a>-->
                         </div>
                         <div class="col-sm-3">

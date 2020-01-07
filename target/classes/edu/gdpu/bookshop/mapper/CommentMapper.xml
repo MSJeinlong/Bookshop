@@ -8,6 +8,7 @@
     <result column="comment_grade" jdbcType="INTEGER" property="commentGrade" />
     <result column="user_id" jdbcType="INTEGER" property="userId" />
     <result column="book_id" jdbcType="INTEGER" property="bookId" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -68,7 +69,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    comment_id, comment_desc, comment_level, comment_grade, user_id, book_id
+    comment_id, comment_desc, comment_level, comment_grade, user_id, book_id, create_time
   </sql>
   <select id="selectByExample" parameterType="edu.gdpu.bookshop.bean.CommentExample" resultMap="BaseResultMap">
     select
@@ -103,11 +104,11 @@
   </delete>
   <insert id="insert" parameterType="edu.gdpu.bookshop.bean.Comment">
     insert into bs_comment (comment_id, comment_desc, comment_level, 
-      comment_grade, user_id, book_id
-      )
+      comment_grade, user_id, book_id, 
+      create_time)
     values (#{commentId,jdbcType=INTEGER}, #{commentDesc,jdbcType=VARCHAR}, #{commentLevel,jdbcType=INTEGER}, 
-      #{commentGrade,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{bookId,jdbcType=INTEGER}
-      )
+      #{commentGrade,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{bookId,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="edu.gdpu.bookshop.bean.Comment">
     insert into bs_comment
@@ -130,6 +131,9 @@
       <if test="bookId != null">
         book_id,
       </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="commentId != null">
@@ -149,6 +153,9 @@
       </if>
       <if test="bookId != null">
         #{bookId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
       </if>
     </trim>
   </insert>
@@ -179,6 +186,9 @@
       <if test="record.bookId != null">
         book_id = #{record.bookId,jdbcType=INTEGER},
       </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -191,7 +201,8 @@
       comment_level = #{record.commentLevel,jdbcType=INTEGER},
       comment_grade = #{record.commentGrade,jdbcType=INTEGER},
       user_id = #{record.userId,jdbcType=INTEGER},
-      book_id = #{record.bookId,jdbcType=INTEGER}
+      book_id = #{record.bookId,jdbcType=INTEGER},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -214,6 +225,9 @@
       <if test="bookId != null">
         book_id = #{bookId,jdbcType=INTEGER},
       </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
     </set>
     where comment_id = #{commentId,jdbcType=INTEGER}
   </update>
@@ -223,7 +237,8 @@
       comment_level = #{commentLevel,jdbcType=INTEGER},
       comment_grade = #{commentGrade,jdbcType=INTEGER},
       user_id = #{userId,jdbcType=INTEGER},
-      book_id = #{bookId,jdbcType=INTEGER}
+      book_id = #{bookId,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
     where comment_id = #{commentId,jdbcType=INTEGER}
   </update>
 </mapper>

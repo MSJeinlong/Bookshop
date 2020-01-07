@@ -45,6 +45,8 @@ public class BsUser {
 
     private Date loginTime;
 
+    private Date signOutTime;
+
     public Integer getUserId() {
         return userId;
     }
@@ -211,5 +213,13 @@ public class BsUser {
 
     public void setLoginTime(Date loginTime) {
         this.loginTime = loginTime;
+    }
+
+    public Date getSignOutTime() {
+        return signOutTime;
+    }
+
+    public void setSignOutTime(Date signOutTime) {
+        this.signOutTime = signOutTime;
     }
 }

@@ -1561,6 +1561,66 @@ public class BsUserExample {
             addCriterion("login_time not between", value1, value2, "loginTime");
             return (Criteria) this;
         }
+
+        public Criteria andSignOutTimeIsNull() {
+            addCriterion("sign_out_time is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSignOutTimeIsNotNull() {
+            addCriterion("sign_out_time is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSignOutTimeEqualTo(Date value) {
+            addCriterion("sign_out_time =", value, "signOutTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andSignOutTimeNotEqualTo(Date value) {
+            addCriterion("sign_out_time <>", value, "signOutTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andSignOutTimeGreaterThan(Date value) {
+            addCriterion("sign_out_time >", value, "signOutTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andSignOutTimeGreaterThanOrEqualTo(Date value) {
+            addCriterion("sign_out_time >=", value, "signOutTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andSignOutTimeLessThan(Date value) {
+            addCriterion("sign_out_time <", value, "signOutTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andSignOutTimeLessThanOrEqualTo(Date value) {
+            addCriterion("sign_out_time <=", value, "signOutTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andSignOutTimeIn(List<Date> values) {
+            addCriterion("sign_out_time in", values, "signOutTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andSignOutTimeNotIn(List<Date> values) {
+            addCriterion("sign_out_time not in", values, "signOutTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andSignOutTimeBetween(Date value1, Date value2) {
+            addCriterion("sign_out_time between", value1, value2, "signOutTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andSignOutTimeNotBetween(Date value1, Date value2) {
+            addCriterion("sign_out_time not between", value1, value2, "signOutTime");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

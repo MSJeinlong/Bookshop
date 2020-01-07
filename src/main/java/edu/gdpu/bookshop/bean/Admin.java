@@ -13,6 +13,8 @@ public class Admin {
 
     private Date lastestLoginTime;
 
+    private Date signOutTime;
+
     public Integer getAdminId() {
         return adminId;
     }
@@ -51,5 +53,13 @@ public class Admin {
 
     public void setLastestLoginTime(Date lastestLoginTime) {
         this.lastestLoginTime = lastestLoginTime;
+    }
+
+    public Date getSignOutTime() {
+        return signOutTime;
+    }
+
+    public void setSignOutTime(Date signOutTime) {
+        this.signOutTime = signOutTime;
     }
 }

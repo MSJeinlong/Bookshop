@@ -7,6 +7,7 @@
     <result column="password" jdbcType="VARCHAR" property="password" />
     <result column="login_status" jdbcType="BIT" property="loginStatus" />
     <result column="lastest_login_time" jdbcType="TIMESTAMP" property="lastestLoginTime" />
+    <result column="sign_out_time" jdbcType="TIMESTAMP" property="signOutTime" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -67,7 +68,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    admin_id, admin_name, password, login_status, lastest_login_time
+    admin_id, admin_name, password, login_status, lastest_login_time, sign_out_time
   </sql>
   <select id="selectByExample" parameterType="edu.gdpu.bookshop.bean.AdminExample" resultMap="BaseResultMap">
     select
@@ -102,9 +103,11 @@
   </delete>
   <insert id="insert" parameterType="edu.gdpu.bookshop.bean.Admin">
     insert into bs_admin (admin_id, admin_name, password, 
-      login_status, lastest_login_time)
+      login_status, lastest_login_time, sign_out_time
+      )
     values (#{adminId,jdbcType=INTEGER}, #{adminName,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
-      #{loginStatus,jdbcType=BIT}, #{lastestLoginTime,jdbcType=TIMESTAMP})
+      #{loginStatus,jdbcType=BIT}, #{lastestLoginTime,jdbcType=TIMESTAMP}, #{signOutTime,jdbcType=TIMESTAMP}
+      )
   </insert>
   <insert id="insertSelective" parameterType="edu.gdpu.bookshop.bean.Admin">
     insert into bs_admin
@@ -124,6 +127,9 @@
       <if test="lastestLoginTime != null">
         lastest_login_time,
       </if>
+      <if test="signOutTime != null">
+        sign_out_time,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="adminId != null">
@@ -140,6 +146,9 @@
       </if>
       <if test="lastestLoginTime != null">
         #{lastestLoginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="signOutTime != null">
+        #{signOutTime,jdbcType=TIMESTAMP},
       </if>
     </trim>
   </insert>
@@ -167,6 +176,9 @@
       <if test="record.lastestLoginTime != null">
         lastest_login_time = #{record.lastestLoginTime,jdbcType=TIMESTAMP},
       </if>
+      <if test="record.signOutTime != null">
+        sign_out_time = #{record.signOutTime,jdbcType=TIMESTAMP},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -178,7 +190,8 @@
       admin_name = #{record.adminName,jdbcType=VARCHAR},
       password = #{record.password,jdbcType=VARCHAR},
       login_status = #{record.loginStatus,jdbcType=BIT},
-      lastest_login_time = #{record.lastestLoginTime,jdbcType=TIMESTAMP}
+      lastest_login_time = #{record.lastestLoginTime,jdbcType=TIMESTAMP},
+      sign_out_time = #{record.signOutTime,jdbcType=TIMESTAMP}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -198,6 +211,9 @@
       <if test="lastestLoginTime != null">
         lastest_login_time = #{lastestLoginTime,jdbcType=TIMESTAMP},
       </if>
+      <if test="signOutTime != null">
+        sign_out_time = #{signOutTime,jdbcType=TIMESTAMP},
+      </if>
     </set>
     where admin_id = #{adminId,jdbcType=INTEGER}
   </update>
@@ -206,7 +222,8 @@
     set admin_name = #{adminName,jdbcType=VARCHAR},
       password = #{password,jdbcType=VARCHAR},
       login_status = #{loginStatus,jdbcType=BIT},
-      lastest_login_time = #{lastestLoginTime,jdbcType=TIMESTAMP}
+      lastest_login_time = #{lastestLoginTime,jdbcType=TIMESTAMP},
+      sign_out_time = #{signOutTime,jdbcType=TIMESTAMP}
     where admin_id = #{adminId,jdbcType=INTEGER}
   </update>
 </mapper>
