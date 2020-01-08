@@ -16,10 +16,40 @@
     </style>
     <script>
         $(document).ready(function () {
-            $(".nav-link").click(function () {
-
+            bindKeyEvent($("#lowestPrice"));
+            bindKeyEvent($("#highestPrice"));
+            //alert("binfKeyEvent");
+            $("#submit").click(function () {
+                var lowest = $("#lowestPrice").val();
+                var highest = $("#highestPrice").val();
+                //防止上溢
+                if(lowest > 99999999.99)
+                    lowest = 99999999.99;
+                if(highest > 99999999.99)
+                    highest = 99999999.99;
+                //最低价大于最高价，交换两者数值
+                if(lowest > highest){
+                    $("#lowestPrice").val(highest);
+                    $("#highestPrice").val(lowest);
+                }
             });
         });
+        function bindKeyEvent(obj) {
+            obj.keyup(function () {
+                var reg = $(this).val().match(/\d+\.?\d{0,2}/);
+                var txt = '';
+                if (reg != null) {
+                    txt = reg[0];
+                }
+                $(this).val(txt);
+            }).change(function () {
+                $(this).keypress();
+                var v = $(this).val();
+                if (/\.$/.test(v)) {
+                    $(this).val(v.substr(0, v.length - 1));
+                }
+            });
+        }
     </script>
   </head>
   <body>
@@ -231,7 +261,7 @@
 
         <div class="nav-scroller bg-white shadow-sm">
             <nav class="nav nav-underline text-dark">
-                <a class="nav-link active" href="#">商品详情</a>
+                <#--<a class="nav-link active" href="#">商品详情</a>-->
                 <a class="nav-link" href="#">
                     商品件数
                     <span class="badge badge-pill badge-primary">${books?size}</span>
@@ -239,7 +269,13 @@
                 <a class="nav-link" href="/ascSortBookByPrice">按价格升序</a>
                 <a class="nav-link" href="/descSortBookByPrice">按价格降序</a>
                 <a class="nav-link" href="/descSortBookBySales">按销量降序</a>
-                <a class="nav-link" href="#">Link</a>
+                <form class="form-inline" action="/findBookByLHPrice" method="post">
+                    <input type="search" name="lowestPrice" id="lowestPrice"  maxlength="11" class="form-control" value="${RequestParameters['lowestPrice']?default("")}" placeholder="￥请输入最低价"/>-
+                    <input type="search" name="highestPrice" id="highestPrice"  maxlength="11" class="form-control" value="${RequestParameters['highestPrice']?default("")}" placeholder="￥请输入最高价" aria-label="Text input with dropdown button"/>
+                    <div class="input-group-append">
+                    <button type="submit" class="btn btn-primary" id="submit">确定</button>
+                    </div>
+                </form>
             </nav>
         </div>
 

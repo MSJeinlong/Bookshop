@@ -137,4 +137,26 @@ public class BookController {
         session.setAttribute("books", bookSortList);
         return "bookshop";
     }
+
+    /*根据最高价及最低价，且及搜索关键字进行查询*/
+    @RequestMapping("/findBookByLHPrice")
+    public String findBookByLHPrice(HttpSession session, String lowestPrice, String highestPrice){
+        //检查lowestPrice，highestPrice是否为空
+        if(lowestPrice.equals(""))
+            lowestPrice = "0.00";
+        if(highestPrice.equals(""))
+            highestPrice = "99999999.99";
+        String keyName = (String)session.getAttribute("keyName");
+        //当关键字为空时
+        if(keyName == null)
+            keyName = "";
+        List<Book> bookList1 = bookService.findBookByAuthorAndPriceBlur(keyName, new BigDecimal(lowestPrice), new BigDecimal(highestPrice));
+        List<Book> bookList2 = bookService.findBookByBookNameAndPriceBlur(keyName,  new BigDecimal(lowestPrice), new BigDecimal(highestPrice));
+        //搜索结果合并
+        bookList1.addAll(bookList2);
+        //搜索结果去重
+        List<Book> books = bookList1.stream().distinct().collect(Collectors.toList());
+        session.setAttribute("books", books);
+        return "bookshop";
+    }
 }

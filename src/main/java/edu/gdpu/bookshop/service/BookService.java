@@ -9,6 +9,7 @@ import edu.gdpu.bookshop.mapper.BookMapper;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.math.BigDecimal;
 import java.util.List;
 
 @Service
@@ -61,7 +62,6 @@ public class BookService {
             return null;
     }
 
-    /*根据图书名称进行模糊查询*/
     public List<Book> findBookByBookNameBlur(String bookName){
         BookExample bookExample = new BookExample();
         BookExample.Criteria criteria = bookExample.createCriteria();
@@ -69,7 +69,7 @@ public class BookService {
         return bookMapper.selectByExample(bookExample);
     }
 
-    /*根据图书名称进行模糊查询*/
+    /*根据图书名称及最低价和最高价进行模糊查询*/
     public List<Book> findBookByAuthorBlur(String author){
         BookExample bookExample = new BookExample();
         BookExample.Criteria criteria = bookExample.createCriteria();
@@ -77,12 +77,23 @@ public class BookService {
         return bookMapper.selectByExample(bookExample);
     }
 
-    //图书按照价格,且基于关键字进行升序
-//    public List<Book> ascOrderByPrice(String keyName){
-//        BookExample bookExample1 = new BookExample();
-//        BookExample bookExample2 = new BookExample();
-//        BookExample.Criteria criteria1 = bookExample1.createCriteria();
-//        BookExample.Criteria criteria2 = bookExample2.createCriteria();
-//        criteria1.andBookNameLike("%"+keyName+"%");
-//    }
+    /*根据图书名称及最低价和最高价进行模糊查询*/
+    public List<Book> findBookByBookNameAndPriceBlur(String bookName, BigDecimal lowestPrice, BigDecimal highestPrice){
+        BookExample bookExample = new BookExample();
+        BookExample.Criteria criteria = bookExample.createCriteria();
+        criteria.andBookNameLike("%"+bookName+"%");
+        criteria.andPriceBetween(lowestPrice, highestPrice);
+        return bookMapper.selectByExample(bookExample);
+    }
+
+    /*根据图书名称及最低价和最高价进行模糊查询*/
+    public List<Book> findBookByAuthorAndPriceBlur(String author, BigDecimal lowestPrice, BigDecimal highestPrice){
+        BookExample bookExample = new BookExample();
+        BookExample.Criteria criteria = bookExample.createCriteria();
+        criteria.andAuthorLike("%"+author+"%");
+        criteria.andPriceBetween(lowestPrice, highestPrice);
+        return bookMapper.selectByExample(bookExample);
+    }
+
+
 }

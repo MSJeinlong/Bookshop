@@ -1,147 +1,298 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0d6f93b2-f2a4-408a-87a9-3100165d6a40" name="Default Changelist" comment="图书展示，图书详情">
-      <change afterPath="$PROJECT_DIR$/hs_err_pid14048.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/hs_err_pid14956.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/hs_err_pid5760.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/replay_pid14956.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/gdpu/bookshop/mapper/OrderDetailMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/gdpu/bookshop/mapper/OrderMasterMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/image/book/C++dianfulu.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/image/book/JavaSEVisualMaching.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/image/book/LinuxOS.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/image/book/countriesChina.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/image/book/dangyuan.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/image/book/dazhayuan.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/image/book/javaObjectCoding.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/image/book/jixianlinshanwenjixuan.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/image/book/jixianlinzizhuan.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/image/book/jixuanlintanguoxue.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/image/book/xijinpingzhiguolizheng.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/image/book/xxdonglixue.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/bookInfo.ftl" afterDir="false" />
+    <list default="true" id="0d6f93b2-f2a4-408a-87a9-3100165d6a40" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/target/classes/META-INF/bookshop.kotlin_module" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/edu/gdpu/bookshop/controller/AdminController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/edu/gdpu/bookshop/controller/BookCategoryController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/edu/gdpu/bookshop/controller/BookController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/edu/gdpu/bookshop/entity/Admin.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/edu/gdpu/bookshop/entity/AdminExample$Criteria.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/edu/gdpu/bookshop/entity/AdminExample$Criterion.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/edu/gdpu/bookshop/entity/AdminExample$GeneratedCriteria.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/edu/gdpu/bookshop/entity/AdminExample.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/edu/gdpu/bookshop/entity/Book.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/edu/gdpu/bookshop/entity/BookCategory.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/edu/gdpu/bookshop/entity/BookCategoryExample$Criteria.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/edu/gdpu/bookshop/entity/BookCategoryExample$Criterion.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/edu/gdpu/bookshop/entity/BookCategoryExample$GeneratedCriteria.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/edu/gdpu/bookshop/entity/BookCategoryExample.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/edu/gdpu/bookshop/entity/BookExample$Criteria.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/edu/gdpu/bookshop/entity/BookExample$Criterion.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/edu/gdpu/bookshop/entity/BookExample$GeneratedCriteria.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/edu/gdpu/bookshop/entity/BookExample.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/edu/gdpu/bookshop/entity/BsUser.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/edu/gdpu/bookshop/entity/BsUserExample$Criteria.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/edu/gdpu/bookshop/entity/BsUserExample$Criterion.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/edu/gdpu/bookshop/entity/BsUserExample$GeneratedCriteria.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/edu/gdpu/bookshop/entity/BsUserExample.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/edu/gdpu/bookshop/entity/Comment.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/edu/gdpu/bookshop/entity/CommentExample$Criteria.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/edu/gdpu/bookshop/entity/CommentExample$Criterion.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/edu/gdpu/bookshop/entity/CommentExample$GeneratedCriteria.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/edu/gdpu/bookshop/entity/CommentExample.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/edu/gdpu/bookshop/entity/OrderDetail.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/edu/gdpu/bookshop/entity/OrderDetailExample$Criteria.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/edu/gdpu/bookshop/entity/OrderDetailExample$Criterion.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/edu/gdpu/bookshop/entity/OrderDetailExample$GeneratedCriteria.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/edu/gdpu/bookshop/entity/OrderDetailExample.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/edu/gdpu/bookshop/entity/OrderMaster.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/edu/gdpu/bookshop/entity/OrderMasterExample$Criteria.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/edu/gdpu/bookshop/entity/OrderMasterExample$Criterion.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/edu/gdpu/bookshop/entity/OrderMasterExample$GeneratedCriteria.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/edu/gdpu/bookshop/entity/OrderMasterExample.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/edu/gdpu/bookshop/mapper/OrderDetailMapper.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/edu/gdpu/bookshop/mapper/OrderDetailMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/edu/gdpu/bookshop/mapper/OrderMasterMapper.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/edu/gdpu/bookshop/mapper/OrderMasterMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/edu/gdpu/bookshop/service/AdminService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/edu/gdpu/bookshop/service/BookCategoryService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/edu/gdpu/bookshop/service/BookService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/dashboard/dashboard.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/dashboard/dashboard.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/about/brand.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/about/license.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/about/overview.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/about/team.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/about/translations.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/assets/brand/bootstrap-outline.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/assets/brand/bootstrap-punchout.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/assets/brand/bootstrap-social-logo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/assets/brand/bootstrap-social.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/assets/brand/bootstrap-solid.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/assets/css/docs.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/assets/css/docs.min.css.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/assets/img/bootstrap-themes.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/assets/img/bootstrap-themes@2x.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/assets/img/examples/album.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/assets/img/examples/album@2x.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/assets/img/examples/blog.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/assets/img/examples/blog@2x.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/assets/img/examples/carousel.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/assets/img/examples/carousel@2x.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/assets/img/examples/checkout.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/assets/img/examples/checkout@2x.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/assets/img/examples/cover.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/assets/img/examples/cover@2x.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/assets/img/examples/dashboard.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/assets/img/examples/dashboard@2x.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/assets/img/examples/floating-labels.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/assets/img/examples/floating-labels@2x.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/assets/img/examples/grid.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/assets/img/examples/grid@2x.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/assets/img/examples/jumbotron.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/assets/img/examples/jumbotron@2x.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/assets/img/examples/navbar-bottom.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/assets/img/examples/navbar-bottom@2x.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/assets/img/examples/navbar-fixed.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/assets/img/examples/navbar-fixed@2x.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/assets/img/examples/navbar-static.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/assets/img/examples/navbar-static@2x.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/assets/img/examples/navbars.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/assets/img/examples/navbars@2x.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/assets/img/examples/offcanvas.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/assets/img/examples/offcanvas@2x.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/assets/img/examples/pricing.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/assets/img/examples/pricing@2x.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/assets/img/examples/product.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/assets/img/examples/product@2x.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/assets/img/examples/sign-in.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/assets/img/examples/sign-in@2x.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/assets/img/examples/starter-template.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/assets/img/examples/starter-template@2x.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/assets/img/examples/sticky-footer-navbar.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/assets/img/examples/sticky-footer-navbar@2x.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/assets/img/examples/sticky-footer.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/assets/img/examples/sticky-footer@2x.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/assets/img/favicons/android-chrome-192x192.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/assets/img/favicons/android-chrome-512x512.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/assets/img/favicons/apple-touch-icon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/assets/img/favicons/browserconfig.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/assets/img/favicons/favicon-16x16.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/assets/img/favicons/favicon-32x32.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/assets/img/favicons/manifest.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/assets/img/favicons/mstile-144x144.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/assets/img/favicons/mstile-150x150.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/assets/img/favicons/mstile-310x150.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/assets/img/favicons/mstile-310x310.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/assets/img/favicons/mstile-70x70.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/assets/img/favicons/safari-pinned-tab.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/assets/js/docs.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/assets/js/src/application.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/assets/js/src/ie-emulation-modes-warning.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/assets/js/src/search.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/assets/js/vendor/anchor.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/assets/js/vendor/bs-custom-file-input.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/assets/js/vendor/clipboard.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/assets/js/vendor/jquery-slim.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/assets/scss/_ads.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/assets/scss/_algolia.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/assets/scss/_anchor.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/assets/scss/_brand.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/assets/scss/_browser-bugs.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/assets/scss/_buttons.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/assets/scss/_callouts.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/assets/scss/_clipboard-js.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/assets/scss/_colors.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/assets/scss/_component-examples.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/assets/scss/_content.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/assets/scss/_footer.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/assets/scss/_masthead.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/assets/scss/_nav.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/assets/scss/_placeholder-img.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/assets/scss/_sidebar.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/assets/scss/_skippy.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/assets/scss/_syntax.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/assets/scss/_variables.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/assets/scss/docs.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/browser-bugs.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/components/alerts.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/components/badge.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/components/breadcrumb.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/components/button-group.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/components/buttons.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/components/card.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/components/carousel.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/components/collapse.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/components/dropdowns.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/components/forms.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/components/input-group.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/components/jumbotron.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/components/list-group.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/components/media-object.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/components/modal.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/components/navbar.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/components/navs.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/components/pagination.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/components/popovers.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/components/progress.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/components/scrollspy.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/components/spinners.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/components/toasts.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/components/tooltips.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/content/code.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/content/figures.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/content/images.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/content/reboot.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/content/tables.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/content/typography.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/examples/.stylelintrc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/examples/album/album.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/examples/album/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/examples/blog/blog.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/examples/blog/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/examples/carousel/carousel.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/examples/carousel/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/examples/checkout/form-validation.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/examples/checkout/form-validation.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/examples/checkout/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/examples/cover/cover.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/examples/cover/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/examples/dashboard/dashboard.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/examples/dashboard/dashboard.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/examples/dashboard/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/examples/floating-labels/floating-labels.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/examples/floating-labels/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/examples/grid/grid.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/examples/grid/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/examples/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/examples/jumbotron/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/examples/jumbotron/jumbotron.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/examples/navbar-bottom/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/examples/navbar-fixed/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/examples/navbar-fixed/navbar-top-fixed.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/examples/navbar-static/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/examples/navbar-static/navbar-top.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/examples/navbars/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/examples/navbars/navbar.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/examples/offcanvas/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/examples/offcanvas/offcanvas.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/examples/offcanvas/offcanvas.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/examples/pricing/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/examples/pricing/pricing.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/examples/product/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/examples/product/product.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/examples/sign-in/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/examples/sign-in/signin.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/examples/starter-template/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/examples/starter-template/starter-template.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/examples/sticky-footer-navbar/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/examples/sticky-footer-navbar/sticky-footer-navbar.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/examples/sticky-footer/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/examples/sticky-footer/sticky-footer.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/extend/approach.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/extend/icons.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/getting-started/accessibility.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/getting-started/best-practices.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/getting-started/browsers-devices.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/getting-started/build-tools.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/getting-started/contents.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/getting-started/download.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/getting-started/introduction.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/getting-started/javascript.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/getting-started/theming.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/getting-started/webpack.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/layout/grid.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/layout/overview.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/layout/utilities-for-layout.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/migration.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/utilities/borders.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/utilities/clearfix.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/utilities/close-icon.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/utilities/colors.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/utilities/display.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/utilities/embed.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/utilities/flex.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/utilities/float.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/utilities/image-replacement.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/utilities/overflow.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/utilities/position.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/utilities/screen-readers.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/utilities/shadows.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/utilities/sizing.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/utilities/spacing.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/utilities/stretched-link.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/utilities/text.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/utilities/vertical-align.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/4.3/utilities/visibility.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/docs/versions.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/fonts/glyphicons-halflings-regular.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/fonts/glyphicons-halflings-regular.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/fonts/glyphicons-halflings-regular.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/fonts/glyphicons-halflings-regular.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/fonts/glyphicons-halflings-regular.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/image/admin.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/image/book/C++dianfulu.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/image/book/ComputerAndBrain.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/image/book/JavaSEVisualMaching.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/image/book/LinuxOS.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/image/book/countriesChina.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/image/book/countryWeathy.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/image/book/dangyuan.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/image/book/dazhayuan.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/image/book/javaObjectCoding.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/image/book/jixianlinshanwenjixuan.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/image/book/jixianlinzizhuan.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/image/book/jixuanlintanguoxue.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/image/book/living.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/image/book/xijinpingzhiguolizheng.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/image/book/xxdonglixue.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/image/ppt1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/image/slide/ppt1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/image/slide/ppt2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/image/slide/ppt3.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/image/slide/ppt4.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/image/slide/ppt5.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/image/slide/ppt6.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/templates/addBook.ftl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/templates/addBookCategory.ftl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/templates/adminLogin.ftl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/templates/adminManage.ftl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/templates/bookInfo.ftl" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/gdpu/bookshop/bean/Admin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/gdpu/bookshop/entity/Admin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/gdpu/bookshop/bean/AdminExample.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/gdpu/bookshop/entity/AdminExample.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/gdpu/bookshop/bean/Book.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/gdpu/bookshop/entity/Book.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/gdpu/bookshop/bean/BookCategory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/gdpu/bookshop/entity/BookCategory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/gdpu/bookshop/bean/BookCategoryExample.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/gdpu/bookshop/entity/BookCategoryExample.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/gdpu/bookshop/bean/BookExample.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/gdpu/bookshop/entity/BookExample.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/gdpu/bookshop/bean/BsUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/gdpu/bookshop/entity/BsUser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/gdpu/bookshop/bean/BsUserExample.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/gdpu/bookshop/entity/BsUserExample.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/gdpu/bookshop/bean/Comment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/gdpu/bookshop/entity/Comment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/gdpu/bookshop/bean/CommentExample.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/gdpu/bookshop/entity/CommentExample.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/gdpu/bookshop/bean/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/gdpu/bookshop/entity/OrderMaster.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/gdpu/bookshop/bean/OrderExample.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/gdpu/bookshop/entity/OrderMasterExample.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/gdpu/bookshop/bean/OrderLine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/gdpu/bookshop/entity/OrderDetail.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/gdpu/bookshop/bean/OrderLineExample.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/gdpu/bookshop/entity/OrderDetailExample.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/gdpu/bookshop/bean/OrderStatus.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/gdpu/bookshop/bean/OrderStatusExample.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/gdpu/bookshop/bean/PayWay.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/gdpu/bookshop/bean/PayWayExample.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/gdpu/bookshop/controller/AdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/gdpu/bookshop/controller/AdminController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/gdpu/bookshop/controller/BookCategoryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/gdpu/bookshop/controller/BookCategoryController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/gdpu/bookshop/controller/BookController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/gdpu/bookshop/controller/BookController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/gdpu/bookshop/controller/GuideController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/gdpu/bookshop/controller/GuideController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/gdpu/bookshop/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/gdpu/bookshop/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/gdpu/bookshop/mapper/AdminMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/gdpu/bookshop/mapper/AdminMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/gdpu/bookshop/mapper/BookCategoryMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/gdpu/bookshop/mapper/BookCategoryMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/gdpu/bookshop/mapper/BookMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/gdpu/bookshop/mapper/BookMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/gdpu/bookshop/mapper/BsUserMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/gdpu/bookshop/mapper/BsUserMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/gdpu/bookshop/mapper/CommentMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/gdpu/bookshop/mapper/CommentMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/gdpu/bookshop/mapper/OrderLineMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/gdpu/bookshop/mapper/OrderMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/gdpu/bookshop/mapper/OrderStatusMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/gdpu/bookshop/mapper/PayWayMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/gdpu/bookshop/service/AdminService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/gdpu/bookshop/service/AdminService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/gdpu/bookshop/service/BookCategoryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/gdpu/bookshop/service/BookCategoryService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/gdpu/bookshop/service/BookService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/gdpu/bookshop/service/BookService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/gdpu/bookshop/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/gdpu/bookshop/service/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/edu/gdpu/bookshop/mapper/AdminMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/edu/gdpu/bookshop/mapper/AdminMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/edu/gdpu/bookshop/mapper/BookCategoryMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/edu/gdpu/bookshop/mapper/BookCategoryMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/edu/gdpu/bookshop/mapper/BookMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/edu/gdpu/bookshop/mapper/BookMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/edu/gdpu/bookshop/mapper/BsUserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/edu/gdpu/bookshop/mapper/BsUserMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/edu/gdpu/bookshop/mapper/CommentMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/edu/gdpu/bookshop/mapper/CommentMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/edu/gdpu/bookshop/mapper/OrderLineMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/edu/gdpu/bookshop/mapper/OrderDetailMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/edu/gdpu/bookshop/mapper/OrderMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/edu/gdpu/bookshop/mapper/OrderMasterMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/edu/gdpu/bookshop/mapper/OrderStatusMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/edu/gdpu/bookshop/mapper/PayWayMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/generatorConfig.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/generatorConfig.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/bookshop.ftl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/bookshop.ftl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/edu/gdpu/bookshop/bean/Admin.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/edu/gdpu/bookshop/bean/AdminExample$Criteria.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/edu/gdpu/bookshop/bean/AdminExample$Criterion.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/edu/gdpu/bookshop/bean/AdminExample$GeneratedCriteria.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/edu/gdpu/bookshop/bean/AdminExample.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/edu/gdpu/bookshop/bean/Book.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/edu/gdpu/bookshop/bean/BookCategory.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/edu/gdpu/bookshop/bean/BookCategoryExample$Criteria.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/edu/gdpu/bookshop/bean/BookCategoryExample$Criterion.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/edu/gdpu/bookshop/bean/BookCategoryExample$GeneratedCriteria.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/edu/gdpu/bookshop/bean/BookCategoryExample.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/edu/gdpu/bookshop/bean/BookExample$Criteria.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/edu/gdpu/bookshop/bean/BookExample$Criterion.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/edu/gdpu/bookshop/bean/BookExample$GeneratedCriteria.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/edu/gdpu/bookshop/bean/BookExample.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/edu/gdpu/bookshop/bean/BsUser.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/edu/gdpu/bookshop/bean/BsUserExample$Criteria.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/edu/gdpu/bookshop/bean/BsUserExample$Criterion.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/edu/gdpu/bookshop/bean/BsUserExample$GeneratedCriteria.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/edu/gdpu/bookshop/bean/BsUserExample.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/edu/gdpu/bookshop/bean/Comment.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/edu/gdpu/bookshop/bean/CommentExample$Criteria.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/edu/gdpu/bookshop/bean/CommentExample$Criterion.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/edu/gdpu/bookshop/bean/CommentExample$GeneratedCriteria.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/edu/gdpu/bookshop/bean/CommentExample.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/edu/gdpu/bookshop/bean/Order.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/edu/gdpu/bookshop/bean/OrderExample$Criteria.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/edu/gdpu/bookshop/bean/OrderExample$Criterion.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/edu/gdpu/bookshop/bean/OrderExample$GeneratedCriteria.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/edu/gdpu/bookshop/bean/OrderExample.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/edu/gdpu/bookshop/bean/OrderLine.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/edu/gdpu/bookshop/bean/OrderLineExample$Criteria.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/edu/gdpu/bookshop/bean/OrderLineExample$Criterion.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/edu/gdpu/bookshop/bean/OrderLineExample$GeneratedCriteria.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/edu/gdpu/bookshop/bean/OrderLineExample.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/edu/gdpu/bookshop/bean/OrderStatus.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/edu/gdpu/bookshop/bean/OrderStatusExample$Criteria.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/edu/gdpu/bookshop/bean/OrderStatusExample$Criterion.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/edu/gdpu/bookshop/bean/OrderStatusExample$GeneratedCriteria.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/edu/gdpu/bookshop/bean/OrderStatusExample.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/edu/gdpu/bookshop/bean/PayWay.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/edu/gdpu/bookshop/bean/PayWayExample$Criteria.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/edu/gdpu/bookshop/bean/PayWayExample$Criterion.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/edu/gdpu/bookshop/bean/PayWayExample$GeneratedCriteria.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/edu/gdpu/bookshop/bean/PayWayExample.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/edu/gdpu/bookshop/controller/GuideController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/edu/gdpu/bookshop/controller/GuideController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/edu/gdpu/bookshop/controller/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/edu/gdpu/bookshop/controller/UserController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/edu/gdpu/bookshop/mapper/AdminMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/edu/gdpu/bookshop/mapper/AdminMapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/edu/gdpu/bookshop/mapper/AdminMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/edu/gdpu/bookshop/mapper/AdminMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/edu/gdpu/bookshop/mapper/BookCategoryMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/edu/gdpu/bookshop/mapper/BookCategoryMapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/edu/gdpu/bookshop/mapper/BookCategoryMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/edu/gdpu/bookshop/mapper/BookCategoryMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/edu/gdpu/bookshop/mapper/BookMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/edu/gdpu/bookshop/mapper/BookMapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/edu/gdpu/bookshop/mapper/BookMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/edu/gdpu/bookshop/mapper/BookMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/edu/gdpu/bookshop/mapper/BsUserMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/edu/gdpu/bookshop/mapper/BsUserMapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/edu/gdpu/bookshop/mapper/BsUserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/edu/gdpu/bookshop/mapper/BsUserMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/edu/gdpu/bookshop/mapper/CommentMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/edu/gdpu/bookshop/mapper/CommentMapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/edu/gdpu/bookshop/mapper/CommentMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/edu/gdpu/bookshop/mapper/CommentMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/edu/gdpu/bookshop/mapper/OrderLineMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/edu/gdpu/bookshop/mapper/OrderLineMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/edu/gdpu/bookshop/mapper/OrderMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/edu/gdpu/bookshop/mapper/OrderMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/edu/gdpu/bookshop/mapper/OrderStatusMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/edu/gdpu/bookshop/mapper/OrderStatusMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/edu/gdpu/bookshop/mapper/PayWayMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/edu/gdpu/bookshop/mapper/PayWayMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/edu/gdpu/bookshop/service/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/edu/gdpu/bookshop/service/UserService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/generatorConfig.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/generatorConfig.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/bootstrap-4.3.1/fonts/glyphicons-halflings-regular.eot" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/bootstrap-4.3.1/fonts/glyphicons-halflings-regular.eot" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/bootstrap-4.3.1/fonts/glyphicons-halflings-regular.ttf" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/bootstrap-4.3.1/fonts/glyphicons-halflings-regular.ttf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/bootstrap-4.3.1/fonts/glyphicons-halflings-regular.woff" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/bootstrap-4.3.1/fonts/glyphicons-halflings-regular.woff" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/bootstrap-4.3.1/fonts/glyphicons-halflings-regular.woff2" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/bootstrap-4.3.1/fonts/glyphicons-halflings-regular.woff2" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/fonts/icomoon.ttf" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/fonts/icomoon.ttf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/fonts/icomoon.woff" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/fonts/icomoon.woff" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/templates/bookshop.ftl" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/bookshop.ftl" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -286,7 +437,8 @@
       <workItem from="1578325524587" duration="737000" />
       <workItem from="1578368016394" duration="17357000" />
       <workItem from="1578395925365" duration="12087000" />
-      <workItem from="1578446582107" duration="18362000" />
+      <workItem from="1578446582107" duration="18552000" />
+      <workItem from="1578486369384" duration="5904000" />
     </task>
     <task id="LOCAL-00001" summary="录入图书数据">
       <created>1578397863684</created>
@@ -295,7 +447,14 @@
       <option name="project" value="LOCAL" />
       <updated>1578397863684</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="按图书名称或作者进行模糊搜索，价格升序，价格降序，销量降序">
+      <created>1578478937054</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1578478937054</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -305,7 +464,8 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="录入图书数据" />
     <MESSAGE value="图书展示，图书详情" />
-    <option name="LAST_COMMIT_MESSAGE" value="图书展示，图书详情" />
+    <MESSAGE value="按图书名称或作者进行模糊搜索，价格升序，价格降序，销量降序" />
+    <option name="LAST_COMMIT_MESSAGE" value="按图书名称或作者进行模糊搜索，价格升序，价格降序，销量降序" />
   </component>
   <component name="WindowStateProjectService">
     <state x="233" y="2" key="#Other_File_Types" timestamp="1578125195285">
@@ -333,55 +493,55 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="371" y="90" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1280.680@0.0.1280.680" timestamp="1578054409659" />
-    <state x="374" y="9" key="CommitChangelistDialog2" timestamp="1578408954351">
+    <state x="374" y="0" key="CommitChangelistDialog2" timestamp="1578492480942">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="374" y="9" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1578408954351" />
-    <state x="421" y="98" key="FileChooserDialogImpl" timestamp="1578471758793">
-      <screen x="0" y="0" width="1280" height="680" />
+    <state x="374" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1578492480942" />
+    <state x="505" y="119" key="FileChooserDialogImpl" timestamp="1578492294367">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="421" y="98" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1578471758793" />
-    <state x="505" y="119" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1578404197611" />
-    <state width="1238" height="157" key="GridCell.Tab.0.bottom" timestamp="1578472449341">
-      <screen x="0" y="0" width="1280" height="680" />
+    <state x="505" y="119" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1578492294367" />
+    <state width="1493" height="136" key="GridCell.Tab.0.bottom" timestamp="1578488090471">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1238" height="157" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1578472449341" />
-    <state width="1493" height="200" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1578409103169" />
-    <state width="1238" height="157" key="GridCell.Tab.0.center" timestamp="1578472449341">
-      <screen x="0" y="0" width="1280" height="680" />
+    <state width="1493" height="136" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1578488090471" />
+    <state width="1493" height="136" key="GridCell.Tab.0.center" timestamp="1578488090470">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1238" height="157" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1578472449341" />
-    <state width="1493" height="200" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1578409103168" />
-    <state width="1238" height="157" key="GridCell.Tab.0.left" timestamp="1578472449340">
-      <screen x="0" y="0" width="1280" height="680" />
+    <state width="1493" height="136" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1578488090470" />
+    <state width="1493" height="136" key="GridCell.Tab.0.left" timestamp="1578488090469">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1238" height="157" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1578472449340" />
-    <state width="1493" height="200" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1578409103168" />
-    <state width="1238" height="157" key="GridCell.Tab.0.right" timestamp="1578472449341">
-      <screen x="0" y="0" width="1280" height="680" />
+    <state width="1493" height="136" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1578488090469" />
+    <state width="1493" height="136" key="GridCell.Tab.0.right" timestamp="1578488090470">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1238" height="157" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1578472449341" />
-    <state width="1493" height="200" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1578409103168" />
-    <state width="1238" height="78" key="GridCell.Tab.1.bottom" timestamp="1578472449335">
-      <screen x="0" y="0" width="1280" height="680" />
+    <state width="1493" height="136" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1578488090470" />
+    <state width="1493" height="136" key="GridCell.Tab.1.bottom" timestamp="1578488090471">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1238" height="78" key="GridCell.Tab.1.bottom/0.0.1280.680@0.0.1280.680" timestamp="1578472449335" />
-    <state width="1493" height="200" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1578409103169" />
-    <state width="1238" height="78" key="GridCell.Tab.1.center" timestamp="1578472449334">
-      <screen x="0" y="0" width="1280" height="680" />
+    <state width="1493" height="136" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1578488090471" />
+    <state width="1493" height="136" key="GridCell.Tab.1.center" timestamp="1578488090471">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1238" height="78" key="GridCell.Tab.1.center/0.0.1280.680@0.0.1280.680" timestamp="1578472449334" />
-    <state width="1493" height="200" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1578409103169" />
-    <state width="1238" height="78" key="GridCell.Tab.1.left" timestamp="1578472449334">
-      <screen x="0" y="0" width="1280" height="680" />
+    <state width="1493" height="136" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1578488090471" />
+    <state width="1493" height="136" key="GridCell.Tab.1.left" timestamp="1578488090471">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1238" height="78" key="GridCell.Tab.1.left/0.0.1280.680@0.0.1280.680" timestamp="1578472449334" />
-    <state width="1493" height="200" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1578409103169" />
-    <state width="1238" height="78" key="GridCell.Tab.1.right" timestamp="1578472449334">
-      <screen x="0" y="0" width="1280" height="680" />
+    <state width="1493" height="136" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1578488090471" />
+    <state width="1493" height="136" key="GridCell.Tab.1.right" timestamp="1578488090471">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1238" height="78" key="GridCell.Tab.1.right/0.0.1280.680@0.0.1280.680" timestamp="1578472449334" />
-    <state width="1493" height="200" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1578409103169" />
+    <state width="1493" height="136" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1578488090471" />
     <state width="1493" height="191" key="GridCell.Tab.2.bottom" timestamp="1578151094829">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -398,28 +558,28 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1493" height="191" key="GridCell.Tab.2.right/0.0.1536.824@0.0.1536.824" timestamp="1578151094828" />
-    <state x="97" y="0" key="SettingsEditor" timestamp="1578446600315">
-      <screen x="0" y="0" width="1280" height="680" />
-    </state>
-    <state x="97" y="0" key="SettingsEditor/0.0.1280.680@0.0.1280.680" timestamp="1578446600315" />
-    <state x="116" y="0" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1578399861163" />
-    <state x="361" y="148" key="Vcs.Push.Dialog.v2" timestamp="1578409078706">
+    <state x="116" y="0" key="SettingsEditor" timestamp="1578478977703">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="361" y="148" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1578409078706" />
-    <state x="384" y="198" key="com.intellij.ide.util.TipDialog" timestamp="1578446581457">
-      <screen x="0" y="0" width="1280" height="680" />
+    <state x="97" y="0" key="SettingsEditor/0.0.1280.680@0.0.1280.680" timestamp="1578446600315" />
+    <state x="116" y="0" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1578478977703" />
+    <state x="361" y="148" key="Vcs.Push.Dialog.v2" timestamp="1578478999550">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="361" y="148" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1578478999550" />
+    <state x="461" y="240" key="com.intellij.ide.util.TipDialog" timestamp="1578486369408">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="384" y="198" key="com.intellij.ide.util.TipDialog/0.0.1280.680@0.0.1280.680" timestamp="1578446581457" />
-    <state x="461" y="240" key="com.intellij.ide.util.TipDialog/0.0.1536.824@0.0.1536.824" timestamp="1578395929483" />
+    <state x="461" y="240" key="com.intellij.ide.util.TipDialog/0.0.1536.824@0.0.1536.824" timestamp="1578486369408" />
     <state x="6" y="48" key="new project wizard" timestamp="1578456666264">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="6" y="48" key="new project wizard/0.0.1280.680@0.0.1280.680" timestamp="1578456666264" />
-    <state x="307" y="6" width="672" height="678" key="search.everywhere.popup" timestamp="1578473460884">
-      <screen x="0" y="0" width="1280" height="680" />
+    <state x="365" y="4" width="807" height="822" key="search.everywhere.popup" timestamp="1578487762065">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="307" y="6" width="672" height="678" key="search.everywhere.popup/0.0.1280.680@0.0.1280.680" timestamp="1578473460884" />
-    <state x="365" y="4" width="807" height="822" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1578404912052" />
+    <state x="365" y="4" width="807" height="822" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1578487762065" />
   </component>
 </project>
