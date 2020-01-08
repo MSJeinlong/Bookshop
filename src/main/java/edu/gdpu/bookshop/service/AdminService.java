@@ -1,7 +1,7 @@
 package edu.gdpu.bookshop.service;
 
-import edu.gdpu.bookshop.bean.Admin;
-import edu.gdpu.bookshop.bean.AdminExample;
+import edu.gdpu.bookshop.entity.Admin;
+import edu.gdpu.bookshop.entity.AdminExample;
 import edu.gdpu.bookshop.mapper.AdminMapper;
 import org.springframework.stereotype.Service;
 

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="edu.gdpu.bookshop.mapper.BsUserMapper">
-  <resultMap id="BaseResultMap" type="edu.gdpu.bookshop.bean.BsUser">
+  <resultMap id="BaseResultMap" type="edu.gdpu.bookshop.entity.BsUser">
     <id column="user_id" jdbcType="INTEGER" property="userId" />
     <result column="cellphone" jdbcType="VARCHAR" property="cellphone" />
     <result column="password" jdbcType="VARCHAR" property="password" />
@@ -88,7 +88,7 @@
     city1, district1, street1, province2, city2, district2, street2, postcode, cardno, 
     status, login_time, sign_out_time
   </sql>
-  <select id="selectByExample" parameterType="edu.gdpu.bookshop.bean.BsUserExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="edu.gdpu.bookshop.entity.BsUserExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -113,13 +113,13 @@
     delete from bs_user
     where user_id = #{userId,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="edu.gdpu.bookshop.bean.BsUserExample">
+  <delete id="deleteByExample" parameterType="edu.gdpu.bookshop.entity.BsUserExample">
     delete from bs_user
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="edu.gdpu.bookshop.bean.BsUser">
+  <insert id="insert" parameterType="edu.gdpu.bookshop.entity.BsUser">
     insert into bs_user (user_id, cellphone, password, 
       nickname, gender, email, 
       qq, wechat, birthday, 
@@ -137,7 +137,7 @@
       #{cardno,jdbcType=VARCHAR}, #{status,jdbcType=TINYINT}, #{loginTime,jdbcType=TIMESTAMP}, 
       #{signOutTime,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" parameterType="edu.gdpu.bookshop.bean.BsUser">
+  <insert id="insertSelective" parameterType="edu.gdpu.bookshop.entity.BsUser">
     insert into bs_user
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="userId != null">
@@ -276,7 +276,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="edu.gdpu.bookshop.bean.BsUserExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="edu.gdpu.bookshop.entity.BsUserExample" resultType="java.lang.Long">
     select count(*) from bs_user
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -384,7 +384,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="edu.gdpu.bookshop.bean.BsUser">
+  <update id="updateByPrimaryKeySelective" parameterType="edu.gdpu.bookshop.entity.BsUser">
     update bs_user
     <set>
       <if test="cellphone != null">
@@ -453,7 +453,7 @@
     </set>
     where user_id = #{userId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="edu.gdpu.bookshop.bean.BsUser">
+  <update id="updateByPrimaryKey" parameterType="edu.gdpu.bookshop.entity.BsUser">
     update bs_user
     set cellphone = #{cellphone,jdbcType=VARCHAR},
       password = #{password,jdbcType=VARCHAR},

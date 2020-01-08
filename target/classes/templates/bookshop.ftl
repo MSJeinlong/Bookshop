@@ -16,20 +16,15 @@
     </style>
     <script>
         $(document).ready(function () {
-            // $('[data-toggle="tooltip"]').tooltip();
-            // var user = session.getAttribute("bsUser");
-            // console.log(user);
-            // console.log("hello");
-            // if(user != null)
-            //     alert(user.cellphone);
-            // else
-            //     alert("user：null");
+            $(".nav-link").click(function () {
+
+            });
         });
     </script>
   </head>
   <body>
     <div class="container-fluid">
-      <nav class="navbar navbar-expand-sm bg-light navbar-light fixed-top">
+      <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
         <a class="navbar-brand" href="#"></span>BOOKSHOP</a>
         <span class="navbar-text"
           >欢迎光临网上书店，请<a href="/toUserLogin" class="text-primary" data-toggle="tooltip" title="点击可进行登录或者注册!">登录</a
@@ -47,9 +42,9 @@
             >
           </li>
         </ul>
-        <form action="#" class="form-inline" method="post">
+        <form action="/findBook" class="form-inline" method="post">
             <div class="input-group">
-                <input type="search" class="form-control" aria-label="Text input with dropdown button">
+                <input type="search" name="keyName" class="form-control" aria-label="Text input with dropdown button" value="${RequestParameters['keyName']?default("")}" placeholder="请输入书名/作者"/>
                 <div class="input-group-append">
                     <button class="btn btn-outline-success " type="submit" >搜索</button>
                 </div>
@@ -74,7 +69,7 @@
       </nav>
 
       <div class="row" id="classOfBook">
-          <div class="col-lg-2">
+          <div class="col-lg-3">
               <div class="card mb-4 shadow-sm" id="newbook">
                   <div class="card-header">
                       <h4 class="my-0 font-weight-normal">新书上架</h4>
@@ -91,19 +86,19 @@
                           <tbody>
                           <tr>
                               <th scope="row">1</th>
-                              <td><a href="#">《数学》</a></td>
+                              <td><a href="#">《数学》<span class="badge badge-pill badge-secondary">new</span></a></td>
                           </tr>
                           <tr>
                               <th scope="row">2</th>
-                              <td><a href="#">《数学》</a></td>
+                              <td><a href="#">《语文》<span class="badge badge-pill badge-secondary">new</span></a></td>
                           </tr>
                           <tr>
                               <th scope="row">3</th>
-                              <td><a href="#">《数学》</a></td>
+                              <td><a href="#">《英语》<span class="badge badge-pill badge-secondary">new</span></a></td>
                           </tr>
                           <tr>
                               <th scope="row">4</th>
-                              <td><a href="#">《数学》</a></td>
+                              <td><a href="#">《物理》<span class="badge badge-pill badge-secondary">new</span></a></td>
                           </tr>
                           </tbody>
                       </table>
@@ -236,79 +231,50 @@
 
         <div class="nav-scroller bg-white shadow-sm">
             <nav class="nav nav-underline text-dark">
-                <a class="nav-link active" href="#">Dashboard</a>
+                <a class="nav-link active" href="#">商品详情</a>
                 <a class="nav-link" href="#">
-                    Friends
-                    <span class="badge badge-pill bg-light align-text-bottom">27</span>
+                    商品件数
+                    <span class="badge badge-pill badge-primary">${books?size}</span>
                 </a>
-                <a class="nav-link" href="#">Explore</a>
-                <a class="nav-link" href="#">Suggestions</a>
-                <a class="nav-link" href="#">Link</a>
-                <a class="nav-link" href="#">Link</a>
-                <a class="nav-link" href="#">Link</a>
-                <a class="nav-link" href="#">Link</a>
+                <a class="nav-link" href="/ascSortBookByPrice">按价格升序</a>
+                <a class="nav-link" href="/descSortBookByPrice">按价格降序</a>
+                <a class="nav-link" href="/descSortBookBySales">按销量降序</a>
                 <a class="nav-link" href="#">Link</a>
             </nav>
         </div>
 
         <br/>
-    <div class="row">
-        <div class="col-md-3">
-            <div class="card mb-4 shadow-sm">
-                <div class="card-header">
-                    <h4 class="my-0 font-weight-normal">Pro</h4>
+
+        <#list books as book>
+                <div class="card mb-3" style="width: auto;">
+                    <div class="row no-gutters">
+                        <div class="col-md-2">
+                            <img src="${book.image!""}" class="card-img" style="height: 250px; width: 180px"/>
+                        </div>
+                        <div class="col-md-10">
+                            <div class="card-body">
+                                <h5 class="card-title"><a href="/toBookInfo?bookId=${book.bookId!""}" class="card-link">《${book.bookName!""}》</a></h5>
+                                <h5 class="card-title pricing-card-title " style="color: red">￥${book.price?string("0.00")}&nbsp;&nbsp;<small class="text-muted">&nbsp;[定价]:<del>￥${(book.price/0.95)?string("0.00")}</del>(9.5折)</small>&nbsp;&nbsp;
+                                    <small class="text-muted">销量：${book.sales!""}</small>
+                                </h5>
+                                <p class="card-text"><span class="text-primary">${book.author!""}</span>&nbsp;著/<span class="text-muted">${book.publishDate?string("yyyy-MM-dd")}</span>/<span class="text-primary">${book.publisher!""}</span></p>
+                                <p class="card-text"><span class="text-info">[简述]:&nbsp;</span>${book.description!""}</p>
+                                <a href="#" class="btn btn-danger">加入购物车</a>
+                                <#--<a href="#" class="btn btn-outline-danger">收藏</a>-->
+                            </div>
+                        </div>
+                    </div>
                 </div>
+            </#list>
+
+        <#if (books?size==0)>
+            <div class="card">
                 <div class="card-body">
-                    <h1 class="card-title pricing-card-title">$15 <small class="text-muted">/ mo</small></h1>
-                    <ul class="list-unstyled mt-3 mb-4">
-                        <li>20 users included</li>
-                        <li>10 GB of storage</li>
-                        <li>Priority email support</li>
-                        <li>Help center access</li>
-                    </ul>
-                    <button type="button" class="btn btn-lg btn-block btn-primary">加入购物车</button>
+                    <h3 class="card-title text-muted">抱歉，没有找到该商品~~</h3>
+                    <h5 class="card-subtitle text-muted">建议您重新输入搜索关键字！</h5>
                 </div>
             </div>
-        </div>
-        <div class="col-md-3">
-            <div class="card mb-4 shadow-sm">
-<#--                <div class="card-header">-->
-<#--                    <h4 class="my-0 font-weight-normal">Enterprise</h4>-->
-<#--                </div>-->
-                <img class="card-img-top" src="https://static.runoob.com/images/mix/img_avatar.png" alt="Card image"
-                     style="width:100%">
-                <div class="card-body">
-                    <h4 class="card-title">John Doe</h4>
-<#--                    <h4 class="card-title">John Doe</h4>-->
-                    <p class="card-text">Some example text some example text. John Doe is an architect and engineer</p>
-                    <h4 class="card-title pricing-card-title">$29 <small class="text-muted">/ mo</small></h4>
-                    <a href="#" class="btn btn-primary btn-block btn-clock">加入购物车</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="card" style="height:150px;">
-                <img class="card-img-top" src="https://static.runoob.com/images/mix/img_avatar.png" alt="Card image"
-                    style="width:100%">
-                <div class="card-body">
-                    <h4 class="card-title">John Doe</h4>
-                    <p class="card-text">Some example text some example text. John Doe is an architect and engineer</p>
-                    <a href="#" class="btn btn-primary">See Profile</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="card" style="height:150px;">
-                <img class="card-img-top" src="https://static.runoob.com/images/mix/img_avatar.png" alt="Card image"
-                    style="width:100%">
-                <div class="card-body">
-                    <h4 class="card-title">John Doe</h4>
-                    <p class="card-text">Some example text some example text. John Doe is an architect and engineer</p>
-                    <a href="#" class="btn btn-primary">See Profile</a>
-                </div>
-            </div>
-        </div>
-    </div>
+        </#if>
       </div>
     </div>
   </body>

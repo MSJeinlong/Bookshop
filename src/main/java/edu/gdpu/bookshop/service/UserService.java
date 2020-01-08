@@ -1,7 +1,7 @@
 package edu.gdpu.bookshop.service;
 
-import edu.gdpu.bookshop.bean.BsUser;
-import edu.gdpu.bookshop.bean.BsUserExample;
+import edu.gdpu.bookshop.entity.BsUser;
+import edu.gdpu.bookshop.entity.BsUserExample;
 import edu.gdpu.bookshop.mapper.BsUserMapper;
 import org.springframework.stereotype.Service;
 

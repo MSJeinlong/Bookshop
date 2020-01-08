@@ -1,6 +1,6 @@
 package edu.gdpu.bookshop.controller;
 
-import edu.gdpu.bookshop.bean.BookCategory;
+import edu.gdpu.bookshop.entity.BookCategory;
 import edu.gdpu.bookshop.service.BookCategoryService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

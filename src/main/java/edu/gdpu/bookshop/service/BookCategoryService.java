@@ -1,12 +1,13 @@
 package edu.gdpu.bookshop.service;
 
-import edu.gdpu.bookshop.bean.BookCategory;
-import edu.gdpu.bookshop.bean.BookCategoryExample;
+import edu.gdpu.bookshop.entity.BookCategoryExample;
+import edu.gdpu.bookshop.entity.BookCategory;
 import edu.gdpu.bookshop.mapper.BookCategoryMapper;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
+
 
 @Service
 public class BookCategoryService {

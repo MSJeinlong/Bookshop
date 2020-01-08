@@ -1,7 +1,7 @@
 package edu.gdpu.bookshop.mapper;
 
-import edu.gdpu.bookshop.bean.Comment;
-import edu.gdpu.bookshop.bean.CommentExample;
+import edu.gdpu.bookshop.entity.Comment;
+import edu.gdpu.bookshop.entity.CommentExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 

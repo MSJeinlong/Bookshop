@@ -1,6 +1,6 @@
 package edu.gdpu.bookshop.controller;
 
-import edu.gdpu.bookshop.bean.Admin;
+import edu.gdpu.bookshop.entity.Admin;
 import edu.gdpu.bookshop.service.AdminService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

@@ -1,7 +1,8 @@
 package edu.gdpu.bookshop.controller;
 
-import edu.gdpu.bookshop.bean.BookCategory;
-import edu.gdpu.bookshop.bean.BsUser;
+import edu.gdpu.bookshop.entity.Book;
+import edu.gdpu.bookshop.entity.BookCategory;
+import edu.gdpu.bookshop.entity.BsUser;
 import edu.gdpu.bookshop.service.BookService;
 import edu.gdpu.bookshop.service.UserService;
 import org.springframework.stereotype.Controller;
@@ -42,7 +43,9 @@ public class GuideController {
     }
 
     @RequestMapping("/toBookshop")
-    public String toBookShop(){
+    public String toBookShop(HttpSession session){
+        List<Book> books = bookService.findAllBooks();
+        session.setAttribute("books", books);
         return "bookshop";
     }
 

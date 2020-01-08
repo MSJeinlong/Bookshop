@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="edu.gdpu.bookshop.mapper.AdminMapper">
-  <resultMap id="BaseResultMap" type="edu.gdpu.bookshop.bean.Admin">
+  <resultMap id="BaseResultMap" type="edu.gdpu.bookshop.entity.Admin">
     <id column="admin_id" jdbcType="INTEGER" property="adminId" />
     <result column="admin_name" jdbcType="VARCHAR" property="adminName" />
     <result column="password" jdbcType="VARCHAR" property="password" />
@@ -70,7 +70,7 @@
   <sql id="Base_Column_List">
     admin_id, admin_name, password, login_status, lastest_login_time, sign_out_time
   </sql>
-  <select id="selectByExample" parameterType="edu.gdpu.bookshop.bean.AdminExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="edu.gdpu.bookshop.entity.AdminExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -95,13 +95,13 @@
     delete from bs_admin
     where admin_id = #{adminId,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="edu.gdpu.bookshop.bean.AdminExample">
+  <delete id="deleteByExample" parameterType="edu.gdpu.bookshop.entity.AdminExample">
     delete from bs_admin
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="edu.gdpu.bookshop.bean.Admin">
+  <insert id="insert" parameterType="edu.gdpu.bookshop.entity.Admin">
     insert into bs_admin (admin_id, admin_name, password, 
       login_status, lastest_login_time, sign_out_time
       )
@@ -109,7 +109,7 @@
       #{loginStatus,jdbcType=BIT}, #{lastestLoginTime,jdbcType=TIMESTAMP}, #{signOutTime,jdbcType=TIMESTAMP}
       )
   </insert>
-  <insert id="insertSelective" parameterType="edu.gdpu.bookshop.bean.Admin">
+  <insert id="insertSelective" parameterType="edu.gdpu.bookshop.entity.Admin">
     insert into bs_admin
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="adminId != null">
@@ -152,7 +152,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="edu.gdpu.bookshop.bean.AdminExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="edu.gdpu.bookshop.entity.AdminExample" resultType="java.lang.Long">
     select count(*) from bs_admin
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -196,7 +196,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="edu.gdpu.bookshop.bean.Admin">
+  <update id="updateByPrimaryKeySelective" parameterType="edu.gdpu.bookshop.entity.Admin">
     update bs_admin
     <set>
       <if test="adminName != null">
@@ -217,7 +217,7 @@
     </set>
     where admin_id = #{adminId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="edu.gdpu.bookshop.bean.Admin">
+  <update id="updateByPrimaryKey" parameterType="edu.gdpu.bookshop.entity.Admin">
     update bs_admin
     set admin_name = #{adminName,jdbcType=VARCHAR},
       password = #{password,jdbcType=VARCHAR},

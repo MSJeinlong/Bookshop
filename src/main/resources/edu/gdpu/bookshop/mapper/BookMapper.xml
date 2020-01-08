@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="edu.gdpu.bookshop.mapper.BookMapper">
-  <resultMap id="BaseResultMap" type="edu.gdpu.bookshop.bean.Book">
+  <resultMap id="BaseResultMap" type="edu.gdpu.bookshop.entity.Book">
     <id column="book_id" jdbcType="INTEGER" property="bookId" />
     <result column="book_name" jdbcType="VARCHAR" property="bookName" />
     <result column="author" jdbcType="VARCHAR" property="author" />
@@ -11,6 +11,7 @@
     <result column="publish_date" jdbcType="DATE" property="publishDate" />
     <result column="price" jdbcType="DECIMAL" property="price" />
     <result column="numbers" jdbcType="INTEGER" property="numbers" />
+    <result column="sales" jdbcType="INTEGER" property="sales" />
     <result column="description" jdbcType="VARCHAR" property="description" />
     <result column="category_id" jdbcType="INTEGER" property="categoryId" />
     <result column="pages" jdbcType="INTEGER" property="pages" />
@@ -79,9 +80,9 @@
   </sql>
   <sql id="Base_Column_List">
     book_id, book_name, author, translator, ISBN, publisher, publish_date, price, numbers, 
-    description, category_id, pages, image, is_ebook, create_time, update_time
+    sales, description, category_id, pages, image, is_ebook, create_time, update_time
   </sql>
-  <select id="selectByExample" parameterType="edu.gdpu.bookshop.bean.BookExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="edu.gdpu.bookshop.entity.BookExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -106,27 +107,27 @@
     delete from bs_book
     where book_id = #{bookId,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="edu.gdpu.bookshop.bean.BookExample">
+  <delete id="deleteByExample" parameterType="edu.gdpu.bookshop.entity.BookExample">
     delete from bs_book
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="edu.gdpu.bookshop.bean.Book">
+  <insert id="insert" parameterType="edu.gdpu.bookshop.entity.Book">
     insert into bs_book (book_id, book_name, author, 
       translator, ISBN, publisher, 
       publish_date, price, numbers, 
-      description, category_id, pages, 
-      image, is_ebook, create_time, 
-      update_time)
+      sales, description, category_id, 
+      pages, image, is_ebook, 
+      create_time, update_time)
     values (#{bookId,jdbcType=INTEGER}, #{bookName,jdbcType=VARCHAR}, #{author,jdbcType=VARCHAR}, 
       #{translator,jdbcType=VARCHAR}, #{isbn,jdbcType=VARCHAR}, #{publisher,jdbcType=VARCHAR}, 
       #{publishDate,jdbcType=DATE}, #{price,jdbcType=DECIMAL}, #{numbers,jdbcType=INTEGER}, 
-      #{description,jdbcType=VARCHAR}, #{categoryId,jdbcType=INTEGER}, #{pages,jdbcType=INTEGER}, 
-      #{image,jdbcType=VARCHAR}, #{isEbook,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
-      #{updateTime,jdbcType=TIMESTAMP})
+      #{sales,jdbcType=INTEGER}, #{description,jdbcType=VARCHAR}, #{categoryId,jdbcType=INTEGER}, 
+      #{pages,jdbcType=INTEGER}, #{image,jdbcType=VARCHAR}, #{isEbook,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" parameterType="edu.gdpu.bookshop.bean.Book">
+  <insert id="insertSelective" parameterType="edu.gdpu.bookshop.entity.Book">
     insert into bs_book
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="bookId != null">
@@ -155,6 +156,9 @@
       </if>
       <if test="numbers != null">
         numbers,
+      </if>
+      <if test="sales != null">
+        sales,
       </if>
       <if test="description != null">
         description,
@@ -206,6 +210,9 @@
       <if test="numbers != null">
         #{numbers,jdbcType=INTEGER},
       </if>
+      <if test="sales != null">
+        #{sales,jdbcType=INTEGER},
+      </if>
       <if test="description != null">
         #{description,jdbcType=VARCHAR},
       </if>
@@ -229,7 +236,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="edu.gdpu.bookshop.bean.BookExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="edu.gdpu.bookshop.entity.BookExample" resultType="java.lang.Long">
     select count(*) from bs_book
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -264,6 +271,9 @@
       </if>
       <if test="record.numbers != null">
         numbers = #{record.numbers,jdbcType=INTEGER},
+      </if>
+      <if test="record.sales != null">
+        sales = #{record.sales,jdbcType=INTEGER},
       </if>
       <if test="record.description != null">
         description = #{record.description,jdbcType=VARCHAR},
@@ -302,6 +312,7 @@
       publish_date = #{record.publishDate,jdbcType=DATE},
       price = #{record.price,jdbcType=DECIMAL},
       numbers = #{record.numbers,jdbcType=INTEGER},
+      sales = #{record.sales,jdbcType=INTEGER},
       description = #{record.description,jdbcType=VARCHAR},
       category_id = #{record.categoryId,jdbcType=INTEGER},
       pages = #{record.pages,jdbcType=INTEGER},
@@ -313,7 +324,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="edu.gdpu.bookshop.bean.Book">
+  <update id="updateByPrimaryKeySelective" parameterType="edu.gdpu.bookshop.entity.Book">
     update bs_book
     <set>
       <if test="bookName != null">
@@ -340,6 +351,9 @@
       <if test="numbers != null">
         numbers = #{numbers,jdbcType=INTEGER},
       </if>
+      <if test="sales != null">
+        sales = #{sales,jdbcType=INTEGER},
+      </if>
       <if test="description != null">
         description = #{description,jdbcType=VARCHAR},
       </if>
@@ -364,7 +378,7 @@
     </set>
     where book_id = #{bookId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="edu.gdpu.bookshop.bean.Book">
+  <update id="updateByPrimaryKey" parameterType="edu.gdpu.bookshop.entity.Book">
     update bs_book
     set book_name = #{bookName,jdbcType=VARCHAR},
       author = #{author,jdbcType=VARCHAR},
@@ -374,6 +388,7 @@
       publish_date = #{publishDate,jdbcType=DATE},
       price = #{price,jdbcType=DECIMAL},
       numbers = #{numbers,jdbcType=INTEGER},
+      sales = #{sales,jdbcType=INTEGER},
       description = #{description,jdbcType=VARCHAR},
       category_id = #{categoryId,jdbcType=INTEGER},
       pages = #{pages,jdbcType=INTEGER},

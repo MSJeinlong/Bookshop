@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="edu.gdpu.bookshop.mapper.CommentMapper">
-  <resultMap id="BaseResultMap" type="edu.gdpu.bookshop.bean.Comment">
+  <resultMap id="BaseResultMap" type="edu.gdpu.bookshop.entity.Comment">
     <id column="comment_id" jdbcType="INTEGER" property="commentId" />
     <result column="comment_desc" jdbcType="VARCHAR" property="commentDesc" />
     <result column="comment_level" jdbcType="INTEGER" property="commentLevel" />
@@ -71,7 +71,7 @@
   <sql id="Base_Column_List">
     comment_id, comment_desc, comment_level, comment_grade, user_id, book_id, create_time
   </sql>
-  <select id="selectByExample" parameterType="edu.gdpu.bookshop.bean.CommentExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="edu.gdpu.bookshop.entity.CommentExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -96,13 +96,13 @@
     delete from bs_comment
     where comment_id = #{commentId,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="edu.gdpu.bookshop.bean.CommentExample">
+  <delete id="deleteByExample" parameterType="edu.gdpu.bookshop.entity.CommentExample">
     delete from bs_comment
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="edu.gdpu.bookshop.bean.Comment">
+  <insert id="insert" parameterType="edu.gdpu.bookshop.entity.Comment">
     insert into bs_comment (comment_id, comment_desc, comment_level, 
       comment_grade, user_id, book_id, 
       create_time)
@@ -110,7 +110,7 @@
       #{commentGrade,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{bookId,jdbcType=INTEGER}, 
       #{createTime,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" parameterType="edu.gdpu.bookshop.bean.Comment">
+  <insert id="insertSelective" parameterType="edu.gdpu.bookshop.entity.Comment">
     insert into bs_comment
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="commentId != null">
@@ -159,7 +159,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="edu.gdpu.bookshop.bean.CommentExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="edu.gdpu.bookshop.entity.CommentExample" resultType="java.lang.Long">
     select count(*) from bs_comment
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -207,7 +207,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="edu.gdpu.bookshop.bean.Comment">
+  <update id="updateByPrimaryKeySelective" parameterType="edu.gdpu.bookshop.entity.Comment">
     update bs_comment
     <set>
       <if test="commentDesc != null">
@@ -231,7 +231,7 @@
     </set>
     where comment_id = #{commentId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="edu.gdpu.bookshop.bean.Comment">
+  <update id="updateByPrimaryKey" parameterType="edu.gdpu.bookshop.entity.Comment">
     update bs_comment
     set comment_desc = #{commentDesc,jdbcType=VARCHAR},
       comment_level = #{commentLevel,jdbcType=INTEGER},

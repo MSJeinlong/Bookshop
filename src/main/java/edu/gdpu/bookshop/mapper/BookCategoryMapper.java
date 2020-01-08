@@ -1,7 +1,7 @@
 package edu.gdpu.bookshop.mapper;
 
-import edu.gdpu.bookshop.bean.BookCategory;
-import edu.gdpu.bookshop.bean.BookCategoryExample;
+import edu.gdpu.bookshop.entity.BookCategory;
+import edu.gdpu.bookshop.entity.BookCategoryExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 

@@ -1,7 +1,7 @@
 package edu.gdpu.bookshop.mapper;
 
-import edu.gdpu.bookshop.bean.BsUser;
-import edu.gdpu.bookshop.bean.BsUserExample;
+import edu.gdpu.bookshop.entity.BsUser;
+import edu.gdpu.bookshop.entity.BsUserExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
