@@ -108,4 +108,14 @@ public class GuideController {
         return "addBook";
     }
 
+    @RequestMapping("/toMyCart")
+    public String toMyCart(HttpSession session){
+        BsUser user = (BsUser)session.getAttribute("bsUser");
+        //查看购物车前，判断用户是否已经登录
+        if(user == null){
+            return "userLogin";
+        }
+        else
+            return "shoppingCart";
+    }
 }

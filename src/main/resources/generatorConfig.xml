@@ -59,6 +59,12 @@
                enableDeleteByExample="true" enableSelectByExample="true"
                selectByExampleQueryId="true"/>
 
+        <!--bs_cart表-->
+        <table tableName="bs_cart" domainObjectName="MyCart"
+               enableCountByExample="true" enableUpdateByExample="true"
+               enableDeleteByExample="true" enableSelectByExample="true"
+               selectByExampleQueryId="true"/>
+
         <!--book-category表-->
         <table tableName="book_category" domainObjectName="BookCategory"
                enableCountByExample="true" enableUpdateByExample="true"

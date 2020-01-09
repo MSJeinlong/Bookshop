@@ -62,7 +62,7 @@
         >
         <ul class="navbar-nav">
           <li class="nav-item active">
-            <a class="nav-link" href="#"
+            <a class="nav-link" href="/toMyCart"
             >购物车<span class="badge badge-light">0</span></a
             >
           </li>
@@ -281,7 +281,15 @@
 
         <br/>
 
-        <#list books as book>
+        <#if (books?size==0)>
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="card-title text-muted">抱歉，没有找到该商品~~</h3>
+                    <h5 class="card-subtitle text-muted">建议您重新输入搜索关键字！</h5>
+                </div>
+            </div>
+        <#else >
+            <#list books as book>
                 <div class="card mb-3" style="width: auto;">
                     <div class="row no-gutters">
                         <div class="col-md-2">
@@ -295,7 +303,7 @@
                                 </h5>
                                 <p class="card-text"><span class="text-primary">${book.author!""}</span>&nbsp;著/<span class="text-muted">${book.publishDate?string("yyyy-MM-dd")}</span>/<span class="text-primary">${book.publisher!""}</span></p>
                                 <p class="card-text"><span class="text-info">[简述]:&nbsp;</span>${book.description!""}</p>
-                                <a href="#" class="btn btn-danger">加入购物车</a>
+                                <a href="/addToMyCart?bookId=${book.bookId!""}" class="btn btn-danger">加入购物车</a>
                                 <#--<a href="#" class="btn btn-outline-danger">收藏</a>-->
                             </div>
                         </div>
@@ -303,14 +311,29 @@
                 </div>
             </#list>
 
-        <#if (books?size==0)>
-            <div class="card">
-                <div class="card-body">
-                    <h3 class="card-title text-muted">抱歉，没有找到该商品~~</h3>
-                    <h5 class="card-subtitle text-muted">建议您重新输入搜索关键字！</h5>
+
+                <div class="offset-md-3 col-md-6">
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination">
+                            <li class="page-item"><a class="page-link" href="#">首页</a></li>
+                            <li class="page-item">
+                                <a class="page-link" href="#" aria-label="Previous">
+                                    <span aria-hidden="true">上一页</span>
+                                </a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" href="#" aria-label="Next">
+                                    <span aria-hidden="true">下一页</span>
+                                </a>
+                            </li>
+                            <li class="page-item"><a class="page-link" href="#">尾页</a></li>
+                        </ul>
+                    </nav>
                 </div>
-            </div>
+            s
         </#if>
+
+
       </div>
     </div>
   </body>
