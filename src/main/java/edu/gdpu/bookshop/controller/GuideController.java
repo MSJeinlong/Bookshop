@@ -5,6 +5,8 @@ import edu.gdpu.bookshop.entity.BookCategory;
 import edu.gdpu.bookshop.entity.BsUser;
 import edu.gdpu.bookshop.service.BookService;
 import edu.gdpu.bookshop.service.UserService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -15,6 +17,8 @@ import java.util.List;
 
 @Controller
 public class GuideController {
+
+    private Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Resource
     private UserService userService;
@@ -108,14 +112,28 @@ public class GuideController {
         return "addBook";
     }
 
-    @RequestMapping("/toMyCart")
-    public String toMyCart(HttpSession session){
+
+
+    @RequestMapping("/buyNowOrAdd2Cart")
+    public String buyNowOrAdd2Cart(HttpSession session, String isBuyNow, String bookId, String amount, String flag){
+
+        //判断用户是否已经登录
         BsUser user = (BsUser)session.getAttribute("bsUser");
-        //查看购物车前，判断用户是否已经登录
+
+        //用户未登录，跳转到登录页面
         if(user == null){
+            session.setAttribute("loginToStatus", "3");
+            logger.info("用户尚未登录");
             return "userLogin";
         }
-        else
-            return "shoppingCart";
+        //表示用户加入购物车
+        if(isBuyNow.equals("0")){
+           // return "/addToMyCart?bookId="+bookId+"&amount="+amount+"&flag="+flag;
+            return "/addToMyCart";
+        }
+        //表示用户立即购买
+        else return "#";
     }
+
+
 }

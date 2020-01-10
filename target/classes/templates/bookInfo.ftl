@@ -3,37 +3,83 @@
 <head>
     <link rel="stylesheet" href="/bootstrap-4.3.1/css/bootstrap.min.css" />
     <script src="/jQuery-3.4.1/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.staticfile.org/popper.js/1.15.0/umd/popper.min.js"></script>
     <script src="/bootstrap-4.3.1/js/bootstrap.bundle.min.js"></script>
     <script src="/bootstrap-4.3.1/js/bootstrap.min.js"></script>
+    <script>
+        //判断用户时立即购买还是加入购物车
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+            $("#buyNow").click(function () {
+                $("#isBuyNow").val("1");
+            });
+        });
+    </script>
 </head>
 <body>
 <div class="container">
+
+    <#if addToMyCartTips??>
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>${addToMyCartTips!""}</strong>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    </#if>
+
     <div class="card mb-3" style="width: auto;">
+        <div class="card-header">
+            <a class="btn btn-success" href="/toBookshop">返回</a>&nbsp;&nbsp;
+            <span class="text-dark">图书详情</span>
+        </div>
         <div class="row no-gutters">
             <div class="col-md-2">
                 <img src="${book.image!""}" class="card-img" style="height: 250px; width: 180px"/>
             </div>
             <div class="col-md-10">
+               <#-- <div class="card-header">
+                    <a class="btn btn-success" href="/toBookshop">返回</a>&nbsp;&nbsp;
+                    <p class="card-text">图书详情</p>
+                </div>-->
                 <div class="card-body">
-                    <h5 class="card-title"><a href="#" class="card-link">${book.bookName!""}</a></h5>
+                    <h5 class="card-title"><a href="#" class="card-link">《${book.bookName!""}》</a>&nbsp;&nbsp;&nbsp;<small class="text-muted">销量：${book.sales!""}</small>&nbsp;&nbsp;<small class="text-muted">库存：${book.numbers!""}</small></h5>
                     <p class="card-text">作者：<span class="text-primary">${book.author!""}</span>&nbsp;&nbsp;&nbsp;[译者]：<span class="text-muted">${book.translator!"无"}</span>&nbsp;&nbsp;&nbsp;出版社：<span class="text-primary">${book.publisher!""}&nbsp;&nbsp;&nbsp;</span>出版时间：<span class="text-muted">${book.publishDate?string("yyyy-MM-dd")}</span></p>
                     <p class="card-text"><span class="text-info">[简述]:&nbsp;</span>${book.description!""}</p>
 
                     <h5 class="card-title pricing-card-title">销售价：&nbsp;<span style="color: red">￥${book.price?string("0.00")}</span><small class="text-muted">&nbsp;[定价]:<del>￥${(book.price/0.95)?string("0.00")}</del>(9.5折)</small></h5>
 
-                    <form action="#" method="post">
+                    <form action="/buyNowOrAdd2Cart" method="post">
+                        <input type="hidden" name="isBuyNow" id="isBuyNow" value="0"/>
+                        <input type="hidden" name="bookId" value="${book.bookId!""}"/>
+                        <input type="hidden" name="flag" value="0"/>
                         <div class="form-group form-inline">
                             <label for="amount">数量：</label>&nbsp;
-                            <input type="number" class="form-control" name="amount" id="amount" min="1" max="10" value="1" required/>
+                            <input type="number" class="form-control" name="amount" id="amount" min="1" max="10" value="${RequestParameters['amount']?default("1")}" required/>
                         </div>
                         <small class="text-muted">每个用户最多购买<strong style="color: red;">10</strong>件</small>
                         <div class="row">
                             <div class="col-sm-3">
-                                <a href="#" class="btn btn-danger">加入购物车</a>
+                                <#if book.numbers == 0>
+                                    <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="抱歉，该商品暂时无货！">
+                                        <button class="btn btn-danger" style="pointer-events: none;" type="submit" disabled>加入购物车</button>
+                                    </span>
+                                <#else >
+                                    <button type="submit" class="btn btn-danger" id="addToCart">加入购物车</button>
+                                </#if>
                             </div>
                             <div class="col-sm-3">
-                                <a href="#" class="btn btn-danger">立即购买</a>
+                                <#if book.numbers == 0>
+                                    <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="抱歉，该商品暂时无货！">
+                                        <button class="btn btn-danger" style="pointer-events: none;" type="submit" disabled>立即购买</button>
+                                    </span>
+                                <#else >
+                                    <button type="submit" class="btn btn-danger" id="buyNow" >立即购买</button>
+                                </#if>
                             </div>
+                            <#--<div class="col-sm-3">
+                                <a class="btn btn-success btn-block" href="/toBookshop">返回</a>
+                            </div>-->
                         </div>
                     </form>
                 </div>

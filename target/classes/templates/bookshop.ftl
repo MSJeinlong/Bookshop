@@ -7,6 +7,7 @@
     <title>网上书店系统</title>
       <link rel="stylesheet" href="/bootstrap-4.3.1/css/bootstrap.min.css" />
       <script src="/jQuery-3.4.1/jquery-3.4.1.min.js"></script>
+      <script src="https://cdn.staticfile.org/popper.js/1.15.0/umd/popper.min.js"></script>
       <script src="/bootstrap-4.3.1/js/bootstrap.bundle.min.js"></script>
       <script src="/bootstrap-4.3.1/js/bootstrap.min.js"></script>
     <style type="text/css">
@@ -16,6 +17,7 @@
     </style>
     <script>
         $(document).ready(function () {
+            $('[data-toggle="tooltip"]').tooltip();
             bindKeyEvent($("#lowestPrice"));
             bindKeyEvent($("#highestPrice"));
             //alert("binfKeyEvent");
@@ -32,6 +34,15 @@
                     $("#lowestPrice").val(highest);
                     $("#highestPrice").val(lowest);
                 }
+            });
+
+            $("#myCart").click(function () {
+                $("#myOrder").attr("class", "nav-item");
+                $(this).attr("class", "nav-item active");
+            });
+            $("#myOrder").click(function () {
+                $("#myCart").attr("class", "nav-item");
+                $(this).attr("class", "nav-item active");
             });
         });
         function bindKeyEvent(obj) {
@@ -57,24 +68,29 @@
       <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
         <a class="navbar-brand" href="#"></span>BOOKSHOP</a>
         <span class="navbar-text"
-          >欢迎光临网上书店，请<a href="/toUserLogin" class="text-primary" data-toggle="tooltip" title="点击可进行登录或者注册!">登录</a
-          >成为会员</span
-        >
+          >欢迎光临网上书店
+            <#if bsUser??>
+
+                <#else >
+                    ，请<a href="/toUserLogin" class="text-primary" data-toggle="tooltip" title="点击可进行登录或者注册!">登录</a>成为会员
+            </#if>
+
+        </span>
         <ul class="navbar-nav">
-          <li class="nav-item active">
+          <li class="nav-item active"  id="myCart">
             <a class="nav-link" href="/toMyCart"
-            >购物车<span class="badge badge-light">0</span></a
+            >购物车<span class="badge badge-pill badge-info">${cartCount!"0"}</span></a
             >
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#"
-              >我的订单<span class="badge badge-light">0</span></a
+          <li class="nav-item" id="myOrder">
+            <a class="nav-link" href="/confirmMyOrder"
+              >我的订单<span class="badge badge-pill badge-info">0</span></a
             >
           </li>
         </ul>
         <form action="/findBook" class="form-inline" method="post">
             <div class="input-group">
-                <input type="search" name="keyName" class="form-control" aria-label="Text input with dropdown button" value="${RequestParameters['keyName']?default("")}" placeholder="请输入书名/作者"/>
+                <input type="search" name="keyName" class="form-control"  value="${RequestParameters['keyName']?default("")}" placeholder="请输入书名/作者"/>
                 <div class="input-group-append">
                     <button class="btn btn-outline-success " type="submit" >搜索</button>
                 </div>
@@ -258,7 +274,12 @@
       </div>
 
     <br/>
-
+        <#if addToMyCartTips??>
+            <div class="alert alert-success alert-dismissible" style="width:auto">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>${addToMyCartTips}</strong>
+            </div>
+        </#if>
         <div class="nav-scroller bg-white shadow-sm">
             <nav class="nav nav-underline text-dark">
                 <#--<a class="nav-link active" href="#">商品详情</a>-->
@@ -299,12 +320,26 @@
                             <div class="card-body">
                                 <h5 class="card-title"><a href="/toBookInfo?bookId=${book.bookId!""}" class="card-link">《${book.bookName!""}》</a></h5>
                                 <h5 class="card-title pricing-card-title " style="color: red">￥${book.price?string("0.00")}&nbsp;&nbsp;<small class="text-muted">&nbsp;[定价]:<del>￥${(book.price/0.95)?string("0.00")}</del>(9.5折)</small>&nbsp;&nbsp;
-                                    <small class="text-muted">销量：${book.sales!""}</small>
+                                    <small class="text-muted">销量：${book.sales!""}</small>&nbsp;&nbsp;
+                                    <small class="text-muted">库存：${book.numbers!""}</small>
                                 </h5>
                                 <p class="card-text"><span class="text-primary">${book.author!""}</span>&nbsp;著/<span class="text-muted">${book.publishDate?string("yyyy-MM-dd")}</span>/<span class="text-primary">${book.publisher!""}</span></p>
                                 <p class="card-text"><span class="text-info">[简述]:&nbsp;</span>${book.description!""}</p>
-                                <a href="/addToMyCart?bookId=${book.bookId!""}" class="btn btn-danger">加入购物车</a>
+                                <#--<a href="/addToMyCart?bookId=${book.bookId!""}" class="btn btn-danger">加入购物车</a>-->
                                 <#--<a href="#" class="btn btn-outline-danger">收藏</a>-->
+
+                                <form action="/addToMyCart" method="post">
+                                    <input type="hidden" name="bookId" value="${book.bookId!""}"/>
+                                    <input type="hidden" name="amount" value="1"/>
+                                    <input type="hidden" name="flag" value="1"/>
+                                    <#if book.numbers == 0>
+                                        <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="抱歉，该商品暂时无货！">
+                                            <button class="btn btn-danger" style="pointer-events: none;" type="submit" disabled>加入购物车</button>
+                                        </span>
+                                        <#else >
+                                            <button type="submit" class="btn btn-danger">加入购物车</button>
+                                    </#if>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -330,11 +365,9 @@
                         </ul>
                     </nav>
                 </div>
-            s
         </#if>
 
-
       </div>
-    </div>
+
   </body>
 </html>

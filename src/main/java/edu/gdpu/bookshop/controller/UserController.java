@@ -1,6 +1,7 @@
 package edu.gdpu.bookshop.controller;
 
 import edu.gdpu.bookshop.entity.BsUser;
+import edu.gdpu.bookshop.service.MyCartService;
 import edu.gdpu.bookshop.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,9 +19,14 @@ public class UserController {
     @Resource
     private UserService userService;
 
+    @Resource
+    private MyCartService myCartService;
+
     //用户登录
+    //status: 表示登录后要跳转到的页面, 默认跳转到bookshop, 1-到购物车，2-到我的订单，3-到图书bookInfo
     @RequestMapping("/loginUser")
     public String loginUser(Model model, HttpSession session, String userName, String password){
+        String loginToStatus = (String) session.getAttribute("loginToStatus");
         BsUser bsUser = null;
         //1.先根据手机号码和密码查询
         bsUser = userService.findUserByCellphone(userName, password);
@@ -44,14 +50,28 @@ public class UserController {
             userService.updateUser(bsUser);
             session.setAttribute("bsUser", bsUser);
            // System.out.printf(bsUser.toString());
-            model.addAttribute("loginTips", "登录成功！");
-            return "bookshop";
+            //model.addAttribute("loginTips", "登录成功！");
+            //计算用户购物车记录数
+            long cartCount = myCartService.getCartCount(bsUser.getUserId());
+            session.setAttribute("cartCount", cartCount);
+            if(loginToStatus == null){
+                return "bookshop";
+            }
+            else if(loginToStatus.equals("1")){
+                return "toMyCart";
+            } else if(loginToStatus.equals("2")){
+                return "toMyOrder";
+            } else if(loginToStatus.equals("3")){
+                return "bookInfo";
+            }
+            else
+                return "bookshop";
         }
     }
 
     //用户注册
     @RequestMapping("/userRegister")
-    public String register(Model model, HttpSession session, String cellphone, String password, String province, String city, String district, String street1){
+    public String register(Model model, String cellphone, String password, String province, String city, String district, String street1){
         //查看 cellphone是否已经被注册了
         BsUser bsUser = userService.findUserByTel(cellphone);
         if(bsUser != null) {
@@ -84,9 +104,12 @@ public class UserController {
         user.setSignOutTime(new Date());
         //更新用户状态
         userService.updateUser(user);
-        //移除该用户
+        //清除与用户有关的session信息
+        session.removeAttribute("cartCount");
         session.removeAttribute("bsUser");
-        return "bookshop";
+        session.removeAttribute("myCartList");
+        //session.removeAttribute("addToMyCartTips");
+        return "toBookshop";
     }
 
     //保存用户修改信息

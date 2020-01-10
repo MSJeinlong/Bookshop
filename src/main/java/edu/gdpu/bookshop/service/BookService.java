@@ -62,6 +62,7 @@ public class BookService {
             return null;
     }
 
+    /*根据书名模糊查询*/
     public List<Book> findBookByBookNameBlur(String bookName){
         BookExample bookExample = new BookExample();
         BookExample.Criteria criteria = bookExample.createCriteria();

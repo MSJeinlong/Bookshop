@@ -20,7 +20,7 @@ public class OrderMaster {
 
     private Byte orderStatus;
 
-    private Byte payStatus;
+    private Byte payWay;
 
     private Date createTime;
 
@@ -90,12 +90,12 @@ public class OrderMaster {
         this.orderStatus = orderStatus;
     }
 
-    public Byte getPayStatus() {
-        return payStatus;
+    public Byte getPayWay() {
+        return payWay;
     }
 
-    public void setPayStatus(Byte payStatus) {
-        this.payStatus = payStatus;
+    public void setPayWay(Byte payWay) {
+        this.payWay = payWay;
     }
 
     public Date getCreateTime() {
@@ -125,7 +125,7 @@ public class OrderMaster {
                 ", cost=" + cost +
                 ", cardno='" + cardno + '\'' +
                 ", orderStatus=" + orderStatus +
-                ", payStatus=" + payStatus +
+                ", payWay=" + payWay +
                 ", createTime=" + createTime +
                 ", updateTime=" + updateTime +
                 '}';
