@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 public class OrderMaster {
-    private Integer orderId;
+    private String orderId;
 
     private Integer userId;
 
@@ -14,7 +14,7 @@ public class OrderMaster {
 
     private String userAddress;
 
-    private BigDecimal cost;
+    private BigDecimal totalPrice;
 
     private String cardno;
 
@@ -26,12 +26,12 @@ public class OrderMaster {
 
     private Date updateTime;
 
-    public Integer getOrderId() {
+    public String getOrderId() {
         return orderId;
     }
 
-    public void setOrderId(Integer orderId) {
-        this.orderId = orderId;
+    public void setOrderId(String orderId) {
+        this.orderId = orderId == null ? null : orderId.trim();
     }
 
     public Integer getUserId() {
@@ -66,12 +66,12 @@ public class OrderMaster {
         this.userAddress = userAddress == null ? null : userAddress.trim();
     }
 
-    public BigDecimal getCost() {
-        return cost;
+    public BigDecimal getTotalPrice() {
+        return totalPrice;
     }
 
-    public void setCost(BigDecimal cost) {
-        this.cost = cost;
+    public void setTotalPrice(BigDecimal totalPrice) {
+        this.totalPrice = totalPrice;
     }
 
     public String getCardno() {
@@ -117,12 +117,12 @@ public class OrderMaster {
     @Override
     public String toString() {
         return "OrderMaster{" +
-                "orderId=" + orderId +
+                "orderId='" + orderId + '\'' +
                 ", userId=" + userId +
                 ", userName='" + userName + '\'' +
                 ", userPhone='" + userPhone + '\'' +
                 ", userAddress='" + userAddress + '\'' +
-                ", cost=" + cost +
+                ", totalPrice=" + totalPrice +
                 ", cardno='" + cardno + '\'' +
                 ", orderStatus=" + orderStatus +
                 ", payWay=" + payWay +

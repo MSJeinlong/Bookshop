@@ -1,4 +1,5 @@
 <#--填写核对订单信息-->
+<!DOCTYPE html>
 <html>
 <head>
     <title>Bootstrap 实例</title>
@@ -22,7 +23,7 @@
                 </p>
             </div>
             <div class="card-body">
-                <form>
+                <form action="/myCartToOrder" method="post">
                 <h6 class="card-subtitle text-info">收货人信息</h6><br/>
                 <p class="card-text">收货人姓名：<span class="text-muted">${bsUser.nickname!""}</span></p>
                 <p class="card-text">收货人手机号码：<span class="text-muted">${bsUser.cellphone!""}</span></p>
@@ -32,9 +33,9 @@
                                 <label class="input-group-text" for="address">收货人地址</label>
                             </div>
                             <select class="custom-select" id="address" name="address">
-                                <option value="1">${bsUser.province1!""}${bsUser.city1!""}${bsUser.district1!""}${bsUser.street1!""}</option>
+                                <option value="${bsUser.province1!""}${bsUser.city1!""}${bsUser.district1!""}${bsUser.street1!""}">${bsUser.province1!""}${bsUser.city1!""}${bsUser.district1!""}${bsUser.street1!""}</option>
                                 <#if bsUser.province2??>
-                                    <option value="2">${bsUser.province2!""}${bsUser.city2!""}${bsUser.district2!""}${bsUser.street2!""}</option>
+                                    <option value="${bsUser.province2!""}${bsUser.city2!""}${bsUser.district2!""}${bsUser.street2!""}">${bsUser.province2!""}${bsUser.city2!""}${bsUser.district2!""}${bsUser.street2!""}</option>
                                 </#if>
                             </select>
                         </div>
@@ -46,9 +47,9 @@
                                 <label class="input-group-text" for="payWay">支付方式</label>
                             </div>
                             <select class="custom-select" id="payWay" name="payWay">
-                                <option selected value="1">在线支付</option>
-                                <option value="2">货到付款</option>
-                                <option value="3">公司转账</option>
+                                <option selected value="1">银行卡支付</option>
+                                <option value="2">支付宝支付</option>
+                                <option value="3">微信支付</option>
                             </select>
                         </div>
                     </div>
@@ -88,7 +89,7 @@
                         </ul>
                         <span class="navbar-text">
                         应付总额(包括邮费)：
-            &nbsp;           <span style="color: red">￥</span><span class="allPriceSum" style="color: red">${amount?string("0.00")}</span>
+            &nbsp;           <span style="color: red">￥</span><span class="allPriceSum" style="color: red">${totalPrice?string("0.00")}</span>
                        <#-- <a href="#" class="btn btn-danger text-white">提交订单</a>-->
                             <button class="btn btn-danger" type="submit">提交订单</button>
                         </span>

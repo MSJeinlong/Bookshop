@@ -2,9 +2,8 @@ package edu.gdpu.bookshop.mapper;
 
 import edu.gdpu.bookshop.entity.MyCart;
 import edu.gdpu.bookshop.entity.MyCartExample;
-import org.apache.ibatis.annotations.Param;
-
 import java.util.List;
+import org.apache.ibatis.annotations.Param;
 
 public interface MyCartMapper {
     long countByExample(MyCartExample example);

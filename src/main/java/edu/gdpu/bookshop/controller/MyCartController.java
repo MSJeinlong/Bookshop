@@ -32,7 +32,7 @@ public class MyCartController {
     @RequestMapping("/toMyCart")
     public String toMyCart(HttpSession session){
         BsUser user = (BsUser)session.getAttribute("bsUser");
-        session.setAttribute("loginToStatus", "1");
+        session.setAttribute("loginToStatus", 1);
         //查看购物车前，判断用户是否已经登录
         if(user == null){
             return "userLogin";
@@ -40,6 +40,13 @@ public class MyCartController {
         else {
             //读出用户的购物车记录
             List<MyCart> myCartList = myCartService.findMyCartByUserId(user.getUserId());
+            //检查库存
+            for (MyCart myCart: myCartList) {
+               if (bookService.isNumbersEnough(myCart.getBookId(), myCart.getBookAmount()))
+                   myCart.setStatus((byte)1);
+               else
+                   myCart.setStatus((byte)0);
+            }
             session.setAttribute("myCartList", myCartList);
             return "myCart";
         }
@@ -85,11 +92,11 @@ public class MyCartController {
         //更新购物车记录数
         long cartCount = myCartService.getCartCount(user.getUserId());
         session.setAttribute("cartCount", cartCount);
+        model.addAttribute("addToMyCartTips", "商品已成功加入购物车！");
         //根据flag 判断跳转到哪个页面
         if(flag.equals("1")) {
             return "bookshop";
         } else {
-            model.addAttribute("addToMyCartTips", "商品已成功加入购物车！");
             return "bookInfo";
         }
     }
@@ -140,6 +147,7 @@ public class MyCartController {
     @RequestMapping("/settlement")
     public String settlement(HttpSession session, String cartIds){
         BsUser user = (BsUser)session.getAttribute("bsUser");
+        /*准备下单的 ids */
         String [] ctIds = cartIds.split(",");
         List<Integer> ids = new ArrayList<>();
         for(int i = 0; i < ctIds.length; i++){
@@ -149,14 +157,45 @@ public class MyCartController {
         logger.info("准备下单的ids:{}", ids);
         List<MyCart> readyOrders = myCartService.findMyCartByCartIds(user.getUserId(), ids);
         /*计算总金额*/
-        BigDecimal amount = new BigDecimal(0.00);
+        BigDecimal totalPrice = new BigDecimal(0.00);
         for (MyCart order: readyOrders) {
             BigDecimal multi = (order.getBookPrice().multiply(new BigDecimal(order.getBookAmount())));
-            amount = amount.add(multi);
-            System.out.println("multi="+multi+", amount="+amount);
+            totalPrice = totalPrice.add(multi);
+            System.out.println("multi="+multi+", totalPrice="+totalPrice);
         }
-        logger.info("订单总额：", amount);
-        session.setAttribute("amount", amount);
+        logger.info("订单总额：", totalPrice);
+        logger.info("订单列表：{}", readyOrders);
+        session.setAttribute("totalPrice", totalPrice);
+        session.setAttribute("readyOrders", readyOrders);
+        return "confirmOrderInfo";
+    }
+
+    /*用户立即购买*/
+    @RequestMapping("/buyNow")
+    public String buyNow(HttpSession session, String bookId, String amount){
+        BsUser user = (BsUser)session.getAttribute("bsUser");
+        Integer bid = Integer.valueOf(bookId);
+        Book book = bookService.findBookByBookId(bid);
+
+        MyCart myCart = new MyCart();
+        myCart.setUserId(user.getUserId());
+        myCart.setBookId(bid);
+        myCart.setBookName(book.getBookName());
+        myCart.setBookImage(book.getImage());
+        myCart.setBookPrice(book.getPrice());
+        myCart.setBookAmount(Integer.valueOf(amount));
+        myCart.setStatus((byte)1);
+        myCart.setCreateTime(new Date());
+        myCart.setUpdateTime(new Date());
+
+        //准备下单的orders
+        List<MyCart> readyOrders = new ArrayList<>();
+        readyOrders.add(myCart);
+        //计算总额
+        BigDecimal totalPrice = myCart.getBookPrice().multiply(new BigDecimal(myCart.getBookAmount()));
+        logger.info("订单总额：", totalPrice);
+        logger.info("订单列表：{}", readyOrders);
+        session.setAttribute("totalPrice", totalPrice);
         session.setAttribute("readyOrders", readyOrders);
         return "confirmOrderInfo";
     }

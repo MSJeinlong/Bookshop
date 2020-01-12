@@ -6,7 +6,7 @@ import java.util.Date;
 public class OrderDetail {
     private Integer detailId;
 
-    private Integer orderId;
+    private String orderId;
 
     private Integer bookId;
 
@@ -30,12 +30,12 @@ public class OrderDetail {
         this.detailId = detailId;
     }
 
-    public Integer getOrderId() {
+    public String getOrderId() {
         return orderId;
     }
 
-    public void setOrderId(Integer orderId) {
-        this.orderId = orderId;
+    public void setOrderId(String orderId) {
+        this.orderId = orderId == null ? null : orderId.trim();
     }
 
     public Integer getBookId() {
@@ -98,7 +98,7 @@ public class OrderDetail {
     public String toString() {
         return "OrderDetail{" +
                 "detailId=" + detailId +
-                ", orderId=" + orderId +
+                ", orderId='" + orderId + '\'' +
                 ", bookId=" + bookId +
                 ", bookName='" + bookName + '\'' +
                 ", bookPrice=" + bookPrice +

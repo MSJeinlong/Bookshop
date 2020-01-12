@@ -83,8 +83,8 @@
             >
           </li>
           <li class="nav-item" id="myOrder">
-            <a class="nav-link" href="/confirmMyOrder"
-              >我的订单<span class="badge badge-pill badge-info">0</span></a
+            <a class="nav-link" href="/toMyOrder"
+              >我的订单<span class="badge badge-pill badge-info">${countAllOrder!"0"}</span></a
             >
           </li>
         </ul>
@@ -96,11 +96,11 @@
                 </div>
             </div>
         </form>
-        <ul class="navbar-nav">
+      <#--  <ul class="navbar-nav">
           <li class="nav-item">
             <a class="nav-link" href="#">高级搜索</a>
           </li>
-        </ul>
+        </ul>-->
 
         <ul class="navbar-nav nav-right">
             <li class="nav-item">
@@ -274,12 +274,7 @@
       </div>
 
     <br/>
-        <#if addToMyCartTips??>
-            <div class="alert alert-success alert-dismissible" style="width:auto">
-                <button type="button" class="close" data-dismiss="alert">&times;</button>
-                <strong>${addToMyCartTips}</strong>
-            </div>
-        </#if>
+
         <div class="nav-scroller bg-white shadow-sm">
             <nav class="nav nav-underline text-dark">
                 <#--<a class="nav-link active" href="#">商品详情</a>-->
@@ -302,6 +297,18 @@
 
         <br/>
 
+        <div class="row">
+            <div class="col-md-3">
+                <#if addToMyCartTips??>
+                    <div class="alert alert-success alert-dismissible" style="width:auto">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>${addToMyCartTips}</strong>
+                    </div>
+                </#if>
+            </div>
+        </div>
+
+
         <#if (books?size==0)>
             <div class="card">
                 <div class="card-body">
@@ -318,9 +325,9 @@
                         </div>
                         <div class="col-md-10">
                             <div class="card-body">
-                                <h5 class="card-title"><a href="/toBookInfo?bookId=${book.bookId!""}" class="card-link">《${book.bookName!""}》</a></h5>
-                                <h5 class="card-title pricing-card-title " style="color: red">￥${book.price?string("0.00")}&nbsp;&nbsp;<small class="text-muted">&nbsp;[定价]:<del>￥${(book.price/0.95)?string("0.00")}</del>(9.5折)</small>&nbsp;&nbsp;
-                                    <small class="text-muted">销量：${book.sales!""}</small>&nbsp;&nbsp;
+                                <h5 class="card-title"><a href="/toBookInfo?bookId=${book.bookId!""}" class="card-link" data-toggle="tooltip" title="点击查看商品详情!">《${book.bookName!""}》</a></h5>
+                                <h5 class="card-title pricing-card-title " style="color: red">￥${book.price?string("0.00")}&nbsp;&nbsp;<small class="text-muted">&nbsp;[定价]:<del>￥${(book.price/0.95)?string("0.00")}</del></small>&nbsp;&nbsp;<small style="color: red">(9.5折)</small>
+                                    &nbsp;&nbsp;<small class="text-muted">销量：${book.sales!""}</small>&nbsp;&nbsp;
                                     <small class="text-muted">库存：${book.numbers!""}</small>
                                 </h5>
                                 <p class="card-text"><span class="text-primary">${book.author!""}</span>&nbsp;著/<span class="text-muted">${book.publishDate?string("yyyy-MM-dd")}</span>/<span class="text-primary">${book.publisher!""}</span></p>

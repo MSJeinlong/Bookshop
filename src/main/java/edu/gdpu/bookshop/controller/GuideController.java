@@ -73,6 +73,11 @@ public class GuideController {
         return "test";
     }
 
+    @RequestMapping("/toTest1")
+    public String toTest1(){
+        return "test1";
+    }
+
     @RequestMapping("/findAllUsers")
     @ResponseBody
     public List<BsUser> findAllUsers(){
@@ -115,7 +120,7 @@ public class GuideController {
 
 
     @RequestMapping("/buyNowOrAdd2Cart")
-    public String buyNowOrAdd2Cart(HttpSession session, String isBuyNow, String bookId, String amount, String flag){
+    public String buyNowOrAdd2Cart(HttpSession session, String isBuyNow){
 
         //判断用户是否已经登录
         BsUser user = (BsUser)session.getAttribute("bsUser");
@@ -132,7 +137,9 @@ public class GuideController {
             return "/addToMyCart";
         }
         //表示用户立即购买
-        else return "#";
+        else {
+            return "buyNow";
+        }
     }
 
 

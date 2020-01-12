@@ -3,7 +3,7 @@
 <mapper namespace="edu.gdpu.bookshop.mapper.OrderDetailMapper">
   <resultMap id="BaseResultMap" type="edu.gdpu.bookshop.entity.OrderDetail">
     <id column="detail_id" jdbcType="INTEGER" property="detailId" />
-    <result column="order_id" jdbcType="INTEGER" property="orderId" />
+    <result column="order_id" jdbcType="VARCHAR" property="orderId" />
     <result column="book_id" jdbcType="INTEGER" property="bookId" />
     <result column="book_name" jdbcType="VARCHAR" property="bookName" />
     <result column="book_price" jdbcType="DECIMAL" property="bookPrice" />
@@ -110,7 +110,7 @@
       book_name, book_price, book_image, 
       amount, create_time, update_time
       )
-    values (#{detailId,jdbcType=INTEGER}, #{orderId,jdbcType=INTEGER}, #{bookId,jdbcType=INTEGER}, 
+    values (#{detailId,jdbcType=INTEGER}, #{orderId,jdbcType=VARCHAR}, #{bookId,jdbcType=INTEGER}, 
       #{bookName,jdbcType=VARCHAR}, #{bookPrice,jdbcType=DECIMAL}, #{bookImage,jdbcType=VARCHAR}, 
       #{amount,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
       )
@@ -151,7 +151,7 @@
         #{detailId,jdbcType=INTEGER},
       </if>
       <if test="orderId != null">
-        #{orderId,jdbcType=INTEGER},
+        #{orderId,jdbcType=VARCHAR},
       </if>
       <if test="bookId != null">
         #{bookId,jdbcType=INTEGER},
@@ -189,7 +189,7 @@
         detail_id = #{record.detailId,jdbcType=INTEGER},
       </if>
       <if test="record.orderId != null">
-        order_id = #{record.orderId,jdbcType=INTEGER},
+        order_id = #{record.orderId,jdbcType=VARCHAR},
       </if>
       <if test="record.bookId != null">
         book_id = #{record.bookId,jdbcType=INTEGER},
@@ -220,7 +220,7 @@
   <update id="updateByExample" parameterType="map">
     update bs_order_detail
     set detail_id = #{record.detailId,jdbcType=INTEGER},
-      order_id = #{record.orderId,jdbcType=INTEGER},
+      order_id = #{record.orderId,jdbcType=VARCHAR},
       book_id = #{record.bookId,jdbcType=INTEGER},
       book_name = #{record.bookName,jdbcType=VARCHAR},
       book_price = #{record.bookPrice,jdbcType=DECIMAL},
@@ -236,7 +236,7 @@
     update bs_order_detail
     <set>
       <if test="orderId != null">
-        order_id = #{orderId,jdbcType=INTEGER},
+        order_id = #{orderId,jdbcType=VARCHAR},
       </if>
       <if test="bookId != null">
         book_id = #{bookId,jdbcType=INTEGER},
@@ -264,7 +264,7 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="edu.gdpu.bookshop.entity.OrderDetail">
     update bs_order_detail
-    set order_id = #{orderId,jdbcType=INTEGER},
+    set order_id = #{orderId,jdbcType=VARCHAR},
       book_id = #{bookId,jdbcType=INTEGER},
       book_name = #{bookName,jdbcType=VARCHAR},
       book_price = #{bookPrice,jdbcType=DECIMAL},

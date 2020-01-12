@@ -33,6 +33,12 @@
             $("#UserName").focus();
             $("#telHelp").show();
             $("#UserName").click(function() {
+                $("#userNameHelp").show();
+                $("small[id!='userNameHelp']").hide();
+                if(!$("#clause").attr("checked"))
+                    $("#clauseHelp").show();
+            });
+            $("#Cellphone").click(function () {
                 $("#telHelp").show();
                 $("small[id!='telHelp']").hide();
                 if(!$("#clause").attr("checked"))
@@ -106,7 +112,22 @@
                     <!-- <h5 class="card-title">请输入账号和密码</h5> -->
                     <form action="/toAddress" method="post">
                         <div class="form-group">
-                            <label for="UserName">手机号码</label>
+                            <div class="form-group">
+                                <label for="UserName">用户姓名</label>
+                                <input
+                                        type="text"
+                                        class="form-control"
+                                        id="UserName"
+                                        required
+                                        placeholder="用户姓名"
+                                        value="${RequestParameters['userName']?default("")}"
+                                        name="userName"
+                                />
+                                <small id="userNameHelp" class="form-text text-muted"
+                                >请输入您的姓名</small
+                                >
+                            </div>
+                            <label for="Cellphone">手机号码</label>
                             <input
                                     type="tel"
                                     class="form-control"

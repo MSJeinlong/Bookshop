@@ -2,6 +2,7 @@ package edu.gdpu.bookshop.controller;
 
 import edu.gdpu.bookshop.entity.BsUser;
 import edu.gdpu.bookshop.service.MyCartService;
+import edu.gdpu.bookshop.service.OrderService;
 import edu.gdpu.bookshop.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,11 +23,15 @@ public class UserController {
     @Resource
     private MyCartService myCartService;
 
+    @Resource
+    private OrderService orderService;
+
     //用户登录
     //status: 表示登录后要跳转到的页面, 默认跳转到bookshop, 1-到购物车，2-到我的订单，3-到图书bookInfo
     @RequestMapping("/loginUser")
     public String loginUser(Model model, HttpSession session, String userName, String password){
-        String loginToStatus = (String) session.getAttribute("loginToStatus");
+        Integer loginToStatus = (Integer) session.getAttribute("loginToStatus");
+        session.removeAttribute("loginToStatus");
         BsUser bsUser = null;
         //1.先根据手机号码和密码查询
         bsUser = userService.findUserByCellphone(userName, password);
@@ -54,33 +59,45 @@ public class UserController {
             //计算用户购物车记录数
             long cartCount = myCartService.getCartCount(bsUser.getUserId());
             session.setAttribute("cartCount", cartCount);
+            //计算用户订单数
+            long countOrder = orderService.countAllOrder(bsUser.getUserId());
+            session.setAttribute("countAllOrder", countOrder);
             if(loginToStatus == null){
-                return "bookshop";
+                return "toBookshop";
             }
-            else if(loginToStatus.equals("1")){
+            else if(loginToStatus == 1){
                 return "toMyCart";
-            } else if(loginToStatus.equals("2")){
+            } else if(loginToStatus == 2){
                 return "toMyOrder";
-            } else if(loginToStatus.equals("3")){
+            } else if(loginToStatus == 3){
                 return "bookInfo";
             }
             else
-                return "bookshop";
+                return "toBookshop";
         }
     }
 
     //用户注册
     @RequestMapping("/userRegister")
-    public String register(Model model, String cellphone, String password, String province, String city, String district, String street1){
+    public String register(Model model, String userName, String cellphone, String password, String province, String city, String district, String street1){
         //查看 cellphone是否已经被注册了
         BsUser bsUser = userService.findUserByTel(cellphone);
         if(bsUser != null) {
             model.addAttribute("registerTips", "该手机号码已经被注册了!");
             return "toRegister";
-        } else {
+        }
+        else {
+
+
             // cellphone 没有被注册
             // 允许用户进行注册
             bsUser = new BsUser();
+            bsUser.setNickname(userName);
+            //判断用户名是否重复
+            if(userService.isRepeatNickName(bsUser)){
+                model.addAttribute("registerTips", "该用户名称已存在，请换一个!");
+                return "toRegister";
+            }
             bsUser.setCellphone(cellphone);
             bsUser.setPassword(password);
             bsUser.setProvince1(province);
@@ -100,15 +117,25 @@ public class UserController {
     @RequestMapping("/userExit")
     public String userExit(HttpSession session){
         BsUser user = (BsUser) session.getAttribute("bsUser");
-        user.setStatus((byte)0);
-        user.setSignOutTime(new Date());
-        //更新用户状态
-        userService.updateUser(user);
-        //清除与用户有关的session信息
-        session.removeAttribute("cartCount");
-        session.removeAttribute("bsUser");
-        session.removeAttribute("myCartList");
-        //session.removeAttribute("addToMyCartTips");
+        if(user != null) {
+            user.setStatus((byte) 0);
+            user.setSignOutTime(new Date());
+            //更新用户状态
+            userService.updateUser(user);
+        }
+            //清除与用户有关的session信息
+            session.removeAttribute("cartCount");
+            session.removeAttribute("bsUser");
+            session.removeAttribute("myCartList");
+            session.removeAttribute("countAllOrder");
+            session.removeAttribute("orderMasterList");
+            session.removeAttribute("countUnPaid");
+            session.removeAttribute("countUnDelivery");
+            session.removeAttribute("countUnreceived");
+            session.removeAttribute("countReceived");
+            session.removeAttribute("readyOrders");
+            //session.removeAttribute("addToMyCartTips");
+
         return "toBookshop";
     }
 

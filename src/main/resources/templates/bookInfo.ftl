@@ -52,10 +52,15 @@
                     <form action="/buyNowOrAdd2Cart" method="post">
                         <input type="hidden" name="isBuyNow" id="isBuyNow" value="0"/>
                         <input type="hidden" name="bookId" value="${book.bookId!""}"/>
-                        <input type="hidden" name="flag" value="0"/>
                         <div class="form-group form-inline">
                             <label for="amount">数量：</label>&nbsp;
-                            <input type="number" class="form-control" name="amount" id="amount" min="1" max="10" value="${RequestParameters['amount']?default("1")}" required/>
+                            <input type="number" class="form-control" name="amount" id="amount" min="1"
+                                   <#if book.numbers < 10>
+                                        max="${book.numbers}"
+                                       <#else >
+                                           max="10"
+                                   </#if>
+                                   value="${RequestParameters['amount']?default("1")}" required/>
                         </div>
                         <small class="text-muted">每个用户最多购买<strong style="color: red;">10</strong>件</small>
                         <div class="row">

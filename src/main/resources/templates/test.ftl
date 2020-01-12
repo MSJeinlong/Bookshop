@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
 <head>
     <title>Bootstrap 实例</title>

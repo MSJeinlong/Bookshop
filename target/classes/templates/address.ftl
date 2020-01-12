@@ -32,6 +32,7 @@
                     </div>
                     <div class="panel-body">
                         <form action="/userRegister" method="post">
+                            <input type="hidden" name="userName" value="${RequestParameters['userName']?default("")}"/>
                             <input type="hidden" name="cellphone" value="${RequestParameters['cellphone']?default("")}"/>
                             <input type="hidden" name="password" value="${RequestParameters['password1']?default("")}"/>
                             <div class="form-inline">

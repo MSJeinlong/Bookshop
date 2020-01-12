@@ -72,17 +72,4 @@ public class Comment {
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
     }
-
-    @Override
-    public String toString() {
-        return "Comment{" +
-                "commentId=" + commentId +
-                ", commentDesc='" + commentDesc + '\'' +
-                ", commentLevel=" + commentLevel +
-                ", commentGrade=" + commentGrade +
-                ", userId=" + userId +
-                ", bookId=" + bookId +
-                ", createTime=" + createTime +
-                '}';
-    }
 }

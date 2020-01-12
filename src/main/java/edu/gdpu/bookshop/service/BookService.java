@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.math.BigDecimal;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -96,5 +97,32 @@ public class BookService {
         return bookMapper.selectByExample(bookExample);
     }
 
+    /*根据 bookId 和购买数量 amount 扣库存*/
+    public boolean decreaseNumbers(Integer bookId, Integer amount){
+        Book book = this.findBookByBookId(bookId);
+        /*库存不足*/
+        if(book.getNumbers() < amount){
+            return false;
+        }
+        else {
+            //库存足够
+            book.setNumbers(book.getNumbers() - amount);
+            //设置销量
+            book.setSales(book.getSales() + amount);
+            //更新到数据库
+            book.setUpdateTime(new Date());
+            bookMapper.updateByPrimaryKey(book);
+            return true;
+        }
+    }
 
+    /*根据 bookId 和购买数量 amount 检查库存是否足够*/
+    public boolean isNumbersEnough(Integer bookId, Integer amount){
+        Book book = this.findBookByBookId(bookId);
+        /*库存不足*/
+        if(book.getNumbers() < amount)
+            return false;
+        else
+            return true;
+    }
 }

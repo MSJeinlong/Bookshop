@@ -110,17 +110,28 @@
             $("#settlement").click(function () {
                 /*获取选中的 商品的 cartIds*/
                 var cartIds = "";
+                var canBuy = true;
                 $("input[name='subtotals']").each(function () {
                     if(this.checked){
-                        cartIds += ($(this).val()+",");
+                        var ctId = $(this).val();
+                        cartIds += ( ctId+",");
+                        //检查库存状态
+                        var cartStatus = $("#myCartStatus"+ ctId).val();
+                        if(cartStatus == 0){
+                            canBuy = false;
+                        }
                     }
                 });
                 if(cartIds == ""){
                     alert("请至少选中一件商品！")
                     return false;
+                } else if(canBuy == false){
+                    alert("所选商品库存不足！");
+                    return false;
                 } else {
                     cartIds = cartIds.substring(0, cartIds.length - 1);
-                    $(this).attr("href", "/settlement?cartIds="+cartIds);
+                    $("#cartIds").val(cartIds);
+                    console.log("cartIds:"+cartIds);
                     return true;
                 }
             });
@@ -148,58 +159,80 @@
            </ul>
         </div>
     </nav>
+
+    <#if orderTips??>
+        <div class="alert alert-danger alert-dismissible" style="width:auto">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong>${orderTips!""}</strong>
+        </div>
+    </#if>
+
+
     <div class="card ">
 
         <div class="card-body">
-
-            <table class="table table-striped table-borderless table-hover">
-                <caption></caption>
-                <thead class="table-secondary">
-                <tr>
-                    <th>
-                        <div class="custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input" id="allCheckTop" name="allCheck"/>
-                            <label class="custom-control-label" for="allCheckTop">全选</label>
-                        </div>
-                    </th>
-                    <th>商品信息</th>
-                    <th>单价(元)</th>
-                    <th>数量</th>
-                    <th>小计(元)</th>
-                    <th>操作</th>
-                </tr>
-                </thead>
-                <tbody>
-                <#list myCartList as myCart>
+            <#if (myCartList?size!=0)>
+                <table class="table table-striped table-borderless table-hover">
+                    <thead class="table-secondary">
                     <tr>
-                        <td>
+                        <th>
                             <div class="custom-control custom-checkbox">
-                                <input type="checkbox" name="subtotals" class="custom-control-input" id="customCheck${myCart.cartId!""}" value="${myCart.cartId!""}"/>
-                                <label class="custom-control-label" for="customCheck${myCart.cartId!""}">选中</label>
+                                <input type="checkbox" class="custom-control-input" id="allCheckTop" name="allCheck"/>
+                                <label class="custom-control-label" for="allCheckTop">全选</label>
                             </div>
-                        </td>
-                        <td>
-                            <img src="${myCart.bookImage!"#"}" style="width: 40px;height: 50px;"/>
-                        &nbsp;   《${myCart.bookName!""}》
-                        </td>
-                        <td><span style="color: red">￥${myCart.bookPrice?string("0.00")}</span></td>
-                        <td>
-                            <div class="form-group row">
-                                <div class="col-sm-6">
-                                    <input type="number" class="form-control" name="amount" min="1" max="10" value="${myCart.bookAmount!"1"}" maxlength="2" readonly/>
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <span style="color: red">￥</span><span class="priceSum" id="subtotal${myCart.cartId!""}" style="color: red">${(myCart.bookPrice * myCart.bookAmount)?string("0.00")}</span>
-                        </td>
-                        <td>
-                            <a href="/deleteMyCart?cartIds=${myCart.cartId!""}" class="btn btn-sm btn-danger" id="delOne">删除</a>
-                        </td>
+                        </th>
+                        <th>商品信息</th>
+                        <th>单价(元)</th>
+                        <th>数量</th>
+                        <th>库存状态</th>
+                        <th>小计(元)</th>
+                        <th>操作</th>
                     </tr>
-                </#list>
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                    <#list myCartList as myCart>
+                        <tr>
+                            <td>
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" name="subtotals" class="custom-control-input" id="customCheck${myCart.cartId!""}" value="${myCart.cartId!""}"
+                                    />
+                                    <label class="custom-control-label" for="customCheck${myCart.cartId!""}">选中</label>
+                                </div>
+                            </td>
+                            <td>
+                                <img src="${myCart.bookImage!"#"}" style="width: 40px;height: 50px;"/>
+                                &nbsp;   《${myCart.bookName!""}》
+                            </td>
+                            <td><span style="color: red">￥${myCart.bookPrice?string("0.00")}</span></td>
+                            <td>
+                                <div class="form-group row">
+                                    <div class="col-sm-6">
+                                        <input type="number" class="form-control" name="amount" min="1" max="10" value="${myCart.bookAmount!"1"}" maxlength="2" readonly/>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <input type="hidden" id="myCartStatus${myCart.cartId!""}" value="${myCart.status!""}"/>
+                                <#if myCart.status == 1>
+                                    <span class="badge badge-success">有货</span>
+                                    <#else >
+                                    <span class="badge badge-danger">库存不足</span>
+                                </#if>
+                            </td>
+                            <td>
+                                <span style="color: red">￥</span><span class="priceSum" id="subtotal${myCart.cartId!""}" style="color: red">${(myCart.bookPrice * myCart.bookAmount)?string("0.00")}</span>
+                            </td>
+                            <td>
+                                <a href="/deleteMyCart?cartIds=${myCart.cartId!""}" class="btn btn-sm btn-danger" id="delOne">删除</a>
+                            </td>
+                        </tr>
+                    </#list>
+                    </tbody>
+                </table>
+                <#else >
+                    <h3 class="card-title text-muted">你的购物车空空如也~~</h3>
+                    <h5 class="card-subtitle text-muted">赶快去挑选你喜欢的书籍吧！</h5>
+            </#if>
         </div>
     </div>
 
@@ -219,14 +252,16 @@
         </span>
         &nbsp;   <ul class="navbar-nav mr-auto">
             </ul>
-        <form>
-
-        </form>
-        <span class="navbar-text">
+        <form action="/settlement" method="post">
+            <input type="hidden" name="cartIds" id="cartIds" value=""/>
+            <span class="navbar-text">
           总价(包括邮费)：
             &nbsp;<span style="color: red">￥</span><span class="allPriceSum" style="color: red">0.00</span>
-          <a href="#" class="btn btn-danger text-white" id="settlement">结算</a>
+          <#--<a href="#" class="btn btn-danger text-white" id="settlement">结算</a>-->
+                <button type="submit" class="btn btn-danger" id="settlement">结算</button>
         </span>
+        </form>
+
     </nav>
 </div>
 </body>
