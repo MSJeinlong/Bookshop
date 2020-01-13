@@ -18,15 +18,16 @@
     <script>
         $(function () {
             $("button").click(function () {
-                var passwd = $("#password").val();
-                if(passwd.length != 6){
-                    alert("密码不足6位！")
+                var cardno = $("#password").val();
+                var payPasswd = $("#payPasswd").val();
+                if(cardno.length != 6){
+                    alert("密码不足6位！");
+                    return false;
+                } else if(cardno != payPasswd){
+                    alert("密码错误！请重试");
                     return false;
                 }
-                else if(isNaN(passwd)){
-                    alert("密码格式错误！")
-                    return false;
-                } else {
+                else {
                     return true;
                 }
             });
@@ -44,6 +45,7 @@
                     <div class="cart">
                         <div class="card-body">
                             <form action="/updateOrderStatus" method="post">
+                                <input type="hidden" id="payPasswd" value="${bsUser.cardno!""}"/>
                                 <input type="hidden" name="orderStatus" value="1"/>
                                 <input type="hidden" name="orderId" value="${orderMasterID!""}">
                                 <div class="row">
@@ -67,7 +69,7 @@
                                 <div class="row">
                                     <label class="col-form-label col-md-3">支付密码</label>
                                     <div class="col-md-6">
-                                        <input type="password" class="form-control" id="password" required maxlength="6" placeholder="输入6位支付密码"/>
+                                        <input type="password" name="cardno" class="form-control" id="password" required maxlength="6" placeholder="输入6位支付密码"/>
                                     </div>
                                 </div>
                                 <br>

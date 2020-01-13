@@ -51,10 +51,14 @@
                 $(this).attr("class", "nav-link active");
                 //alert("hello");
             });
-            $("#orders").click(function () {
-                alert("orders");
-               // $("main").loaded("/t1.txt");
+            $("#order-link").click(function () {
+                $("#Products").css("display", "none");
+                $("#Orders").css("display", "block");
+            });
 
+            $("#product-link").click(function () {
+                $("#Products").css("display", "block");
+                $("#Orders").css("display", "none");
             });
         });
     </script>
@@ -78,19 +82,19 @@
             <div class="sidebar-sticky">
                 <ul class="nav flex-column">
                     <li class="nav-item">
-                        <a class="nav-link active" href="#">
+                        <a class="nav-link" href="#">
                             <span data-feather="home"></span>
                             Dashboard <span class="sr-only">(current)</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" id="orders" href="#">
+                        <a class="nav-link active" id="order-link" href="#orders">
                             <span data-feather="file"></span>
                             Orders
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link" id="product-link" href="#">
                             <span data-feather="shopping-cart"></span>
                             Products
                         </a>
@@ -151,6 +155,9 @@
         </nav>
 
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+
+            <div id="Orders">
+
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                 <h1 class="h2">Dashboard</h1>
                 <div class="btn-toolbar mb-2 mb-md-0">
@@ -166,7 +173,7 @@
             </div>
 
             <canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas>
-
+            
             <h2>Section title</h2>
             <div class="table-responsive">
                 <table class="table table-striped table-sm">
@@ -294,6 +301,13 @@
                     </tr>
                     </tbody>
                 </table>
+            </div>
+
+            </div>
+
+
+            <div id="Products" style="display: none;">
+                <p>These are books!</p>
             </div>
         </main>
     </div>

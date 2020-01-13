@@ -43,7 +43,7 @@ public class OrderController {
             List<OrderMaster> orderMasterList = orderService.findOrderMasterByUserId(user.getUserId());
             session.setAttribute("orderMasterList", orderMasterList);
             //全部订单数
-            session.setAttribute("countAllOrder", orderMasterList.size());
+            session.setAttribute("countAllOrder", (long)orderMasterList.size());
             //待支付订单数
             long countUnpaid = orderService.countUnpaidOrder(user.getUserId());
             //待发货订单数
@@ -115,6 +115,15 @@ public class OrderController {
 
         //同时删除相关的购物车记录
         myCartService.deleteByCartIds(user.getUserId(), ids);
+        Long cartCount = (Long)session.getAttribute("cartCount");
+        cartCount -= ids.size();
+        Long countAllOrder = (Long)session.getAttribute("countAllOrder");
+        //订单数加1
+        countAllOrder += 1;
+
+        //更新购物车记录数和我的订单记录数
+        session.setAttribute("cartCount", cartCount);
+        session.setAttribute("countAllOrder", countAllOrder);
 
         session.setAttribute("orderMaster", orderMaster);
         //session.setAttribute("orderDetailList", orderDetailList);
@@ -126,6 +135,7 @@ public class OrderController {
     @RequestMapping("/updateOrderStatus")
     public String updateOrderStatus(Model model, HttpSession session, String orderId, String orderStatus){
         //OrderMaster orderMaster = (OrderMaster)session.getAttribute("orderMaster");
+        BsUser user = (BsUser)session.getAttribute("bsUser");
         OrderMaster orderMaster = orderService.findOrderMasterByOrderId(orderId);
         orderMaster.setOrderStatus(Byte.valueOf(orderStatus));
         orderMaster.setUpdateTime(new Date());
@@ -133,11 +143,11 @@ public class OrderController {
         orderService.updateOrderMaster(orderMaster);
 
         //读出全部订单
-        BsUser user = (BsUser)session.getAttribute("bsUser");
+
         List<OrderMaster> orderMasterList = orderService.findOrderMasterByUserId(user.getUserId());
         session.setAttribute("orderMasterList", orderMasterList);
         //全部订单数
-        session.setAttribute("countAllOrder", orderMasterList.size());
+        session.setAttribute("countAllOrder", (long)orderMasterList.size());
         //待支付订单数
         long countUnpaid = orderService.countUnpaidOrder(user.getUserId());
         //待发货订单数

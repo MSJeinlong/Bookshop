@@ -13,7 +13,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 public class GuideController {
@@ -27,7 +30,8 @@ public class GuideController {
     private BookService bookService;
 
     @RequestMapping("/toUserLogin")
-    public String toLogin(){
+    public String toLogin(HttpSession session){
+        session.setAttribute("loginToStatus", 0);
         return "userLogin";
     }
 
@@ -49,7 +53,21 @@ public class GuideController {
     @RequestMapping("/toBookshop")
     public String toBookShop(HttpSession session){
         List<Book> books = bookService.findAllBooks();
+        //销量排行前10
+        List<Book> salesSort = books.stream().sorted(Comparator.comparing(Book::getSales)).collect(Collectors.toList());
+        List<Book> salesTop10 = new ArrayList<>();
+        for (int i = 0; i < 10 && i < salesSort.size(); i++)
+            salesTop10.add(salesSort.get(i));
+        //最新上架前10
+        List<Book> newSort = books.stream().sorted(Comparator.comparing(Book::getCreateTime).reversed()).collect(Collectors.toList());
+        List<Book> newTop10 = new ArrayList<>();
+        for (int i = 0; i < 10 && i < newSort.size(); i++) {
+            newTop10.add(newSort.get(i));
+        }
         session.setAttribute("books", books);
+        session.setAttribute("salesTop10", salesTop10);
+        session.setAttribute("newTop10", newTop10);
+        session.setAttribute("activeCode", 0);
         return "bookshop";
     }
 
@@ -127,7 +145,7 @@ public class GuideController {
 
         //用户未登录，跳转到登录页面
         if(user == null){
-            session.setAttribute("loginToStatus", "3");
+            session.setAttribute("loginToStatus", 3);
             logger.info("用户尚未登录");
             return "userLogin";
         }

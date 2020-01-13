@@ -12,8 +12,18 @@
     <script>
         $(function () {
             $("#confirmPay").click(function () {
-                $("form[name='toPayForm']").submit();
+                var cardno = $("#cardno").val();
+                var payPasswd = $("#payPasswd").val();
+                if(cardno.length < 6){
+                    alert("密码少于6位!");
+
+                } else if(cardno != payPasswd){
+                    alert("密码错误，请重试！");
+                } else {
+                    $("form[name='toPayForm']").submit();
+                }
             });
+
         });
     </script>
     <title>我的订单</title>
@@ -100,15 +110,21 @@
                         <td><a href="/toOrderDetail?orderId=${orderMaster.orderId!""}">查看订单详情</a></td>
                         <td>
                             <#if orderMaster.orderStatus == 0>
+                            <#--支付密码的提交表单-->
                                 <form action="/updateOrderStatus" method="post" name="toPayForm">
                                     <input type="hidden" name="orderId" value="${orderMaster.orderId!""}"/>
-                                    <input type="hidden" name="orderStatus" value="1"/>
-                                    <button class="btn btn-sm btn-primary" type="button" data-toggle="modal" data-target="#payModel">去支付</button>
+                                    <input type="hidden" name="orderStatus" id="orderStatus" value="1"/>
+                                    <button class="btn btn-sm btn-danger" type="button"  data-toggle="modal" data-target="#payModel">去支付</button>
                                 </form>
                             <#elseif orderMaster.orderStatus == 1>
                                 ---
                             <#elseif orderMaster.orderStatus == 2>
-                                <a href="#" class="btn btn-sm btn-primary">确认收货</a>
+                            <#--支付密码的提交表单-->
+                                <form action="/updateOrderStatus" method="post" name="toPayForm">
+                                    <input type="hidden" name="orderId" value="${orderMaster.orderId!""}"/>
+                                    <input type="hidden" name="orderStatus" id="orderStatus" value="3"/>
+                                    <button class="btn btn-sm btn-success" type="button"  data-toggle="modal" data-target="#payModel">确认收货</button>
+                                </form>
                             <#elseif orderMaster.orderStatus == 3>
                                 <a href="#" class="btn btn-sm btn-primary">去评价</a>
                             </#if>
@@ -161,12 +177,13 @@
                                     </#if>
                                 </td>
                                 <td><span class="badge badge-danger">待付款</span></td>
-                                <td><a href="#">查看订单详情</a></td>
+                                <td><a href="/toOrderDetail?orderId=${orderMaster.orderId!""}">查看订单详情</a></td>
                                 <td>
+                                    <#--支付密码的提交表单-->
                                     <form action="/updateOrderStatus" method="post" name="toPayForm">
                                         <input type="hidden" name="orderId" value="${orderMaster.orderId!""}"/>
-                                        <input type="hidden" name="orderStatus" value="1"/>
-                                        <button class="btn btn-sm btn-primary" type="button" data-toggle="modal" data-target="#payModel">去支付</button>
+                                        <input type="hidden" name="orderStatus" id="orderStatus" value="1"/>
+                                        <button class="btn btn-sm btn-danger" type="button"  data-toggle="modal" data-target="#payModel">去支付</button>
                                     </form>
                                 </td>
                             </tr>
@@ -219,7 +236,7 @@
                                 </#if>
                             </td>
                             <td><span class="badge badge-info">待发货</span></td>
-                            <td><a href="#">查看订单详情</a></td>
+                            <td><a href="/toOrderDetail?orderId=${orderMaster.orderId!""}">查看订单详情</a></td>
                             <td>
                                 ---
                             </td>
@@ -270,8 +287,15 @@
                                 </#if>
                             </td>
                             <td><span class="badge badge-success">待收货</span></td>
-                            <td><a href="#">查看订单详情</a></td>
-                            <td><a href="#" class="btn btn-sm btn-primary">确认收货</a></td>
+                            <td><a href="/toOrderDetail?orderId=${orderMaster.orderId!""}">查看订单详情</a></td>
+                            <td>
+                                <#--支付密码的提交表单-->
+                                <form action="/updateOrderStatus" method="post" name="toPayForm">
+                                    <input type="hidden" name="orderId" value="${orderMaster.orderId!""}"/>
+                                    <input type="hidden" name="orderStatus" id="orderStatus" value="3"/>
+                                    <button class="btn btn-sm btn-success" type="button"  data-toggle="modal" data-target="#payModel">确认收货</button>
+                                </form>
+                            </td>
                             </tr>
                         </#if>
                     </#list>
@@ -319,7 +343,7 @@
                                 </#if>
                             </td>
                             <td><span class="badge badge-primary">待评价</span></td>
-                            <td><a href="#">查看订单详情</a></td>
+                            <td><a href="/toOrderDetail?orderId=${orderMaster.orderId!""}">查看订单详情</a></td>
                             <td><a href="#" class="btn btn-sm btn-primary">去评价</a></td>
                         </#if>
                     </#list>
@@ -349,13 +373,14 @@
 
             <!-- 模态框主体 -->
             <div class="modal-body">
-               <label>支付密码:</label><input type="password" class="form-control" maxlength="6" required/>
+                <input type="hidden" id="payPasswd" value="${bsUser.cardno!""}"/>
+               <label>支付密码:</label><input type="password" name="cardno" id="cardno" class="form-control" maxlength="6" required/>
             </div>
 
             <!-- 模态框底部 -->
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
-                <button type="button" class="btn btn-primary" id="confirmPay" data-dismiss="modal">确定</button>
+                <button type="submit" class="btn btn-primary" id="confirmPay" data-dismiss="modal">确定</button>
             </div>
 
         </div>

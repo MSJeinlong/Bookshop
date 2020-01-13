@@ -44,6 +44,16 @@
                 $("#myCart").attr("class", "nav-item");
                 $(this).attr("class", "nav-item active");
             });
+
+            $("#checkStock").click(function () {
+                //alert("click");
+                if(this.checked){
+                    $("#stockStatus").val("1");
+                } else {
+                    $("#stockStatus").val("0");
+                }
+                $("#stockForm").submit();
+            });
         });
         function bindKeyEvent(obj) {
             obj.keyup(function () {
@@ -122,7 +132,7 @@
                   </div>
                   <div class="card-body">
 <#--                      <h4 class="card-title">新书上架</h4>-->
-                      <table class="table table-light table-borderless table-hover table-responsive">
+                      <table class="table table-sm table-light table-borderless table-hover table-responsive">
                           <thead class="thead-light">
                           <tr>
                               <th scope="col">#</th>
@@ -130,24 +140,18 @@
                           </tr>
                           </thead>
                           <tbody>
-                          <tr>
-                              <th scope="row">1</th>
-                              <td><a href="#">《数学》<span class="badge badge-pill badge-secondary">new</span></a></td>
-                          </tr>
-                          <tr>
-                              <th scope="row">2</th>
-                              <td><a href="#">《语文》<span class="badge badge-pill badge-secondary">new</span></a></td>
-                          </tr>
-                          <tr>
-                              <th scope="row">3</th>
-                              <td><a href="#">《英语》<span class="badge badge-pill badge-secondary">new</span></a></td>
-                          </tr>
-                          <tr>
-                              <th scope="row">4</th>
-                              <td><a href="#">《物理》<span class="badge badge-pill badge-secondary">new</span></a></td>
-                          </tr>
+                          <#list newTop10 as book>
+                              <#if book_index == 4>
+                                  <#break>
+                              </#if>
+                              <tr>
+                                  <td>${(book_index + 1)!""}</td>
+                                  <td><a href="/toBookInfo?bookId=${book.bookId!""}">《${book.bookName!""}》</a><span class="badge badge-pill badge-secondary">new</span></td>
+                              </tr>
+                          </#list>
                           </tbody>
                       </table>
+                      <button class="btn btn-sm btn-success" data-toggle="modal" data-target="#newTop10">查看更多</button>
                   </div>
               </div>
           </div>
@@ -249,11 +253,26 @@
                                 role="tabpanel"
                                 aria-labelledby="home-tab"
                         >
-                            Et et consectetur ipsum labore excepteur est proident excepteur ad
-                            velit occaecat qui minim occaecat veniam. Fugiat veniam incididunt
-                            anim aliqua enim pariatur veniam sunt est aute sit dolor anim.
-                            Velit non irure adipisicing aliqua ullamco irure incididunt irure
-                            non esse consectetur nostrud minim non minim occaecat.
+                            <table class="table table-sm table-light table-borderless table-hover table-responsive">
+                                <thead class="thead-light">
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">书名</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                 <#list salesTop10 as book>
+                                     <#if book_index == 4>
+                                         <#break>
+                                     </#if>
+                                        <tr>
+                                            <td>${(book_index + 1)!""}</td>
+                                            <td><a href="/toBookInfo?bookId=${book.bookId!""}">《${book.bookName!""}》</a><span class="badge badge-pill badge-danger">Hot!</span></td>
+                                        </tr>
+                                 </#list>
+                                </tbody>
+                            </table>
+                            <button class="btn btn-sm btn-success" data-toggle="modal" data-target="#salesTop10">查看更多</button>
                         </div>
                         <div
                                 class="tab-pane fade"
@@ -261,11 +280,11 @@
                                 role="tabpanel"
                                 aria-labelledby="contact-tab"
                         >
-                            Sint sit mollit irure quis est nostrud cillum consequat Lorem esse
-                            do quis dolor esse fugiat sunt do. Eu ex commodo veniam Lorem
-                            aliquip laborum occaecat qui Lorem esse mollit dolore anim
-                            cupidatat. Deserunt officia id Lorem nostrud aute id commodo elit
-                            eiusmod enim irure amet eiusmod qui reprehenderit nostrud tempor.
+                            <h7 class="text-info">全民阅读，点亮中国梦！</h7>
+                            <p class="text-muted">知识改变命运，阅读收获财富！网上书店竭诚为您服务！</p>
+                            <small class="text-muted">读书的目的，不在于取得多大的成就，而在于，当你被生活打回原形，陷入泥潭时，给你一种内心的力量。
+                            读书的两个作用：一是让我自以为非，一是让我有一间自己的房子，有内心生活。
+                           在一个夜晚，因为一本书，内心的激情突然如潮水一样蔓延出来。</small>
                         </div>
                     </div>
                 </div>
@@ -278,18 +297,59 @@
         <div class="nav-scroller bg-white shadow-sm">
             <nav class="nav nav-underline text-dark">
                 <#--<a class="nav-link active" href="#">商品详情</a>-->
-                <a class="nav-link" href="#">
+                <a class="nav-link active" href="#">
                     商品件数
                     <span class="badge badge-pill badge-primary">${books?size}</span>
                 </a>
-                <a class="nav-link" href="/ascSortBookByPrice">按价格升序</a>
-                <a class="nav-link" href="/descSortBookByPrice">按价格降序</a>
-                <a class="nav-link" href="/descSortBookBySales">按销量降序</a>
+                <a class="nav-link sort" href="/findAllProduct"
+                        <#if activeCode == 0>
+                            style="color: red"
+                        </#if>
+                >全部商品</a>
+                <a class="nav-link sort" href="/comprehensiveSort"
+                        <#if activeCode == 1>
+                        style="color: red"
+                        </#if>
+                >综合排序</a>
+                <a class="nav-link sort" href="/ascSortBookByPrice"
+                        <#if activeCode == 2>
+                            style="color: red"
+                        </#if>
+                >价格↑</a>
+                <a class="nav-link sort" href="/descSortBookByPrice"
+                        <#if activeCode == 3>
+                            style="color: red"
+                        </#if>
+                >价格↓</a>
+                <a class="nav-link sort" href="/descSortBookBySales"
+                        <#if activeCode == 4>
+                            style="color: red"
+                        </#if>
+                >销量↓</a>
+                <a class="nav-link sort" href="/publishDateSort"
+                        <#if activeCode == 5>
+                            style="color: red"
+                        </#if>
+                >出版时间↓</a>
                 <form class="form-inline" action="/findBookByLHPrice" method="post">
                     <input type="search" name="lowestPrice" id="lowestPrice"  maxlength="11" class="form-control" value="${RequestParameters['lowestPrice']?default("")}" placeholder="￥请输入最低价"/>-
                     <input type="search" name="highestPrice" id="highestPrice"  maxlength="11" class="form-control" value="${RequestParameters['highestPrice']?default("")}" placeholder="￥请输入最高价" aria-label="Text input with dropdown button"/>
                     <div class="input-group-append">
                     <button type="submit" class="btn btn-primary" id="submit">确定</button>
+                    </div>
+                </form>
+                &nbsp;&nbsp;
+                <form action="/isEnoughStock" method="post" id="stockForm">
+                    <div class="custom-control custom-checkbox">
+                        <input type="hidden" name="stockStatus" id="stockStatus" value="0" />
+                        <input type="checkbox" class="custom-control-input" id="checkStock"
+                          <#if stockStatus??>
+                              <#if stockStatus == "1">
+                                  checked
+                                  </#if>
+                          </#if>
+                        />
+                        <label class="custom-control-label" for="checkStock">仅看有货</label>
                     </div>
                 </form>
             </nav>
@@ -330,7 +390,7 @@
                                     &nbsp;&nbsp;<small class="text-muted">销量：${book.sales!""}</small>&nbsp;&nbsp;
                                     <small class="text-muted">库存：${book.numbers!""}</small>
                                 </h5>
-                                <p class="card-text"><span class="text-primary">${book.author!""}</span>&nbsp;著/<span class="text-muted">${book.publishDate?string("yyyy-MM-dd")}</span>/<span class="text-primary">${book.publisher!""}</span></p>
+                                <p class="card-text"><span class="text-primary">${book.author!""}</span>&nbsp;著/<span class="text-muted">${book.publishDate?string("yyyy-MM-dd")}</span>/<span class="text-primary">${book.publisher!""}/${book.publishDate?string("yyyy-MM-dd")}</span></p>
                                 <p class="card-text"><span class="text-info">[简述]:&nbsp;</span>${book.description!""}</p>
                                 <#--<a href="/addToMyCart?bookId=${book.bookId!""}" class="btn btn-danger">加入购物车</a>-->
                                 <#--<a href="#" class="btn btn-outline-danger">收藏</a>-->
@@ -373,6 +433,82 @@
                     </nav>
                 </div>
         </#if>
+
+        <#--NewTop10 Model-->
+        <div class="modal fade" id="newTop10">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <#--模态框头部-->
+                    <div class="modal-header">
+                        <h5 class="modal-title">新书上架Top10</h5>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+
+                    <#--模态框主体-->
+                    <div class="modal-body">
+                        <table class="table table-sm table-light table-borderless table-hover table-responsive">
+                            <thead class="thead-light">
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">书名</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <#list newTop10 as book>
+                                <tr>
+                                    <td>${(book_index + 1)!""}</td>
+                                    <td><a href="/toBookInfo?bookId=${book.bookId!""}">《${book.bookName!""}》</a><span class="badge badge-pill badge-secondary">new</span></td>
+                                </tr>
+                            </#list>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <#--模态框底部-->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <#--SalesTop10 Model-->
+        <div class="modal fade" id="salesTop10">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <#--模态框头部-->
+                    <div class="modal-header">
+                        <h5 class="modal-title">热销排行Top10</h5>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+
+                    <#--模态框主体-->
+                    <div class="modal-body">
+                        <table class="table table-sm table-light table-borderless table-hover table-responsive">
+                            <thead class="thead-light">
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">书名</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <#list salesTop10 as book>
+                                <tr>
+                                    <td>${(book_index + 1)!""}</td>
+                                    <td><a href="/toBookInfo?bookId=${book.bookId!""}">《${book.bookName!""}》</a><span class="badge badge-pill badge-secondary">new</span></td>
+                                </tr>
+                            </#list>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <#--模态框底部-->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
       </div>
 

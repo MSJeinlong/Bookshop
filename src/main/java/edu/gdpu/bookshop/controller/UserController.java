@@ -79,7 +79,7 @@ public class UserController {
 
     //用户注册
     @RequestMapping("/userRegister")
-    public String register(Model model, String userName, String cellphone, String password, String province, String city, String district, String street1){
+    public String register(Model model, String userName, String cellphone, String password, String province, String city, String district, String street1, String cardno){
         //查看 cellphone是否已经被注册了
         BsUser bsUser = userService.findUserByTel(cellphone);
         if(bsUser != null) {
@@ -104,6 +104,7 @@ public class UserController {
             bsUser.setCity1(city);
             bsUser.setDistrict1(district);
             bsUser.setStreet1(street1);
+            bsUser.setCardno(cardno);
             //保存用户的基本信息
             userService.addUser(bsUser);
 

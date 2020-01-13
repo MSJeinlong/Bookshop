@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 import java.math.BigDecimal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
@@ -87,12 +88,14 @@ public class BookController {
         if(books1.size() == 0)
             System.out.println("book1为空**************");
         session.setAttribute("books", bookList);
+        //session.setAttribute("keyName", keyName);
         logger.info("搜索关键字 "+keyName+" 的图书信息列表:{}", bookList);
-        for (Book b: bookList) {
+      /*  for (Book b: bookList) {
             System.out.println(b);
-        }
+        }*/
         //保存用户的搜索关键字
         session.setAttribute("keyName", keyName);
+        session.setAttribute("activeCode", 1);
         return "bookshop";
     }
 
@@ -107,6 +110,7 @@ public class BookController {
         }*/
         logger.info("按价格升序的图书列表:{}", bookSortList);
         session.setAttribute("books", bookSortList);
+        session.setAttribute("activeCode", 2);
         return "bookshop";
     }
 
@@ -121,6 +125,7 @@ public class BookController {
         }*/
         logger.info("按价格降序的图书列表:{}", bookSortList);
         session.setAttribute("books", bookSortList);
+        session.setAttribute("activeCode", 3);
         return "bookshop";
     }
 
@@ -129,12 +134,9 @@ public class BookController {
         //根据图书价格进行升序
         List<Book> books = (List<Book>)session.getAttribute("books");
         List<Book> bookSortList = books.stream().sorted(Comparator.comparing(Book::getSales).reversed()).collect(Collectors.toList());
-      /*  System.out.println("按价格升序");
-        for (Book b: bookSortList) {
-            System.out.println(b);
-        }*/
         logger.info("按价格降序的图书列表:{}", bookSortList);
         session.setAttribute("books", bookSortList);
+        session.setAttribute("activeCode", 4);
         return "bookshop";
     }
 
@@ -157,6 +159,72 @@ public class BookController {
         //搜索结果去重
         List<Book> books = bookList1.stream().distinct().collect(Collectors.toList());
         session.setAttribute("books", books);
+        return "bookshop";
+    }
+
+    /*按出版时间降序*/
+    @RequestMapping("/publishDateSort")
+    public String publishDateSort(HttpSession session){
+        //根据图书价格进行升序
+        List<Book> books = (List<Book>)session.getAttribute("books");
+        List<Book> bookSortList = books.stream().sorted(Comparator.comparing(Book::getPublishDate).reversed()).collect(Collectors.toList());
+        logger.info("按价格降序的图书列表:{}", bookSortList);
+        session.setAttribute("books", bookSortList);
+        session.setAttribute("activeCode", 5);
+        return "bookshop";
+    }
+
+    /*综合排序*/
+    @RequestMapping("/comprehensiveSort")
+    public String comprehensive(HttpSession session){
+        String keyName =(String) session.getAttribute("keyName");
+        if(keyName != null){
+            List<Book> books1 = bookService.findBookByBookNameBlur(keyName);
+            List<Book> books2 = bookService.findBookByAuthorBlur(keyName);
+            //将book2的结果加入book1
+            books1.addAll(books2);
+            //对结果进行去重
+            List<Book> bookList = books1.stream().distinct().collect(Collectors.toList());
+            if(books1.size() == 0)
+                System.out.println("book1为空**************");
+            session.setAttribute("books", bookList);
+        } else {
+            //关键字为空
+            List<Book> books = bookService.findAllBooks();
+            session.setAttribute("books", books);
+            session.setAttribute("activeCode", 1);
+        }
+        return "bookshop";
+    }
+
+    /*仅看有货或者无货*/
+    @RequestMapping("/isEnoughStock")
+    public String hasNumberOrNot(HttpSession session, String stockStatus) {
+        List<Book> bookList = (List<Book>) session.getAttribute("books");
+        List<Book> books = new ArrayList<>();
+        session.setAttribute("stockStatus", stockStatus);
+        //仅看有货
+        if (stockStatus.equals("1")) {
+            session.setAttribute("EnounghStock", bookList);
+            for (Book book : bookList) {
+                if (book.getNumbers() > 0) {
+                    books.add(book);
+                }
+            }
+        } else {
+           books = (List<Book>) session.getAttribute("EnounghStock");
+            session.removeAttribute("EnounghStock");
+            System.out.println("看全部");
+        }
+        session.setAttribute("books", books);
+        return "bookshop";
+    }
+
+    @RequestMapping("/findAllProduct")
+    public String findAllProduct(HttpSession session){
+        session.setAttribute("activeCode", 0);
+        List<Book> bookList = bookService.findAllBooks();
+        session.setAttribute("books", bookList);
         return "bookshop";
     }
 }

@@ -21,6 +21,24 @@
             margin-top: 50px;
         }
     </style>
+    <script>
+        $(function () {
+            $("button[type='submit']").click(function () {
+                var cardno1 = $("#cardno1").val();
+                var cardno2 = $("#cardno2").val();
+                if(cardno1 != cardno2)
+                {
+                    alert("两次输入的密码不一致！");
+                    return false;
+                } else if(cardno1.length < 6){
+                    alert("密码长度小于6!");
+                    return false;
+                }  else
+                    return true;
+            });
+
+        });
+    </script>
 </head>
 <body>
     <div class="htmleaf-container">
@@ -55,6 +73,15 @@
                             <div class="form-group ">
                                 <label for="street1" style="color: black">详细地址：&nbsp;</label>
                                 <textarea class="form-control" rows="5" cols="6" name="street1" required></textarea>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="cardno1" class="col-form-label col-sm-3">设置支付密码</label>
+                                <input type="password" class="form-control" name="cardno" id="cardno1" maxlength="6" required placeholder="设置6位支付密码"/>
+                            </div>
+                            <div class="form-group row">
+                                <label for="cardno2" class="col-form-label col-sm-3">确认支付密码</label>
+                                <input type="password" class="form-control"  id="cardno2" required maxlength="6" placeholder="确认6位支付密码"/>
                             </div>
                             <button type="submit" class="btn btn-success">提交</button>
                         </form>
