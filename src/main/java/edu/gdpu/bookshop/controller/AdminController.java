@@ -1,7 +1,9 @@
 package edu.gdpu.bookshop.controller;
 
-import edu.gdpu.bookshop.entity.Admin;
-import edu.gdpu.bookshop.service.AdminService;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+import edu.gdpu.bookshop.entity.*;
+import edu.gdpu.bookshop.service.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -9,12 +11,25 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 import java.util.Date;
+import java.util.List;
 
 @Controller
 public class AdminController {
 
     @Resource
     private AdminService adminService;
+
+    @Resource
+    private BookService bookService;
+
+    @Resource
+    private OrderService orderService;
+
+    @Resource
+    private UserService userService;
+
+    @Resource
+    private BookCategoryService bookCategoryService;
 
     @RequestMapping("/loginAdmin")
     public String loginAdmin(Model model, HttpSession session, String adminName, String password) {
@@ -30,6 +45,38 @@ public class AdminController {
             admin.setLastestLoginTime(new Date());
             //更新管理员登录时间
             adminService.updateAdmin(admin);
+
+            //获取所有的订单数据
+            PageHelper.startPage(1, 10);
+            List<OrderMaster> admin_orderList = orderService.findAllOrder();
+            PageInfo<OrderMaster> pageInfo_orders = new PageInfo<>(admin_orderList);
+            session.setAttribute("pageInfo_orders", pageInfo_orders);
+            session.setAttribute("nav_link", 1);
+            session.setAttribute("pageNum", 1);
+            session.setAttribute("pageSize", 10);
+            session.setAttribute("pills_nav_link_actived", 1);
+            //获取所有的用户数据
+            List<BsUser> userList = userService.findAllUsers();
+
+            //获取所有的商品数据
+            PageHelper.startPage(1, 10);
+            List<Book> bookList = bookService.findAllBooks();
+            PageInfo<Book> pageInfo_books = new PageInfo<>(bookList);
+            session.setAttribute("pageInfo_books", pageInfo_books);
+            session.setAttribute("book_pageNum", 1);
+            session.setAttribute("book_pagSize", 10);
+
+            //获取所有的商品类目
+            List<BookCategory> bookCategoryList = bookCategoryService.findAllBookCategories();
+
+
+
+            //PageInfo<Book>
+            session.setAttribute("userList", userList);
+
+            session.setAttribute("bookList", bookList);
+
+            session.setAttribute("bookCategoryList", bookCategoryList);
             session.setAttribute("admin", admin);
             return "adminManage";
         }

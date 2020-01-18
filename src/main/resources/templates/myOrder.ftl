@@ -107,7 +107,7 @@
                                 <span class="badge badge-secondary">待评价</span>
                             </#if>
                         </td>
-                        <td><a href="/toOrderDetail?orderId=${orderMaster.orderId!""}">查看订单详情</a></td>
+                        <td><a href="/toOrderDetail?orderId=${orderMaster.orderId!""}&role=1">查看详情</a></td>
                         <td>
                             <#if orderMaster.orderStatus == 0>
                             <#--支付密码的提交表单-->
@@ -177,7 +177,7 @@
                                     </#if>
                                 </td>
                                 <td><span class="badge badge-danger">待付款</span></td>
-                                <td><a href="/toOrderDetail?orderId=${orderMaster.orderId!""}">查看订单详情</a></td>
+                                <td><a href="/toOrderDetail?orderId=${orderMaster.orderId!""}&role=1">查看详情</a></td>
                                 <td>
                                     <#--支付密码的提交表单-->
                                     <form action="/updateOrderStatus" method="post" name="toPayForm">
@@ -236,7 +236,7 @@
                                 </#if>
                             </td>
                             <td><span class="badge badge-info">待发货</span></td>
-                            <td><a href="/toOrderDetail?orderId=${orderMaster.orderId!""}">查看订单详情</a></td>
+                            <td><a href="/toOrderDetail?orderId=${orderMaster.orderId!""}&role=1">查看详情</a></td>
                             <td>
                                 ---
                             </td>
@@ -287,7 +287,7 @@
                                 </#if>
                             </td>
                             <td><span class="badge badge-success">待收货</span></td>
-                            <td><a href="/toOrderDetail?orderId=${orderMaster.orderId!""}">查看订单详情</a></td>
+                            <td><a href="/toOrderDetail?orderId=${orderMaster.orderId!""}&role=1">查看详情</a></td>
                             <td>
                                 <#--支付密码的提交表单-->
                                 <form action="/updateOrderStatus" method="post" name="toPayForm">
@@ -343,7 +343,7 @@
                                 </#if>
                             </td>
                             <td><span class="badge badge-primary">待评价</span></td>
-                            <td><a href="/toOrderDetail?orderId=${orderMaster.orderId!""}">查看订单详情</a></td>
+                            <td><a href="/toOrderDetail?orderId=${orderMaster.orderId!""}&role=1">查看详情</a></td>
                             <td><a href="#" class="btn btn-sm btn-primary">去评价</a></td>
                         </#if>
                     </#list>

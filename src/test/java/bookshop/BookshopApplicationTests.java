@@ -1,4 +1,4 @@
-package edu.gdpu.bookshop;
+package bookshop;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

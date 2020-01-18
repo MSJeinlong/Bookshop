@@ -183,7 +183,9 @@
                         </th>
                         <th>商品信息</th>
                         <th>单价(元)</th>
+                        <th>减一件</th>
                         <th>数量</th>
+                        <th>加一件</th>
                         <th>库存状态</th>
                         <th>小计(元)</th>
                         <th>操作</th>
@@ -204,6 +206,7 @@
                                 &nbsp;   《${myCart.bookName!""}》
                             </td>
                             <td><span style="color: red">￥${myCart.bookPrice?string("0.00")}</span></td>
+                            <td><a href="#" data-toggle="tooltip" title="购买数量减1"><span class="badge badge-primary">-</span></a></td>
                             <td>
                                 <div class="form-group row">
                                     <div class="col-sm-6">
@@ -211,6 +214,7 @@
                                     </div>
                                 </div>
                             </td>
+                            <td><a href="#" class="btn btn-sm btn-primary" data-toggle="tooltip" title="购买数量加1">+</a></td>
                             <td>
                                 <input type="hidden" id="myCartStatus${myCart.cartId!""}" value="${myCart.status!""}"/>
                                 <#if myCart.status == 1>

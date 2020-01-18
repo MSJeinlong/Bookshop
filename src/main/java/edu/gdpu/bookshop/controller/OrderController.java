@@ -1,9 +1,8 @@
 package edu.gdpu.bookshop.controller;
 
-import edu.gdpu.bookshop.entity.BsUser;
-import edu.gdpu.bookshop.entity.MyCart;
-import edu.gdpu.bookshop.entity.OrderDetail;
-import edu.gdpu.bookshop.entity.OrderMaster;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+import edu.gdpu.bookshop.entity.*;
 import edu.gdpu.bookshop.service.BookService;
 import edu.gdpu.bookshop.service.MyCartService;
 import edu.gdpu.bookshop.service.OrderService;
@@ -172,14 +171,176 @@ public class OrderController {
         return "myOrder";
     }
 
-    /*查看订单详情*/
+    /*查看订单详情，role: 用户或管理员*/
     @RequestMapping("/toOrderDetail")
-    public String toOrderDetail(HttpSession session, String orderId){
+    public String toOrderDetail(HttpSession session, String orderId, String role){
         OrderMaster orderMaster = orderService.findOrderMasterByOrderId(orderId);
         List<OrderDetail> orderDetailList = orderService.findOrderDetailByOrderId(orderId);
         session.setAttribute("thisOrder", orderMaster);
         session.setAttribute("orderDetailList", orderDetailList);
+        session.setAttribute("role", Integer.valueOf(role));
         return "orderDetail";
+    }
+
+    @RequestMapping("/confirmDelivery")
+    public String confirmDelivery(HttpSession session,  Model model, String orderId, String password){
+        Admin admin = (Admin) session.getAttribute("admin");
+        if(!admin.getPassword().equals(password)){
+            model.addAttribute("deliveryTips", "密码错误！");
+            session.setAttribute("nav_link", 1);
+            return "adminManage";
+        }
+        else{
+            List<OrderMaster> orderMasterList = (List<OrderMaster>)session.getAttribute("orderMasterList");
+            for (OrderMaster order: orderMasterList) {
+                if(order.getOrderId().equals(orderId)){
+                    order.setOrderStatus((byte)2);
+                    order.setUpdateTime(new Date());
+                    orderService.updateOrderMaster(order);
+                    break;
+                }
+            }
+            session.setAttribute("orderMasterList", orderMasterList);
+            session.setAttribute("nav_link", 1);
+            return "adminManage";
+        }
+    }
+
+    @RequestMapping("/toOrderPage")
+    public String toFirstOrder(HttpSession session, String pageNum){
+        String orderId = (String)session.getAttribute("orderId");
+        String userName = (String)session.getAttribute("userName");
+        if(orderId == null)
+            orderId = "";
+        if(userName == null)
+            userName = "";
+        Integer num = Integer.valueOf(pageNum);
+        List<OrderMaster> orderMasterList = orderService.findByUnameOrderId(userName, orderId, num);
+        PageInfo<OrderMaster> pageInfo_orders = new PageInfo<>(orderMasterList);
+        session.setAttribute("pageInfo_orders", pageInfo_orders);
+        session.setAttribute("nav_link", 1);
+        session.setAttribute("pageNum", num);
+        return "adminManage";
+    }
+
+    @RequestMapping("/adminUpdateOrder")
+    public String adminUpdateOrder(HttpSession session, Model model, String orderId){
+        Integer pageNum = (Integer)session.getAttribute("pageNum");
+        if(pageNum == null){
+            pageNum = 1;
+        }
+        OrderMaster order = orderService.findOrderMasterByOrderId(orderId);
+        order.setOrderStatus((byte)2);
+        order.setUpdateTime(new Date());
+        orderService.updateOrderMaster(order);
+        PageHelper.startPage(pageNum, 10);
+        PageInfo<OrderMaster> pageInfo_orders = new PageInfo<>(orderService.findAllOrder());
+       // pageInfo_orders.getTotal();
+        session.setAttribute("pageInfo_orders", pageInfo_orders);
+        model.addAttribute("updateOrderTips", "发货成功！");
+        session.setAttribute("nav_link", 1);
+        return "adminManage";
+    }
+
+    @RequestMapping("/findByOrderIdAndUserName")
+    public String findByOrderAndUserName(HttpSession session, String orderId, String userName){
+        Integer pageSize = (Integer)session.getAttribute("pageSize");
+        Integer pageNum = (Integer)session.getAttribute("pageNum");
+        List<OrderMaster> orderMasterList = orderService.findByUnameOrderId(userName, orderId, pageNum);
+        PageInfo<OrderMaster> pageInfo_orders = new PageInfo<>(orderMasterList);
+        session.setAttribute("pageInfo_orders", pageInfo_orders);
+        session.setAttribute("orderId", orderId);
+        session.setAttribute("userName", userName);
+        session.setAttribute("nav_link", 1);
+        return "adminManage";
+    }
+
+    @RequestMapping("/allOrders")
+    public String allOrders(HttpSession session){
+        PageHelper.startPage(1, 10);
+        List<OrderMaster> orderMasterList = orderService.findAllOrder();
+        PageInfo<OrderMaster> pageInfo_orders = new PageInfo<>(orderMasterList);
+        session.setAttribute("pageInfo_orders", pageInfo_orders);
+        session.setAttribute("pills_nav_link_actived", 1);
+        session.setAttribute("nav_link", 1);
+        return "adminManage";
+    }
+
+    @RequestMapping("/findUnpaidOrder")
+    public String findUnpaidOrder(HttpSession session){
+        Integer pageSize = (Integer)session.getAttribute("pageSize");
+        Integer pageNum = (Integer)session.getAttribute("pageNum");
+        String orderId = (String)session.getAttribute("orderId");
+        String userName = (String)session.getAttribute("userName");
+        if(orderId == null){
+            orderId = "";
+        }
+        if(userName == null)
+            userName = "";
+        List<OrderMaster> orderUnpaid = orderService.findOrderUnpaid(userName, orderId, pageNum);
+        PageInfo<OrderMaster> pageInfo_orders = new PageInfo<>(orderUnpaid);
+        session.setAttribute("pageInfo_orders", pageInfo_orders);
+        session.setAttribute("pills_nav_link_actived", 2);
+        session.setAttribute("nav_link", 1);
+        return "adminManage";
+    }
+
+    @RequestMapping("/findUnDeliveryOrder")
+    public String findUnDeliveryOrder(HttpSession session){
+        Integer pageNum = (Integer)session.getAttribute("pageNum");
+        String orderId = (String)session.getAttribute("orderId");
+        String userName = (String)session.getAttribute("userName");
+        if(orderId == null){
+            orderId = "";
+        }
+        if(userName == null)
+            userName = "";
+        //PageHelper.startPage(pageNum, pageSize);
+        List<OrderMaster> orderUnpaid = orderService.findOrderUnDelivery(userName, orderId, pageNum);
+        PageInfo<OrderMaster> pageInfo_orders = new PageInfo<>(orderUnpaid);
+        session.setAttribute("pageInfo_orders", pageInfo_orders);
+        session.setAttribute("pills_nav_link_actived", 3);
+        session.setAttribute("nav_link", 1);
+        return "adminManage";
+    }
+
+    @RequestMapping("/findUnReceivedOrder")
+    public String findUnReceivedOrder(HttpSession session){
+        Integer pageSize = (Integer)session.getAttribute("pageSize");
+        Integer pageNum = (Integer)session.getAttribute("pageNum");
+        String orderId = (String)session.getAttribute("orderId");
+        String userName = (String)session.getAttribute("userName");
+        if(orderId == null){
+            orderId = "";
+        }
+        if(userName == null)
+            userName = "";
+        List<OrderMaster> orderUnpaid = orderService.findOrderUnReceived(userName, orderId, pageNum);
+        PageInfo<OrderMaster> pageInfo_orders = new PageInfo<>(orderUnpaid);
+        session.setAttribute("pageInfo_orders", pageInfo_orders);
+        session.setAttribute("pills_nav_link_actived", 4);
+        session.setAttribute("nav_link", 1);
+        return "adminManage";
+    }
+
+    @RequestMapping("/OrderByTime")
+    public String OrderByTime(HttpSession session){
+        Integer pageNum = (Integer)session.getAttribute("pageNum");
+        String orderId = (String)session.getAttribute("orderId");
+        String userName = (String)session.getAttribute("userName");
+        if(orderId == null){
+            orderId = "";
+        }
+        if(userName == null)
+            userName = "";
+        System.out.println("pageNum:"+pageNum);
+        //PageHelper.startPage(pageNum, pageSize);
+        List<OrderMaster> orderMasterList = orderService.findOrderByTime(userName, orderId, pageNum);
+        PageInfo<OrderMaster> pageInfo_orders = new PageInfo<>(orderMasterList);
+        session.setAttribute("pageInfo_orders", pageInfo_orders);
+        session.setAttribute("pills_nav_link_actived", 5);
+        session.setAttribute("nav_link", 1);
+        return "adminManage";
     }
 
 }

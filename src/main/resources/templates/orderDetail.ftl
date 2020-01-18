@@ -15,7 +15,14 @@
     <div class="container">
         <div class="card">
             <div class="card-header">
-                <h5 class="card-title text-info">订单详情 &nbsp;&nbsp;&nbsp;<a href="/toMyOrder" class="btn btn-sm btn-primary">返回</a></h5>
+                <h5 class="card-title text-info">订单详情 &nbsp;&nbsp;&nbsp;
+                    <#if role == 1>
+                        <a href="/toMyOrder" class="btn btn-sm btn-primary">返回</a>
+                        <#else >
+                            <a href="/toAdminManage" class="btn btn-sm btn-primary">返回</a>
+                    </#if>
+
+                </h5>
                 <p class="card-subtitle text-secondary">收货人信息</p>
                 <p class="text-muted">收货人姓名：${thisOrder.userName!""}</p>
                 <p class="text-muted">收货人手机号码：${thisOrder.userPhone!""}</p>

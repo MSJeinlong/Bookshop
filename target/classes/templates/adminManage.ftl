@@ -26,7 +26,9 @@
     <meta name="theme-color" content="#563d7c">
 
     <script src="/jQuery-3.4.1/jquery-3.4.1.min.js"></script>
-
+    <script src="https://cdn.staticfile.org/popper.js/1.15.0/umd/popper.min.js"></script>
+    <script src="/bootstrap-4.3.1/js/bootstrap.bundle.min.js"></script>
+    <script src="/bootstrap-4.3.1/js/bootstrap.min.js"></script>
     <style>
         .bd-placeholder-img {
             font-size: 1.125rem;
@@ -46,19 +48,117 @@
     <script>
         $(function () {
            // alert("hi");
-            $(".nav-link").click(function () {
-                $(".nav-link").attr("class", "nav-link");
-                $(this).attr("class", "nav-link active");
-                //alert("hello");
-            });
-            $("#order-link").click(function () {
+            var nav_link_actived = $("#nav-link-actived").val();
+            //alert(nav_link_actived);
+            if(nav_link_actived == 1){
+                $("#order-link").addClass("active");
+                $("#product-link").removeClass("active");
+                $("#user-link").removeClass("active");
+                //alert("order-click");
                 $("#Products").css("display", "none");
+                $("#Users").css("display", "none")
+                $("#Orders").css("display", "block");
+            } else if(nav_link_actived == 2){
+                $("#product-link").addClass("active");
+                $("#user-link").removeClass("active");
+                $("#order-link").removeClass("active");
+                //alert("product-click");
+                $("#Users").css("display", "none")
+                $("#Products").css("display", "block");
+                $("#Orders").css("display", "none");
+            } else if(nav_link_actived == 3){
+                $("#product-link").removeClass("active");
+                $("#user-link").addClass("active");
+                $("#order-link").removeClass("active");
+                //alert("user-click");
+                $("#Users").css("display", "block")
+                $("#Products").css("display", "none");
+                $("#Orders").css("display", "none");
+            }
+
+            var pills_nav_link_actived = $("#pills_nav_link_actived").val();
+            if(pills_nav_link_actived == 1){
+                $(".order-nav-link").removeClass("active");
+                $("#allOrders").addClass("active");
+            } else if(pills_nav_link_actived == 2){
+                $(".order-nav-link").removeClass("active");
+                $("#UnpaidOrder").addClass("active");
+            } else if(pills_nav_link_actived == 3){
+                $(".order-nav-link").removeClass("active");
+                $("#UnDeliveryOrder").addClass("active");
+            } else if(pills_nav_link_actived == 4){
+                $(".order-nav-link").removeClass("active");
+                $("#UnReceivedOrder").addClass("active");
+            } else {
+                $(".order-nav-link").removeClass("active");
+                $("#OrderByTime").addClass("active");
+            }
+
+            var book_nav_link_actived = $("#book-nav-link-actived").val();
+            if(book_nav_link_actived == 1){
+                $(".book-nav-link").removeClass("active");
+                $("#allBooks").addClass("active");
+            } else if(book_nav_link_actived == 2){
+                $(".book-nav-link").removeClass("active");
+                $("#sortAscSales").addClass("active");
+            } else if(book_nav_link_actived == 3){
+                $(".book-nav-link").removeClass("active");
+                $("#sortDescSales").addClass("active");
+            } else if(book_nav_link_actived == 4){
+                $(".book-nav-link").removeClass("active");
+                $("#sortAscNumbers").addClass("active");
+            } else if(book_nav_link_actived == 5){
+                $(".book-nav-link").removeClass("active");
+                $("#sortDescNumbers").addClass("active");
+            } else if(book_nav_link_actived == 6){
+                $(".book-nav-link").removeClass("active");
+                $("#sortAscPrice").addClass("active");
+            } else if(book_nav_link_actived == 7){
+                $(".book-nav-link").removeClass("active");
+                $("#sortDescPrice").addClass("active");
+            }
+
+            $("#order-link").click(function () {
+                $("#order-link").addClass("active");
+                $("#product-link").removeClass("active");
+                $("#user-link").removeClass("active");
+                //alert("order-click");
+                $("#Products").css("display", "none");
+                $("#Users").css("display", "none")
                 $("#Orders").css("display", "block");
             });
 
             $("#product-link").click(function () {
+                $("#product-link").addClass("active");
+                $("#user-link").removeClass("active");
+                $("#order-link").removeClass("active");
+                //alert("product-click");
+                $("#Users").css("display", "none")
                 $("#Products").css("display", "block");
                 $("#Orders").css("display", "none");
+            });
+
+            $("#user-link").click(function () {
+                $("#product-link").removeClass("active");
+                $("#user-link").addClass("active");
+                $("#order-link").removeClass("active");
+                //alert("user-click");
+                $("#Users").css("display", "block")
+                $("#Products").css("display", "none");
+                $("#Orders").css("display", "none");
+            });
+
+            $("#deliveryBtn").click(function () {
+                //设置提交的表单数据
+                var orderId = $(this).val();
+                $("#orderId").val(orderId);
+            });
+
+            $("#delivery").click(function () {
+                if(confirm("确定发货吗?")){
+                    $("#deliveryForm").submit();
+                }
+                return false;
             });
         });
     </script>
@@ -66,6 +166,8 @@
     <link href="/dashboard/dashboard.css" rel="stylesheet">
 </head>
 <body>
+<input type="hidden" id="nav-link-actived" value="${nav_link!"1"}"/>
+<input type="hidden" id="book-nav-link-actived" value="${book_nav_link_actived!"1"}"/>
 <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
     <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">BOOKSHOP</a>
     <input class="form-control form-control-dark w-90" type="text" placeholder="Search" aria-label="Search">
@@ -82,13 +184,7 @@
             <div class="sidebar-sticky">
                 <ul class="nav flex-column">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <span data-feather="home"></span>
-                            Dashboard <span class="sr-only">(current)</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" id="order-link" href="#orders">
+                        <a class="nav-link active" id="order-link" href="#">
                             <span data-feather="file"></span>
                             Orders
                         </a>
@@ -100,54 +196,9 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link" href="#" id="user-link">
                             <span data-feather="users"></span>
                             Customers
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <span data-feather="bar-chart-2"></span>
-                            Reports
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <span data-feather="layers"></span>
-                            Integrations
-                        </a>
-                    </li>
-                </ul>
-
-                <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-                    <span>Saved reports</span>
-                    <a class="d-flex align-items-center text-muted" href="#" aria-label="Add a new report">
-                        <span data-feather="plus-circle"></span>
-                    </a>
-                </h6>
-                <ul class="nav flex-column mb-2">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <span data-feather="file-text"></span>
-                            Current month
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <span data-feather="file-text"></span>
-                            Last quarter
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <span data-feather="file-text"></span>
-                            Social engagement
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <span data-feather="file-text"></span>
-                            Year-end sale
                         </a>
                     </li>
                 </ul>
@@ -155,162 +206,235 @@
         </nav>
 
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
-
-            <div id="Orders">
-
-            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                <h1 class="h2">Dashboard</h1>
-                <div class="btn-toolbar mb-2 mb-md-0">
-                    <div class="btn-group mr-2">
-                        <button type="button" class="btn btn-sm btn-outline-secondary">Share</button>
-                        <button type="button" class="btn btn-sm btn-outline-secondary">Export</button>
-                    </div>
-                    <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">
-                        <span data-feather="calendar"></span>
-                        This week
-                    </button>
-                </div>
-            </div>
-
-            <canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas>
-            
-            <h2>Section title</h2>
+            <input type="hidden" id="pills_nav_link_actived"  name="pills_nav_link_actived" value="${pills_nav_link_actived!"1"}"/>
+            <div id="Orders" style="display: none">
+            <h6>订单数据 &nbsp;&nbsp;共 <span class="badge badge-pill badge-secondary">${pageInfo_orders.total!"0"}</span> 条记录</h6>
+                <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link order-nav-link" id="allOrders"  href="/allOrders"  >全部订单</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link order-nav-link" id="UnpaidOrder"  href="/findUnpaidOrder">待付款</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link order-nav-link" id="UnDeliveryOrder" href="/findUnDeliveryOrder">待发货</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link order-nav-link" id="UnReceivedOrder"  href="/findUnReceivedOrder" >待收货</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link order-nav-link" id="OrderByTime"  href="/OrderByTime">下单时间↓</a>
+                    </li>
+                    <li class="nav-item">
+                        <form class="form-inline" action="/findByOrderIdAndUserName" method="post">
+                            <input type="search" name="userName" class="form-control" value="${userName!""}" placeholder="收货人"/>
+                            <input type="search" name="orderId" class="form-control" value="${orderId!""}" placeholder="订单编号"/>
+                            <button type="submit" class="btn btn-sm btn-primary">确定</button>
+                        </form>
+                    </li>
+                </ul>
+             <#if updateOrderTips??>
+                 <div class="row">
+                     <div class="alert alert-success alert-dismissible col-md-3">
+                         <button type="button" class="close" data-dismiss="alert">&times;</button>
+                         <strong>${updateOrderTips!""}</strong>
+                     </div>
+                 </div>
+             </#if>
             <div class="table-responsive">
-                <table class="table table-striped table-sm">
-                    <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Header</th>
-                        <th>Header</th>
-                        <th>Header</th>
-                        <th>Header</th>
-                    </tr>
-                    </thead>
+                <table class="table table-striped table-hover table-sm">
+                   <thead class="table-secondary">
+                   <tr>
+                       <th>订单编号</th>
+                       <th>下单时间</th>
+                       <th>收货人</th>
+                       <th>金额</th>
+                       <th>支付方式</th>
+                       <th>订单状态</th>
+                       <th>订单详情</th>
+                       <th>操作</th>
+                   </tr>
+                   </thead>
                     <tbody>
-                    <tr>
-                        <td>1,001</td>
-                        <td>Lorem</td>
-                        <td>ipsum</td>
-                        <td>dolor</td>
-                        <td>sit</td>
-                    </tr>
-                    <tr>
-                        <td>1,002</td>
-                        <td>amet</td>
-                        <td>consectetur</td>
-                        <td>adipiscing</td>
-                        <td>elit</td>
-                    </tr>
-                    <tr>
-                        <td>1,003</td>
-                        <td>Integer</td>
-                        <td>nec</td>
-                        <td>odio</td>
-                        <td>Praesent</td>
-                    </tr>
-                    <tr>
-                        <td>1,003</td>
-                        <td>libero</td>
-                        <td>Sed</td>
-                        <td>cursus</td>
-                        <td>ante</td>
-                    </tr>
-                    <tr>
-                        <td>1,004</td>
-                        <td>dapibus</td>
-                        <td>diam</td>
-                        <td>Sed</td>
-                        <td>nisi</td>
-                    </tr>
-                    <tr>
-                        <td>1,005</td>
-                        <td>Nulla</td>
-                        <td>quis</td>
-                        <td>sem</td>
-                        <td>at</td>
-                    </tr>
-                    <tr>
-                        <td>1,006</td>
-                        <td>nibh</td>
-                        <td>elementum</td>
-                        <td>imperdiet</td>
-                        <td>Duis</td>
-                    </tr>
-                    <tr>
-                        <td>1,007</td>
-                        <td>sagittis</td>
-                        <td>ipsum</td>
-                        <td>Praesent</td>
-                        <td>mauris</td>
-                    </tr>
-                    <tr>
-                        <td>1,008</td>
-                        <td>Fusce</td>
-                        <td>nec</td>
-                        <td>tellus</td>
-                        <td>sed</td>
-                    </tr>
-                    <tr>
-                        <td>1,009</td>
-                        <td>augue</td>
-                        <td>semper</td>
-                        <td>porta</td>
-                        <td>Mauris</td>
-                    </tr>
-                    <tr>
-                        <td>1,010</td>
-                        <td>massa</td>
-                        <td>Vestibulum</td>
-                        <td>lacinia</td>
-                        <td>arcu</td>
-                    </tr>
-                    <tr>
-                        <td>1,011</td>
-                        <td>eget</td>
-                        <td>nulla</td>
-                        <td>Class</td>
-                        <td>aptent</td>
-                    </tr>
-                    <tr>
-                        <td>1,012</td>
-                        <td>taciti</td>
-                        <td>sociosqu</td>
-                        <td>ad</td>
-                        <td>litora</td>
-                    </tr>
-                    <tr>
-                        <td>1,013</td>
-                        <td>torquent</td>
-                        <td>per</td>
-                        <td>conubia</td>
-                        <td>nostra</td>
-                    </tr>
-                    <tr>
-                        <td>1,014</td>
-                        <td>per</td>
-                        <td>inceptos</td>
-                        <td>himenaeos</td>
-                        <td>Curabitur</td>
-                    </tr>
-                    <tr>
-                        <td>1,015</td>
-                        <td>sodales</td>
-                        <td>ligula</td>
-                        <td>in</td>
-                        <td>libero</td>
-                    </tr>
+                    <#list pageInfo_orders.list as orderMaster>
+                        <tr>
+                            <td>${orderMaster.orderId!""}</td>
+                            <td>${orderMaster.createTime?string("yyyy-MM-dd hh:MM:ss")}</td>
+                            <td>${orderMaster.userName!""}</td>
+                            <td><span style="color: red">￥${orderMaster.totalPrice?string("0.00")}</span></td>
+                            <td>
+                                <#if orderMaster.payWay == 1>
+                                    银行卡支付
+                                <#elseif orderMaster.payWay == 2>
+                                    支付宝支付
+                                <#elseif orderMaster.payWay == 3>
+                                    微信支付
+                                </#if>
+                            </td>
+                            <td>
+                                <#if orderMaster.orderStatus == 0>
+
+                                    <span class="badge badge-danger">待付款</span>
+                                <#elseif orderMaster.orderStatus == 1>
+                                    <span class="badge badge-info">待发货</span>
+                                <#elseif orderMaster.orderStatus == 2>
+                                    <span class="badge badge-success">待收货</span>
+                                <#elseif orderMaster.orderStatus == 3>
+                                    <span class="badge badge-secondary">待评价</span>
+                                </#if>
+                            </td>
+                            <td><a href="/toOrderDetail?orderId=${orderMaster.orderId!""}&role=2">查看详情</a></td>
+                            <td>
+                               <#if orderMaster.orderStatus == 1>
+
+                                   <form action="/adminUpdateOrder" method="post" id="deliveryForm">
+                                        <input type="hidden" name="orderId" value="${orderMaster.orderId}"/>
+                                        <input type="hidden" name="orderStatus" value="2"/>
+                                   </form>
+                                   <a href="#" id="delivery" ><span class="badge badge-primary">确认发货</span></a>
+                               <#else >
+                                    ---
+                               </#if>
+                            </td>
+                        </tr>
+                    </#list>
                     </tbody>
                 </table>
             </div>
 
+                <nav aria-label="...">
+                    <ul class="pagination">
+                        <li class="page-item disabled">
+                            <a href="#" class="page-link">第${pageInfo_orders.pageNum!"0"}/${pageInfo_orders.pages!"0"}页</a>
+                        </li>
+                        <li class="page-item ">
+                            <a class="page-link" href="/toOrderPage?pageNum=1">首页</a>
+                        </li>
+                        <li class="page-item ">
+                            <a class="page-link" href="/toOrderPage?pageNum=${pageInfo_orders.prePage}">上一页</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="/toOrderPage?pageNum=${pageInfo_orders.nextPage}">下一页</a>
+                        </li>
+                        <li class="page-item ">
+                            <a class="page-link" href="/toOrderPage?pageNum=${pageInfo_orders.pages}">尾页</a>
+                        </li>
+                        <li class="page-item">
+                            <form class="form-inline"  action="/toOrderPage" method="post">
+                                &nbsp;&nbsp;共&nbsp;<strong class="text-muted">${pageInfo_orders.pages}</strong>&nbsp;页
+                                &nbsp;到第<input type="number" name="pageNum" class="form-control" min="1" value="${pageNum!"1"}" max="${pageInfo_orders.pages}"/>页 &nbsp;
+                                <button type="submit" class="btn btn-sm btn-primary">确定</button>
+                            </form>
+                        </li>
+                    </ul>
+
+                </nav>
             </div>
 
 
             <div id="Products" style="display: none;">
-                <p>These are books!</p>
+                <h6>图书数据 &nbsp;&nbsp;共 <span class="badge badge-pill badge-secondary">${pageInfo_books.total!"0"}</span> 条记录</h6>
+
+                <ul class="nav nav-pills">
+                    <li class="nav-item">
+                        <a class="nav-link active book-nav-link" id="allBooks" href="/adminFindAllBooks">全部图书</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link book-nav-link" id="sortAscSales" href="/sortSecSales">销量↑</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link book-nav-link" id="sortDescSales" href="/sortDesSales">销量↓</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link book-nav-link" id="sortAscNumbers" href="/sortSecNumbers">库存↑</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link book-nav-link" id="sortDescNumbers" href="/sortDesNumbers">库存↓</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link book-nav-link" id="sortAscPrice" href="/sortSecPrice">单价↑</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link book-nav-link" id="sortDescPrice" href="/sortDesPrice">单价↓</a>
+                    </li>
+                    <li class="nav-item">
+                        <form class="form-inline" action="/findBookByBAP" method="post">
+                            <input type="search" name="bookName" class="form-control" value="${RequestParameters['bookName']?default("")}" placeholder="书名"/>
+                            <input type="search" name="author" class="form-control" value="${RequestParameters['author']?default("")}" placeholder="作者"/>
+                            <input type="search" name="publisher" class="form-control" value="${RequestParameters['publisher']?default("")}" placeholder="出版社"/>
+                            <button type="submit" class="btn btn-primary">确定</button>
+                        </form>
+                    </li>
+                </ul>
+
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover table-sm">
+                        <thead class="table-secondary">
+                        <th>书名</th>
+                        <th>作者</th>
+                        <th>出版社</th>
+                        <th>出版时间</th>
+                        <th>单价</th>
+                        <th>库存</th>
+                        <th>销量</th>
+                        <th>详情</th>
+                        <th>修改</th>
+                        <th>删除</th>
+                        </thead>
+                        <tbody>
+                        <#list pageInfo_books.list as book>
+                            <tr>
+                            <td>《${book.bookName!""}》</td>
+                            <td>${book.author!""}</td>
+                            <td>${book.publisher!""}</td>
+                            <td>${book.publishDate?string("yyyy-MM-dd")}</td>
+                            <td><span style="color: red">￥${book.price?string("0.00")}</span></td>
+                            <td><span class="text-primary">${book.numbers!"0"}</span></td>
+                            <td><span class="text-info">${book.sales!"0"}</span></td>
+                            <td><a href="/adminBookInfo?bookId=${book.bookId}">详情</a></td>
+                            <td><a href="#">修改</a></td>
+                            <td><a href="#">删除</a></td>
+                            </tr>
+                        </#list>
+                        </tbody>
+                    </table>
+                </div>
+
+                <nav aria-label="...">
+                    <ul class="pagination">
+                        <li class="page-item disabled">
+                            <a href="#" class="page-link">第${pageInfo_books.pageNum!"0"}/${pageInfo_books.pages!"0"}页</a>
+                        </li>
+                        <li class="page-item ">
+                            <a class="page-link" href="/toBookPage?book_pageNum=1">首页</a>
+                        </li>
+                        <li class="page-item ">
+                            <a class="page-link" href="/toBookPage?book_pageNum=${pageInfo_books.prePage}">上一页</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="/toBookPage?book_pageNum=${pageInfo_books.nextPage}">下一页</a>
+                        </li>
+                        <li class="page-item ">
+                            <a class="page-link" href="/toBookPage?book_pageNum=${pageInfo_books.pages}">尾页</a>
+                        </li>
+                        <li class="page-item">
+                            <form class="form-inline"  action="/toBookPage" method="post">
+                                &nbsp;&nbsp;共&nbsp;<strong class="text-muted">${pageInfo_books.pages}</strong>&nbsp;页
+                                &nbsp;到第<input type="number" name="book_pageNum" class="form-control" min="1" value="${pageNum!"1"}" max="${pageInfo_books.pages}"/>页 &nbsp;
+                                <button type="submit" class="btn btn-sm btn-primary">确定</button>
+                            </form>
+                        </li>
+                    </ul>
+
+                </nav>
+            </div>
+
+            <div id="Users" style="display: none">
+                <p>This is users</p>
             </div>
         </main>
     </div>
+
 </div>
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
 <script>window.jQuery || document.write('<script src="/docs/4.3/assets/js/vendor/jquery.slim.min.js"><\/script>')</script><script src="/bootstrap-4.3.1/js/bootstrap.bundle.min.js"></script>

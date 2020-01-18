@@ -1,5 +1,7 @@
 package edu.gdpu.bookshop.controller;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import edu.gdpu.bookshop.entity.Book;
 import edu.gdpu.bookshop.service.BookService;
 import org.slf4j.Logger;
@@ -226,5 +228,215 @@ public class BookController {
         List<Book> bookList = bookService.findAllBooks();
         session.setAttribute("books", bookList);
         return "bookshop";
+    }
+
+    @RequestMapping("/adminBookInfo")
+    public String adminBookInfo(HttpSession session, String bookId){
+        Book book = bookService.findBookByBookId(Integer.valueOf(bookId));
+        session.setAttribute("admin_book", book);
+        session.setAttribute("nav_link", 2);
+        return "admin_bookInfo";
+    }
+
+    @RequestMapping("/toBookPage")
+    public String toBookPage(HttpSession session, String book_pageNum){
+        Integer pageNum = Integer.valueOf(book_pageNum);
+        System.out.println("toBookPage:"+book_pageNum);
+        String bookName = (String)session.getAttribute("bookName");
+        String author = (String)session.getAttribute("author");
+        String publisher = (String)session.getAttribute("publisher");
+        if(bookName == null)
+            bookName = "";
+        if(author == null)
+            author = "";
+        if(publisher == null)
+            publisher = "";
+        String orderBy = (String)session.getAttribute("orderBy");
+        if(orderBy == null)
+            orderBy = "book_id asc";
+        List<Book> bookList = bookService.findBookByBookNameAuthorPublisher(bookName, author, publisher, orderBy, pageNum);
+        PageInfo<Book> pageInfo_books = new PageInfo<>(bookList);
+        session.setAttribute("pageInfo_books", pageInfo_books);
+        session.setAttribute("nav_link", 2);
+        return "adminManage";
+    }
+
+    /**
+     * @Description:全部订单
+     * @Param:
+     * @return:
+     * @Author: 池俊龙
+     * @Date:
+     */
+    @RequestMapping("/adminFindAllBooks")
+    public String adminFindAllBooks(HttpSession session){
+        PageHelper.startPage(1, 10);
+        List<Book> bookList = bookService.findAllBooks();
+        PageInfo<Book> pageInfo_books = new PageInfo<>(bookList);
+        session.setAttribute("pageInfo_books", pageInfo_books);
+        session.setAttribute("nav_link", 2);
+        session.setAttribute("book_nav_link_actived", 1);
+        return "adminManage";
+    }
+
+    /** 
+     * @Description: 销量↑
+     * @Param: 
+     * @return: 
+     * @Author: 池俊龙
+     * @Date: 
+     */
+    @RequestMapping("/sortSecNumbers")
+    public String sortSecNumbers(HttpSession session){
+        Integer book_pageNum = (Integer)session.getAttribute("book_pageNum");
+        String bookName = (String)session.getAttribute("bookName");
+        String author = (String)session.getAttribute("author");
+        String publisher = (String)session.getAttribute("publisher");
+        if(bookName == null)
+            bookName = "";
+        if(author == null)
+            author = "";
+        if(publisher == null)
+            publisher = "";
+        List<Book> bookList = bookService.findBookByBAPSortAscNumbers(bookName, author, publisher, book_pageNum);
+        PageInfo<Book> pageInfo_books = new PageInfo<>(bookList);
+        session.setAttribute("pageInfo_books", pageInfo_books);
+        session.setAttribute("nav_link", 2);
+        session.setAttribute("orderBy", "numbers asc");
+        session.setAttribute("book_nav_link_actived", 4);
+        return "adminManage";
+    }
+
+    @RequestMapping("/sortDesNumbers")
+    public String sortDesNumbers(HttpSession session){
+        Integer book_pageNum = (Integer)session.getAttribute("book_pageNum");
+        String bookName = (String)session.getAttribute("bookName");
+        String author = (String)session.getAttribute("author");
+        String publisher = (String)session.getAttribute("publisher");
+        if(bookName == null)
+            bookName = "";
+        if(author == null)
+            author = "";
+        if(publisher == null)
+            publisher = "";
+        List<Book> bookList = bookService.findBookByBAPSortDescNumbers(bookName, author, publisher, book_pageNum);
+        PageInfo<Book> pageInfo_books = new PageInfo<>(bookList);
+        session.setAttribute("pageInfo_books", pageInfo_books);
+        session.setAttribute("nav_link", 2);
+        session.setAttribute("orderBy", "numbers desc");
+        session.setAttribute("book_nav_link_actived", 5);
+        return "adminManage";
+    }
+
+    @RequestMapping("/sortSecSales")
+    public String sortSecSales(HttpSession session){
+        Integer book_pageNum = (Integer)session.getAttribute("book_pageNum");
+        String bookName = (String)session.getAttribute("bookName");
+        String author = (String)session.getAttribute("author");
+        String publisher = (String)session.getAttribute("publisher");
+        if(bookName == null)
+            bookName = "";
+        if(author == null)
+            author = "";
+        if(publisher == null)
+            publisher = "";
+        List<Book> bookList = bookService.findBookByBAPSortAscSales(bookName, author, publisher, book_pageNum);
+        PageInfo<Book> pageInfo_books = new PageInfo<>(bookList);
+        session.setAttribute("pageInfo_books", pageInfo_books);
+        session.setAttribute("nav_link", 2);
+        session.setAttribute("orderBy", "sales asc");
+        session.setAttribute("book_nav_link_actived", 2);
+        return "adminManage";
+    }
+
+    @RequestMapping("/sortDesSales")
+    public String sortDesSales(HttpSession session){
+        Integer book_pageNum = (Integer)session.getAttribute("book_pageNum");
+        String bookName = (String)session.getAttribute("bookName");
+        String author = (String)session.getAttribute("author");
+        String publisher = (String)session.getAttribute("publisher");
+        if(bookName == null)
+            bookName = "";
+        if(author == null)
+            author = "";
+        if(publisher == null)
+            publisher = "";
+        List<Book> bookList = bookService.findBookByBAPSortDescSales(bookName, author, publisher, book_pageNum);
+        PageInfo<Book> pageInfo_books = new PageInfo<>(bookList);
+        session.setAttribute("pageInfo_books", pageInfo_books);
+        session.setAttribute("nav_link", 2);
+        session.setAttribute("orderBy", "sales desc");
+        session.setAttribute("book_nav_link_actived", 3);
+        return "adminManage";
+    }
+
+    @RequestMapping("/sortSecPrice")
+    public String sortSecPrice(HttpSession session){
+        Integer book_pageNum = (Integer)session.getAttribute("book_pageNum");
+        String bookName = (String)session.getAttribute("bookName");
+        String author = (String)session.getAttribute("author");
+        String publisher = (String)session.getAttribute("publisher");
+        if(bookName == null)
+            bookName = "";
+        if(author == null)
+            author = "";
+        if(publisher == null)
+            publisher = "";
+        List<Book> bookList = bookService.findBookByBAPSortAscPrice(bookName, author, publisher, book_pageNum);
+        PageInfo<Book> pageInfo_books = new PageInfo<>(bookList);
+        session.setAttribute("pageInfo_books", pageInfo_books);
+        session.setAttribute("nav_link", 2);
+        session.setAttribute("orderBy", "price asc");
+        session.setAttribute("book_nav_link_actived", 6);
+        return "adminManage";
+    }
+
+    @RequestMapping("/sortDesPrice")
+    public String sortDesPrice(HttpSession session){
+        Integer book_pageNum = (Integer)session.getAttribute("book_pageNum");
+        String bookName = (String)session.getAttribute("bookName");
+        String author = (String)session.getAttribute("author");
+        String publisher = (String)session.getAttribute("publisher");
+        if(bookName == null)
+            bookName = "";
+        if(author == null)
+            author = "";
+        if(publisher == null)
+            publisher = "";
+        List<Book> bookList = bookService.findBookByBAPSortDescPrice(bookName, author, publisher, book_pageNum);
+        PageInfo<Book> pageInfo_books = new PageInfo<>(bookList);
+        session.setAttribute("pageInfo_books", pageInfo_books);
+        session.setAttribute("nav_link", 2);
+        session.setAttribute("orderBy", "price desc");
+        session.setAttribute("book_nav_link_actived", 7);
+        return "adminManage";
+    }
+
+    @RequestMapping("/findBookByBAP")
+    public String findBookByBAP(HttpSession session, String bookName, String author, String publisher){
+        String orderBy = "book_id asc";
+        List<Book> bookList = bookService.findBookByBookNameAuthorPublisher(bookName, author, publisher, orderBy, 1);
+        PageInfo<Book> pageInfo_books = new PageInfo<>(bookList);
+        session.setAttribute("pageInfo_books", pageInfo_books);
+        session.setAttribute("nav_link", 2);
+        session.setAttribute("book_nav_link_actived", 1);
+        return "adminManage";
+    }
+
+    @RequestMapping("/deleteBookByBookId")
+    public String deleteBookByBookId(HttpSession session, String bookId){
+        Integer bid= Integer.valueOf(bookId);
+        bookService.deleteBook(bid);
+        PageInfo<Book> pageInfo_books = (PageInfo<Book>)session.getAttribute("pageInfo_books");
+        List<Book> bookList = pageInfo_books.getList();
+        for (Book book: bookList) {
+            if(book.getBookId() == bid) {
+                bookList.remove(book);
+            }
+        }
+        pageInfo_books = new PageInfo<>(bookList);
+        session.setAttribute("pageInfo_books", pageInfo_books);
+        session.setAttribute("nav_link", 2);
+        return "adminManage";
     }
 }

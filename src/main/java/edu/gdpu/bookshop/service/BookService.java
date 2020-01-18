@@ -1,5 +1,6 @@
 package edu.gdpu.bookshop.service;
 
+import com.github.pagehelper.PageHelper;
 import edu.gdpu.bookshop.entity.Book;
 import edu.gdpu.bookshop.entity.BookCategory;
 import edu.gdpu.bookshop.entity.BookCategoryExample;
@@ -15,6 +16,7 @@ import java.util.List;
 
 @Service
 public class BookService {
+
 
     @Resource
     private BookMapper bookMapper;
@@ -124,5 +126,88 @@ public class BookService {
             return false;
         else
             return true;
+    }
+
+    /*根据 bookName，author, publisher 进行模糊查询*/
+    public List<Book> findBookByBookNameAuthorPublisher(String bookName, String author, String publisher, String orderBy, Integer pageNum){
+        BookExample bookExample = new BookExample();
+        BookExample.Criteria criteria = bookExample.createCriteria();
+        criteria.andBookNameLike("%"+bookName+"%");
+        criteria.andAuthorLike("%"+author+"%");
+        criteria.andPublisherLike("%"+publisher+"%");
+        PageHelper.startPage(pageNum, 10, orderBy);
+        return bookMapper.selectByExample(bookExample);
+    }
+
+    /*根据 bookName，author, publisher 进行模糊查询， 且 库存↑*/
+    public List<Book> findBookByBAPSortAscNumbers(String bookName, String author, String publisher, Integer pageNum){
+        BookExample bookExample = new BookExample();
+        BookExample.Criteria criteria = bookExample.createCriteria();
+        System.out.println(bookName+":"+author+":"+publisher);
+        criteria.andBookNameLike("%"+bookName+"%");
+        criteria.andAuthorLike("%"+author+"%");
+        criteria.andPublisherLike("%"+publisher+"%");
+        PageHelper.startPage(pageNum, 10, "numbers asc");
+        return bookMapper.selectByExample(bookExample);
+    }
+
+    /*根据 bookName，author, publisher 进行模糊查询， 且 库存↓*/
+    public List<Book> findBookByBAPSortDescNumbers(String bookName, String author, String publisher, Integer pageNum){
+        BookExample bookExample = new BookExample();
+        BookExample.Criteria criteria = bookExample.createCriteria();
+        criteria.andBookNameLike("%"+bookName+"%");
+        criteria.andAuthorLike("%"+author+"%");
+        criteria.andPublisherLike("%"+publisher+"%");
+        PageHelper.startPage(pageNum, 10, "numbers desc");
+        return bookMapper.selectByExample(bookExample);
+    }
+
+    /*根据 bookName，author, publisher 进行模糊查询， 且 销量↑*/
+    public List<Book> findBookByBAPSortAscSales(String bookName, String author, String publisher, Integer pageNum){
+        BookExample bookExample = new BookExample();
+        BookExample.Criteria criteria = bookExample.createCriteria();
+        criteria.andBookNameLike("%"+bookName+"%");
+        criteria.andAuthorLike("%"+author+"%");
+        criteria.andPublisherLike("%"+publisher+"%");
+        PageHelper.startPage(pageNum, 10, "sales asc");
+        return bookMapper.selectByExample(bookExample);
+    }
+
+    /*根据 bookName，author, publisher 进行模糊查询， 且 销量↓*/
+    public List<Book> findBookByBAPSortDescSales(String bookName, String author, String publisher, Integer book_pageNum){
+        BookExample bookExample = new BookExample();
+        BookExample.Criteria criteria = bookExample.createCriteria();
+        criteria.andBookNameLike("%"+bookName+"%");
+        criteria.andAuthorLike("%"+author+"%");
+        criteria.andPublisherLike("%"+publisher+"%");
+        PageHelper.startPage(book_pageNum, 10, "sales desc");
+        return bookMapper.selectByExample(bookExample);
+    }
+
+    /*根据 bookName，author, publisher 进行模糊查询， 且 价格↑*/
+    public List<Book> findBookByBAPSortAscPrice(String bookName, String author, String publisher, Integer book_pageNum){
+        BookExample bookExample = new BookExample();
+        BookExample.Criteria criteria = bookExample.createCriteria();
+        criteria.andBookNameLike("%"+bookName+"%");
+        criteria.andAuthorLike("%"+author+"%");
+        criteria.andPublisherLike("%"+publisher+"%");
+        PageHelper.startPage(book_pageNum, 10, "price asc");
+        return bookMapper.selectByExample(bookExample);
+    }
+
+    /*根据 bookName，author, publisher 进行模糊查询， 且 价格↓*/
+    public List<Book> findBookByBAPSortDescPrice(String bookName, String author, String publisher, Integer book_pageNum){
+        BookExample bookExample = new BookExample();
+        BookExample.Criteria criteria = bookExample.createCriteria();
+        criteria.andBookNameLike("%"+bookName+"%");
+        criteria.andAuthorLike("%"+author+"%");
+        criteria.andPublisherLike("%"+publisher+"%");
+        PageHelper.startPage(book_pageNum, 10, "price desc");
+        return bookMapper.selectByExample(bookExample);
+    }
+
+    /*根据 bookId 删除 图书*/
+    public void deleteBook(Integer bookId){
+        bookMapper.deleteByPrimaryKey(bookId);
     }
 }

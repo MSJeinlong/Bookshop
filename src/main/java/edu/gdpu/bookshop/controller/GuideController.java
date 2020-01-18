@@ -135,7 +135,12 @@ public class GuideController {
         return "addBook";
     }
 
-
+    @RequestMapping("/switchNavLink")
+    public String switchNavLink(HttpSession session, String nav_link){
+        Integer nav_link_actived = Integer.valueOf(nav_link);
+        session.setAttribute("nav_link", nav_link_actived);
+        return "adminManage";
+    }
 
     @RequestMapping("/buyNowOrAdd2Cart")
     public String buyNowOrAdd2Cart(HttpSession session, String isBuyNow){

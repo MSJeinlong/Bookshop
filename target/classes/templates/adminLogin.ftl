@@ -34,7 +34,10 @@
             $("#Password").click(function () {
                 $("#passwordHelp").show();
                 $("small[id!='passwordHelp']").hide();
-
+            });
+            $("#Password").focus(function () {
+                $("#passwordHelp").show();
+                $("small[id!='passwordHelp']").hide();
             });
         });
     </script>
@@ -57,12 +60,12 @@
                             <div class="form-group">
                                 <label for="UserName">账号</label>
                                 <input type="text" name="adminName" class="form-control" id="UserName" aria-describedby="emailHelp"
-                                    required placeholder="管理员账号" />
+                                    required placeholder="管理员账号" value="${RequestParameters['adminName']?default("")}"/>
                                 <small id="usernameHelp" class="form-text text-muted">请输入您的管理员账号</small>
                             </div>
                             <div class="form-group">
                                 <label for="Password">密码</label>
-                                <input type="password" name="password" class="form-control" id="Password" required placeholder="密码" />
+                                <input type="password" name="password" class="form-control" id="Password" required placeholder="密码" value="${RequestParameters['password']?default("")}"/>
                                 <small id="passwordHelp" class=" form-text text-muted">请输入6-20位长度的密码</small>
                             </div>
                             <div class="form-group form-check">
@@ -75,6 +78,17 @@
                         </form>
                     </div>
                 </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="offset-md-7 col-md-5">
+                <#if adminLoginTips??>
+                    <div class="alert alert-dismissible alert-danger" style="width: 400px;">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>登录失败！</strong>原因：${adminLoginTips!""}
+                    </div>
+                </#if>
             </div>
         </div>
     </div>

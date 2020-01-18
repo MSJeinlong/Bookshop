@@ -1,5 +1,6 @@
 package edu.gdpu.bookshop.service;
 
+import com.github.pagehelper.PageHelper;
 import edu.gdpu.bookshop.entity.OrderDetail;
 import edu.gdpu.bookshop.entity.OrderDetailExample;
 import edu.gdpu.bookshop.entity.OrderMaster;
@@ -19,6 +20,11 @@ public class OrderService {
 
     @Resource
     private OrderDetailMapper orderDetailMapper;
+
+    //获取所有的订单数据
+    public List<OrderMaster> findAllOrder(){
+        return orderMasterMapper.selectByExample(new OrderMasterExample());
+    }
 
     //保存新的 OrderMaster 到 数据库
     public void addOrderMaster(OrderMaster orderMaster){
@@ -100,5 +106,65 @@ public class OrderService {
     /*根据orderId 读出 orderMaster*/
     public OrderMaster findOrderMasterByOrderId(String orderId){
         return orderMasterMapper.selectByPrimaryKey(orderId);
+    }
+
+    /*根据orderExample读出orderMasterList*/
+    public List<OrderMaster> findOrderByExample(OrderMasterExample orderMasterExample){
+        return orderMasterMapper.selectByExample(orderMasterExample);
+    }
+
+    /* 查询未付款的订单*/
+    public List<OrderMaster> findOrderUnpaid(String userName, String orderId, Integer pageNum){
+        OrderMasterExample orderMasterExample = new OrderMasterExample();
+        OrderMasterExample.Criteria criteria = orderMasterExample.createCriteria();
+        criteria.andOrderStatusEqualTo((byte)0);
+        criteria.andUserNameLike("%"+userName+"%");
+        criteria.andOrderIdLike("%"+orderId+"%");
+        PageHelper.startPage(pageNum, 10);
+        return orderMasterMapper.selectByExample(orderMasterExample);
+    }
+
+    /*查询未发货的订单*/
+    public List<OrderMaster> findOrderUnDelivery(String userName, String orderId, Integer pageNum){
+        OrderMasterExample orderMasterExample = new OrderMasterExample();
+        OrderMasterExample.Criteria criteria = orderMasterExample.createCriteria();
+        criteria.andOrderStatusEqualTo((byte)1);
+        criteria.andUserNameLike("%"+userName+"%");
+        criteria.andOrderIdLike("%"+orderId+"%");
+        PageHelper.startPage(pageNum, 10);
+        return orderMasterMapper.selectByExample(orderMasterExample);
+    }
+
+    /*查询未收货的订单*/
+    public List<OrderMaster> findOrderUnReceived(String userName, String orderId, Integer pageNum){
+        OrderMasterExample orderMasterExample = new OrderMasterExample();
+        OrderMasterExample.Criteria criteria = orderMasterExample.createCriteria();
+        criteria.andOrderStatusEqualTo((byte)2);
+        criteria.andUserNameLike("%"+userName+"%");
+        criteria.andOrderIdLike("%"+orderId+"%");
+        PageHelper.startPage(pageNum, 10);
+        return orderMasterMapper.selectByExample(orderMasterExample);
+    }
+
+    /*根据userName 和 orderId 查询订单*/
+    public List<OrderMaster> findByUnameOrderId(String userName, String orderId, Integer pageNum){
+        OrderMasterExample orderMasterExample = new OrderMasterExample();
+        OrderMasterExample.Criteria criteria = orderMasterExample.createCriteria();
+        criteria.andUserNameLike("%"+userName+"%");
+        criteria.andOrderIdLike("%"+orderId+"%");
+        PageHelper.startPage(pageNum, 10);
+        return  orderMasterMapper.selectByExample(orderMasterExample);
+    }
+
+    public List<OrderMaster> findOrderByTime(String userName, String orderId, Integer pageNum){
+        OrderMasterExample orderMasterExample = new OrderMasterExample();
+        OrderMasterExample.Criteria criteria = orderMasterExample.createCriteria();
+        criteria.andUserNameLike("%"+userName+"%");
+        criteria.andOrderIdLike("%"+orderId+"%");
+        PageHelper.startPage(pageNum, 10, "create_time desc");
+        List<OrderMaster> orderMasterList = orderMasterMapper.selectByExample(orderMasterExample);
+        System.out.println("orderMasterList:********** size="+orderMasterList.size());
+        return orderMasterList;
+        //return orderMasterList.stream().sorted(Comparator.comparing(OrderMaster::getCreateTime).reversed()).collect(Collectors.toList());
     }
 }

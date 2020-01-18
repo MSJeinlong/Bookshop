@@ -36,4 +36,8 @@ public class BookCategoryService {
         else
             return null;
     }
+
+    public List<BookCategory> findAllBookCategories(){
+        return bookCategoryMapper.selectByExample(new BookCategoryExample());
+    }
 }
