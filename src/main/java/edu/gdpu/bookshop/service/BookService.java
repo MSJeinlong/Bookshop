@@ -210,4 +210,23 @@ public class BookService {
     public void deleteBook(Integer bookId){
         bookMapper.deleteByPrimaryKey(bookId);
     }
+
+
+    /*判断更新图书数据是否有重名*/
+    public boolean isBookNameRepeated(Book book){
+        BookExample bookExample = new BookExample();
+        BookExample.Criteria criteria = bookExample.createCriteria();
+        criteria.andBookNameEqualTo(book.getBookName());
+        List<Book> bookList = bookMapper.selectByExample(bookExample);
+        for(Book book1:bookList){
+            if(book.getBookName().equals(book1.getBookName()) && book.getBookId() != book1.getBookId()){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void updateBook(Book book){
+        bookMapper.updateByPrimaryKey(book);
+    }
 }

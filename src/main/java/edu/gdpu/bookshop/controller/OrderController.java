@@ -342,5 +342,4 @@ public class OrderController {
         session.setAttribute("nav_link", 1);
         return "adminManage";
     }
-
 }

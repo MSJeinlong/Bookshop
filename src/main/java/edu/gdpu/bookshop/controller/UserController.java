@@ -1,5 +1,7 @@
 package edu.gdpu.bookshop.controller;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import edu.gdpu.bookshop.entity.BsUser;
 import edu.gdpu.bookshop.service.MyCartService;
 import edu.gdpu.bookshop.service.OrderService;
@@ -13,6 +15,7 @@ import javax.servlet.http.HttpSession;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 @Controller
 public class UserController {
@@ -224,5 +227,65 @@ public class UserController {
         session.setAttribute("bsUser", user);
         model.addAttribute("updateAddressTips", "地址2已经成功删除!");
         return "updateUserAddress";
+    }
+
+    @RequestMapping("/deleteUser")
+    public String deleteUser(HttpSession session, String userId){
+        Integer uid = Integer.valueOf(userId);
+        Integer user_pageNum = (Integer)session.getAttribute("user_pageNum");
+        PageHelper.startPage(user_pageNum, 10);
+        List<BsUser> userList = userService.findAllUsers();
+        PageInfo<BsUser> pageInfo_users = new PageInfo<>(userList);
+        session.setAttribute("pageInfo_users", pageInfo_users);
+        session.setAttribute("nav_link", 3);
+        return "adminManage";
+    }
+
+    @RequestMapping("/adminFindUser")
+    public String adminFindUser(HttpSession session,  String nickname, String cellphone){
+        if(nickname == null){
+            nickname = "";
+        }
+        if(cellphone == null){
+            cellphone = "";
+        }
+        List<BsUser> userList = userService.findUserBynicknameAndTel(nickname, cellphone,  1);
+        PageInfo<BsUser> pageInfo_users = new PageInfo<>(userList);
+        session.setAttribute("nickname", nickname);
+        session.setAttribute("cellphone", cellphone);
+        session.setAttribute("pageInfo_users", pageInfo_users);
+        session.setAttribute("nav_link", 3);
+        return "adminManage";
+    }
+
+    @RequestMapping("/toUserPage")
+    public String toUserPage(HttpSession session, String user_pageNum){
+        Integer pageNum = Integer.valueOf(user_pageNum);
+        String nickname = (String)session.getAttribute("nickName");
+        String cellphone = (String)session.getAttribute("cellphone");
+        if(nickname == null){
+            nickname = "";
+        }
+        if(cellphone == null){
+            cellphone = "";
+        }
+        List<BsUser> userList = userService.findUserBynicknameAndTel(nickname, cellphone,  pageNum);
+        PageInfo<BsUser> pageInfo_users = new PageInfo<>(userList);
+        session.setAttribute("pageInfo_users", pageInfo_users);
+        session.setAttribute("nav_link", 3);
+        session.setAttribute("user_pageNum", pageNum);
+        return "adminManage";
+    }
+
+    @RequestMapping("/adminFindAllUsers")
+    public String adminFindAllUsers(HttpSession session){
+        //获取所有的用户数据
+        PageHelper.startPage(1, 10);
+        List<BsUser> userList = userService.findAllUsers();
+        PageInfo<BsUser> pageInfo_users = new PageInfo<>(userList);
+        session.setAttribute("pageInfo_users", pageInfo_users);
+        session.setAttribute("user_pageNum", 1);
+        session.setAttribute("nav_link", 3);
+        return "adminManage";
     }
 }

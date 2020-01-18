@@ -55,8 +55,7 @@ public class AdminController {
             session.setAttribute("pageNum", 1);
             session.setAttribute("pageSize", 10);
             session.setAttribute("pills_nav_link_actived", 1);
-            //获取所有的用户数据
-            List<BsUser> userList = userService.findAllUsers();
+
 
             //获取所有的商品数据
             PageHelper.startPage(1, 10);
@@ -69,14 +68,12 @@ public class AdminController {
             //获取所有的商品类目
             List<BookCategory> bookCategoryList = bookCategoryService.findAllBookCategories();
 
-
-
-            //PageInfo<Book>
-            session.setAttribute("userList", userList);
-
-            session.setAttribute("bookList", bookList);
-
-            session.setAttribute("bookCategoryList", bookCategoryList);
+            //获取所有的用户数据
+            PageHelper.startPage(1, 10);
+            List<BsUser> userList = userService.findAllUsers();
+            PageInfo<BsUser> pageInfo_users = new PageInfo<>(userList);
+            session.setAttribute("pageInfo_users", pageInfo_users);
+            session.setAttribute("user_pageNum", 1);
             session.setAttribute("admin", admin);
             return "adminManage";
         }

@@ -1,37 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0d6f93b2-f2a4-408a-87a9-3100165d6a40" name="Default Changelist" comment="订单管理完成，图书管理大部分已经完成，到图书修改和添加功能了">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/admin_bookInfo.ftl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/updateBookInfo.ftl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/bookshop/VsFtpdTest.java" afterDir="false" />
+    <list default="true" id="0d6f93b2-f2a4-408a-87a9-3100165d6a40" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/image/book/CsharpProgramming.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/image/book/cloudcomputing.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/image/book/javabingxingprogram.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/userInfoAdmin.ftl" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bookshop.iml" beforeDir="false" afterPath="$PROJECT_DIR$/bookshop.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/gdpu/bookshop/controller/AdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/gdpu/bookshop/controller/AdminController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/gdpu/bookshop/controller/BookController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/gdpu/bookshop/controller/BookController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/gdpu/bookshop/controller/GuideController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/gdpu/bookshop/controller/GuideController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/gdpu/bookshop/controller/OrderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/gdpu/bookshop/controller/OrderController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/gdpu/bookshop/entity/Book.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/gdpu/bookshop/entity/Book.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/gdpu/bookshop/service/BookCategoryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/gdpu/bookshop/service/BookCategoryService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/gdpu/bookshop/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/gdpu/bookshop/controller/UserController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/gdpu/bookshop/service/BookService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/gdpu/bookshop/service/BookService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/gdpu/bookshop/service/OrderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/gdpu/bookshop/service/OrderService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/adminLogin.ftl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/adminLogin.ftl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/gdpu/bookshop/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/gdpu/bookshop/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/addBook.ftl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/addBook.ftl" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/adminManage.ftl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/adminManage.ftl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/myCart.ftl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/myCart.ftl" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/myOrder.ftl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/myOrder.ftl" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/orderDetail.ftl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/orderDetail.ftl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/edu/gdpu/bookshop/BookshopApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/bookshop/BookshopApplicationTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/updateBookInfo.ftl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/updateBookInfo.ftl" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/edu/gdpu/bookshop/controller/AdminController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/edu/gdpu/bookshop/controller/AdminController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/edu/gdpu/bookshop/controller/BookController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/edu/gdpu/bookshop/controller/BookController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/edu/gdpu/bookshop/controller/GuideController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/edu/gdpu/bookshop/controller/GuideController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/edu/gdpu/bookshop/entity/Book.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/edu/gdpu/bookshop/entity/Book.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/edu/gdpu/bookshop/service/BookCategoryService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/edu/gdpu/bookshop/service/BookCategoryService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/edu/gdpu/bookshop/controller/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/edu/gdpu/bookshop/controller/UserController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/edu/gdpu/bookshop/service/BookService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/edu/gdpu/bookshop/service/BookService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/adminLogin.ftl" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/adminLogin.ftl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/edu/gdpu/bookshop/service/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/edu/gdpu/bookshop/service/UserService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/addBook.ftl" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/addBook.ftl" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/templates/adminManage.ftl" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/adminManage.ftl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/edu/gdpu/bookshop/BookshopApplicationTests.class" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -196,7 +191,7 @@
       <workItem from="1579160858641" duration="351000" />
       <workItem from="1579161381231" duration="17100000" />
       <workItem from="1579246934626" duration="14878000" />
-      <workItem from="1579310366376" duration="1841000" />
+      <workItem from="1579310366376" duration="15593000" />
     </task>
     <task id="LOCAL-00001" summary="录入图书数据">
       <created>1578397863684</created>
@@ -247,7 +242,14 @@
       <option name="project" value="LOCAL" />
       <updated>1578897945558</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="订单管理完成，图书管理大部分已经完成，到图书修改和添加功能了">
+      <created>1579312268033</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1579312268033</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -292,10 +294,10 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="371" y="90" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1280.680@0.0.1280.680" timestamp="1578054409659" />
-    <state x="312" y="0" key="CommitChangelistDialog2" timestamp="1579312225836">
+    <state x="312" y="0" key="CommitChangelistDialog2" timestamp="1579312266090">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="312" y="0" key="CommitChangelistDialog2/0.0.1280.680@0.0.1280.680" timestamp="1579312225836" />
+    <state x="312" y="0" key="CommitChangelistDialog2/0.0.1280.680@0.0.1280.680" timestamp="1579312266090" />
     <state x="374" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1578814252167" />
     <state x="421" y="98" key="FileChooserDialogImpl" timestamp="1579267884983">
       <screen x="0" y="0" width="1280" height="680" />
@@ -385,10 +387,10 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="6" y="48" key="new project wizard/0.0.1280.680@0.0.1280.680" timestamp="1578456666264" />
-    <state x="313" y="12" width="672" height="678" key="search.everywhere.popup" timestamp="1579249226354">
+    <state x="323" y="22" width="672" height="678" key="search.everywhere.popup" timestamp="1579329285704">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="313" y="12" width="672" height="678" key="search.everywhere.popup/0.0.1280.680@0.0.1280.680" timestamp="1579249226354" />
+    <state x="323" y="22" width="672" height="678" key="search.everywhere.popup/0.0.1280.680@0.0.1280.680" timestamp="1579329285704" />
     <state x="365" y="4" width="807" height="822" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1578748916378" />
   </component>
 </project>

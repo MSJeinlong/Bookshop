@@ -18,8 +18,10 @@
                 <h5 class="card-title text-info">订单详情 &nbsp;&nbsp;&nbsp;
                     <#if role == 1>
                         <a href="/toMyOrder" class="btn btn-sm btn-primary">返回</a>
-                        <#else >
+                        <#elseif role == 2>
                             <a href="/toAdminManage" class="btn btn-sm btn-primary">返回</a>
+                        <#else >
+                            <a href="/toUserInfoAdmin?userId=${bsUser.userId}" class="btn btn-sm btn-primary">返回</a>
                     </#if>
 
                 </h5>

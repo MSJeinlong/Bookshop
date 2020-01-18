@@ -1,5 +1,6 @@
 package edu.gdpu.bookshop.service;
 
+import com.github.pagehelper.PageHelper;
 import edu.gdpu.bookshop.entity.BsUser;
 import edu.gdpu.bookshop.entity.BsUserExample;
 import edu.gdpu.bookshop.mapper.BsUserMapper;
@@ -125,4 +126,20 @@ public class UserService {
         return false;
     }
 
+    public BsUser findUserById(Integer userId){
+        return userMapper.selectByPrimaryKey(userId);
+    }
+
+    public void deleteUserById(Integer userId){
+        userMapper.deleteByPrimaryKey(userId);
+    }
+
+    public List<BsUser> findUserBynicknameAndTel(String nickname, String cellphone, Integer pageNum){
+        BsUserExample userExample = new BsUserExample();
+        BsUserExample.Criteria criteria = userExample.createCriteria();
+        criteria.andNicknameLike("%"+nickname+"%");
+        criteria.andCellphoneLike("%"+cellphone+"%");
+        PageHelper.startPage(pageNum, 10);
+        return userMapper.selectByExample(userExample);
+    }
 }

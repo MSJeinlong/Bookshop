@@ -332,7 +332,7 @@
                             <td>${orderMaster.orderId!""}</td>
                             <td>${orderMaster.createTime?string("yyyy-MM-dd hh:MM:ss")}</td>
                             <td>${orderMaster.orderUser!""}</td>
-                            <td>${orderMaster.totalPrice!""}</td>
+                            <td><span style="color: red">￥${orderMaster.totalPrice?string("0.00")}</span></td>
                             <td>
                                 <#if orderMaster.payWay == 1>
                                     银行卡支付

@@ -14,67 +14,67 @@
                 <h5>添加图书</h5>
             </div>
             <div class="card-body">
-                <form action="#" method="post">
+                <form action="/addNewBook" method="post">
                     <div class="form-group row">
                         <label class="col-form-label col-sm-3">图书名称</label>
                         <div class="col-sm-9">
-                            <input type="text" class="form-control" name="bookName" value="${RequestParameters['bookName']?default("")}" required/>
+                            <input type="text" class="form-control" name="bookName" value="${RequestParameters['bookName']?default("")}" required placeholder="书名"/>
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <label class="col-form-label col-sm-3">作者</label>
                         <div class="col-sm-9">
-                            <input type="text" class="form-control" name="author" value="${RequestParameters['author']?default("")}" required/>
+                            <input type="text" class="form-control" name="author" value="${RequestParameters['author']?default("")}" required placeholder="作者"/>
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <label class="col-form-label col-sm-3">译者</label>
                         <div class="col-sm-9">
-                            <input type="text" class="form-control" name="translator" value="${RequestParameters['translator']?default("")}"/>
+                            <input type="text" class="form-control" name="translator" value="${RequestParameters['translator']?default("")}" placeholder="译者"/>
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <label class="col-form-label col-sm-3">ISBN</label>
                         <div class="col-sm-9">
-                            <input type="number" class="form-control" name="ISBN" value="${RequestParameters['ISBN']?default("")}" required/>
+                            <input type="number" class="form-control" name="ISBN" value="${RequestParameters['ISBN']?default("")}" required placeholder="ISBN"/>
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <label class="col-form-label col-sm-3">出版社</label>
                         <div class="col-sm-9">
-                            <input type="text" class="form-control" name="publisher" value="${RequestParameters['publisher']?default("")}" required/>
+                            <input type="text" class="form-control" name="publisher" value="${RequestParameters['publisher']?default("")}" required placeholder="出版社"/>
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <label class="col-form-label col-sm-3">出版时间</label>
                         <div class="col-sm-9">
-                            <input type="date" class="form-control" name="publishDate" value="${(RequestParameters['publishDate']?default(""))}" required/>
+                            <input type="date" class="form-control" name="publishDate" value="${(RequestParameters['publishDate']?default(""))}" required placeholder="出版时间"/>
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <label class="col-form-label col-sm-3">单价</label>
                         <div class="col-sm-9">
-                            <input type="number" min="0.00" step="0.01" class="form-control" name="price" value="${RequestParameters['price']?default("")}" required/>
+                            <input type="number" min="0.01" step="0.01" class="form-control" name="price" value="${RequestParameters['price']?default("")}" required placeholder="单价"/>
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <label class="col-form-label col-sm-3">库存数量</label>
                         <div class="col-sm-9">
-                            <input type="number" min="1" class="form-control" name="numbers" value="${RequestParameters['numbers']?default("")}" required/>
+                            <input type="number" min="1" class="form-control" name="numbers" value="${RequestParameters['numbers']?default("")}" required placeholder="库存数量"/>
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <label class="col-form-label col-sm-3">图书简述</label>
                         <div class="col-sm-9">
-                            <textarea name="description" class="form-control" rows="5">
+                            <textarea name="description" class="form-control" rows="5" placeholder="图书简述">
                                 ${RequestParameters['description']?default("")}
                             </textarea>
                         </div>
@@ -86,8 +86,8 @@
                             <select class="form-control" name="categoryId">
                                <#list bookCategories as bc>
                                 <option value="${bc.categoryId}"
-                                <#if RequestParameters['categoryId']??>
-                                    <#if RequestParameters['categoryId'] == bc.categoryId>selected</#if>
+                                <#if categoryId??>
+                                    <#if categoryId == bc.categoryId>selected</#if>
                                 </#if>
                                 > ${bc.categoryAttr!""}&nbsp;&nbsp;${bc.categoryName!""}</option>
                                </#list>
@@ -96,19 +96,16 @@
                     </div>
 
                     <div class="form-group row">
-                        <label class="col-form-label col-sm-3">图书图片</label>
+                        <label class="col-form-label col-sm-3">图片URL</label>
                         <div class="col-sm-9 input-group">
-                            <div class="custom-file">
-                                <input type="file" class="custom-file-input" name="image" id="image" value="${RequestParameters['image']?default("")}" />
-                                <label class="custom-file-label" for="image">选择文件</label>
-                            </div>
+                            <input type="text" name="image" class="form-control" value="${RequestParameters['image']?default("")}" placeholder="图片URL" required/>
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <label class="col-form-label col-sm-3">图书页数</label>
                         <div class="col-sm-9">
-                            <input type="number" min="1" class="form-control" name="pages" value="${RequestParameters['pages']?default("")}" required/>
+                            <input type="number" min="1" class="form-control" name="pages" value="${RequestParameters['pages']?default("")}" required placeholder="图书页数"/>
                         </div>
                     </div>
 
@@ -134,7 +131,7 @@
                             <button class="btn btn-warning btn-block" type="reset">重置</button>
                         </div>
                         <div class="col-md-3">
-                            <a href="#" class="btn btn-outline-success btn-block">返回</a>
+                            <a href="/toAdminManage" class="btn btn-outline-success btn-block">返回</a>
                         </div>
                     </div>
                 </form>

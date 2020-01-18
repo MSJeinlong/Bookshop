@@ -160,6 +160,12 @@
                 }
                 return false;
             });
+            $("#deleteBook").click(function () {
+                if(confirm("确定删除该图书吗？")){
+                    return true;
+                } else
+                    return false;
+            });
         });
     </script>
     <!-- Custom styles for this template -->
@@ -229,7 +235,7 @@
                         <form class="form-inline" action="/findByOrderIdAndUserName" method="post">
                             <input type="search" name="userName" class="form-control" value="${userName!""}" placeholder="收货人"/>
                             <input type="search" name="orderId" class="form-control" value="${orderId!""}" placeholder="订单编号"/>
-                            <button type="submit" class="btn btn-sm btn-primary">确定</button>
+                            <button type="submit" class="btn btn-sm btn-primary">搜索</button>
                         </form>
                     </li>
                 </ul>
@@ -333,6 +339,19 @@
 
 
             <div id="Products" style="display: none;">
+                <#if addNewBookTips??>
+                    <div class="alert alert-info alert-dismissible">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>${addNewBookTips}</strong>
+                    </div>
+                </#if>
+                <#if updateBookTips??>
+                    <div class="alert alert-info alert-dismissible">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>${updateBookTips}</strong>
+                    </div>
+                </#if>
+
                 <h6>图书数据 &nbsp;&nbsp;共 <span class="badge badge-pill badge-secondary">${pageInfo_books.total!"0"}</span> 条记录</h6>
 
                 <ul class="nav nav-pills">
@@ -362,8 +381,11 @@
                             <input type="search" name="bookName" class="form-control" value="${RequestParameters['bookName']?default("")}" placeholder="书名"/>
                             <input type="search" name="author" class="form-control" value="${RequestParameters['author']?default("")}" placeholder="作者"/>
                             <input type="search" name="publisher" class="form-control" value="${RequestParameters['publisher']?default("")}" placeholder="出版社"/>
-                            <button type="submit" class="btn btn-primary">确定</button>
+                            <button type="submit" class="btn btn-primary">搜索</button>
                         </form>
+                    </li>
+                    <li class="page-item">
+                        &nbsp; &nbsp;<a class="btn btn-success" href="/toAddBook">添加图书</a>
                     </li>
                 </ul>
 
@@ -392,8 +414,8 @@
                             <td><span class="text-primary">${book.numbers!"0"}</span></td>
                             <td><span class="text-info">${book.sales!"0"}</span></td>
                             <td><a href="/adminBookInfo?bookId=${book.bookId}">详情</a></td>
-                            <td><a href="#">修改</a></td>
-                            <td><a href="#">删除</a></td>
+                            <td><a href="/toUpdateBook?bookId=${book.bookId}">修改</a></td>
+                            <td><a id="deleteBook" href="/deleteBookByBookId?bookId=${book.bookId}">删除</a></td>
                             </tr>
                         </#list>
                         </tbody>
@@ -420,7 +442,7 @@
                         <li class="page-item">
                             <form class="form-inline"  action="/toBookPage" method="post">
                                 &nbsp;&nbsp;共&nbsp;<strong class="text-muted">${pageInfo_books.pages}</strong>&nbsp;页
-                                &nbsp;到第<input type="number" name="book_pageNum" class="form-control" min="1" value="${pageNum!"1"}" max="${pageInfo_books.pages}"/>页 &nbsp;
+                                &nbsp;到第<input type="number" name="book_pageNum" class="form-control" min="1" value="${book_pageNum!"1"}" max="${pageInfo_books.pages}"/>页 &nbsp;
                                 <button type="submit" class="btn btn-sm btn-primary">确定</button>
                             </form>
                         </li>
@@ -430,7 +452,75 @@
             </div>
 
             <div id="Users" style="display: none">
-                <p>This is users</p>
+                <h6>用户数据 &nbsp;&nbsp;共 <span class="badge badge-pill badge-secondary">${pageInfo_users.total!"0"}</span> 条记录</h6>
+
+                <ul class="nav nav-pills">
+                    <li class="nav-item active">
+                        <a href="/adminFindAllUsers" class="btn btn-primary">全部用户</a>&nbsp;&nbsp;
+                    </li>
+                    <li class="nav-item">
+                        <form class="form-inline" action="/adminFindUser" method="post">
+                            <input type="search" name="nickname" class="form-control" value="${RequestParameters['bookName']?default("")}" placeholder="用户名"/>
+                            <input type="search" name="cellphone" class="form-control" value="${RequestParameters['author']?default("")}" placeholder="手机号码"/>
+                            <button type="submit" class="btn btn-primary">搜索</button>
+                        </form>
+                    </li>
+                </ul>
+
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover table-sm">
+                        <thead class="table-secondary">
+                            <th>用户名</th>
+                            <th>手机号码</th>
+                            <th>邮箱</th>
+                            <th>性别</th>
+                            <th>最近登录时间</th>
+                            <th>详情</th>
+                            <th>删除</th>
+                        </thead>
+                        <tbody>
+                            <#list pageInfo_users.list as user>
+                                <tr>
+                                    <td>${user.nickname!""}</td>
+                                    <td>${user.cellphone!""}</td>
+                                    <td>${user.email!""}</td>
+                                    <td>${user.gender!""}</td>
+                                    <td>${user.loginTime?string("yyyy-MM-dd hh:mm:ss")}</td>
+                                    <td><a href="/toUserInfoAdmin?userId=${user.userId!""}">详情</a></td>
+                                    <td><a href="/deleteUser?userId=${user.userId!""}">删除</a></td>
+                                </tr>
+                            </#list>
+                        </tbody>
+                    </table>
+                </div>
+
+                <nav aria-label="...">
+                    <ul class="pagination">
+                        <li class="page-item disabled">
+                            <a href="#" class="page-link">第${pageInfo_users.pageNum!"0"}/${pageInfo_users.pages!"0"}页</a>
+                        </li>
+                        <li class="page-item ">
+                            <a class="page-link" href="/toUserPage?user_pageNum=1">首页</a>
+                        </li>
+                        <li class="page-item ">
+                            <a class="page-link" href="/toUserPage?user_pageNum=${pageInfo_users.prePage}">上一页</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="/toUserPage?user_pageNum=${pageInfo_users.nextPage}">下一页</a>
+                        </li>
+                        <li class="page-item ">
+                            <a class="page-link" href="/toUserPage?user_pageNum=${pageInfo_users.pages}">尾页</a>
+                        </li>
+                        <li class="page-item">
+                            <form class="form-inline"  action="/toUserPage" method="post">
+                                &nbsp;&nbsp;共&nbsp;<strong class="text-muted">${pageInfo_users.pages}</strong>&nbsp;页
+                                &nbsp;到第<input type="number" name="user_pageNum" class="form-control" min="1" value="${user_pageNum!"1"}" max="${pageInfo_users.pages}"/>页 &nbsp;
+                                <button type="submit" class="btn btn-sm btn-primary">确定</button>
+                            </form>
+                        </li>
+                    </ul>
+
+                </nav>
             </div>
         </main>
     </div>

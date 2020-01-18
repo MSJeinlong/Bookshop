@@ -30,7 +30,7 @@ public class BookController {
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @RequestMapping("/addNewBook")
-    public String addNewBook(Model model, String bookName, String author, String translator, String ISBN,
+    public String addNewBook(Model model, HttpSession session, String bookName, String author, String translator, String ISBN,
                              String publisher, String publishDate, String price, String numbers, String description
     , String categoryId, String image, String pages, String isEbook){
         //检查书名是否重复
@@ -57,9 +57,11 @@ public class BookController {
             book.setPages(Integer.valueOf(pages));
             book.setNumbers(Integer.valueOf(numbers));
             book.setDescription(description);
-            book.setCategoryId(Integer.valueOf(categoryId));
+            Integer cid = Integer.valueOf(categoryId);
+            book.setCategoryId(cid);
             book.setImage(image);
             book.setIsEbook(Integer.valueOf(isEbook));
+            book.setSales(0);
             book.setCreateTime(new Date());
             book.setUpdateTime(new Date());
             if(bookService.addBook(book)){
@@ -67,7 +69,14 @@ public class BookController {
             } else {
                 model.addAttribute("addNewBookTips", "图书添加失败！原因：服务器内部错误！");
             }
-            return "addBook";
+            model.addAttribute("categoryId", cid);
+            PageHelper.startPage(1, 10);
+            List<Book> bookList = bookService.findAllBooks();
+            PageInfo<Book> pageInfo_books = new PageInfo<>(bookList);
+            session.setAttribute("pageInfo_books", pageInfo_books);
+            session.setAttribute("nav_link", 2);
+            session.setAttribute("book_nav_link_actived", 1);
+            return "adminManage";
         }
     }
 
@@ -257,6 +266,7 @@ public class BookController {
         List<Book> bookList = bookService.findBookByBookNameAuthorPublisher(bookName, author, publisher, orderBy, pageNum);
         PageInfo<Book> pageInfo_books = new PageInfo<>(bookList);
         session.setAttribute("pageInfo_books", pageInfo_books);
+        session.setAttribute("book_pageNum", pageNum);
         session.setAttribute("nav_link", 2);
         return "adminManage";
     }
@@ -438,5 +448,52 @@ public class BookController {
         session.setAttribute("pageInfo_books", pageInfo_books);
         session.setAttribute("nav_link", 2);
         return "adminManage";
+    }
+
+    @RequestMapping("/adminUpdateBook")
+    public String adminUpdateBook(Model model, HttpSession session, String bookName, String author, String translator, String ISBN,
+                                  String publisher, String publishDate, String price, String numbers, String description
+            , String categoryId, String image, String pages, String isEbook){
+
+        Book book = (Book)session.getAttribute("book");
+        book.setBookName("bookName");
+        //书名重复，修改失败
+        if(bookService.isBookNameRepeated(book)){
+            model.addAttribute("updateBookTips", "书名重复！");
+            return  "updateBookInfo";
+        } else {
+            book.setBookName(bookName);
+            book.setAuthor(author);
+            book.setTranslator(translator);
+            book.setIsbn(ISBN);
+            book.setPublisher(publisher);
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+            Date date = null;
+            try {
+                date = format.parse(publishDate);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            book.setPublishDate(date);
+            BigDecimal pri = new BigDecimal(price);
+            book.setPrice(pri);
+            book.setPages(Integer.valueOf(pages));
+            book.setNumbers(Integer.valueOf(numbers));
+            book.setDescription(description);
+            Integer cid = Integer.valueOf(categoryId);
+            book.setCategoryId(cid);
+            book.setImage(image);
+            book.setIsEbook(Integer.valueOf(isEbook));
+            bookService.updateBook(book);
+            model.addAttribute("updateBookTips", "图书信息更新成功！");
+            PageHelper.startPage(1, 10);
+            List<Book> bookList = bookService.findAllBooks();
+            PageInfo<Book> pageInfo_books = new PageInfo<>(bookList);
+            session.setAttribute("pageInfo_books", pageInfo_books);
+            session.setAttribute("nav_link", 2);
+            Integer book_nav_link_actived = (Integer)session.getAttribute("book_nav_link_actived");
+            session.setAttribute("book_nav_link_actived", book_nav_link_actived);
+            return "adminManage";
+        }
     }
 }

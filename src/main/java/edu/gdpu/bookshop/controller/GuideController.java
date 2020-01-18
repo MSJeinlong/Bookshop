@@ -3,7 +3,9 @@ package edu.gdpu.bookshop.controller;
 import edu.gdpu.bookshop.entity.Book;
 import edu.gdpu.bookshop.entity.BookCategory;
 import edu.gdpu.bookshop.entity.BsUser;
+import edu.gdpu.bookshop.entity.OrderMaster;
 import edu.gdpu.bookshop.service.BookService;
+import edu.gdpu.bookshop.service.OrderService;
 import edu.gdpu.bookshop.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,6 +30,9 @@ public class GuideController {
 
     @Resource
     private BookService bookService;
+
+    @Resource
+    private OrderService orderService;
 
     @RequestMapping("/toUserLogin")
     public String toLogin(HttpSession session){
@@ -132,7 +137,19 @@ public class GuideController {
         //查找所有的图书类型
         List<BookCategory> bookCategories = bookService.findAllBookcategorys();
         session.setAttribute("bookCategories", bookCategories);
+        session.setAttribute("nav_link", 2);
         return "addBook";
+    }
+
+    @RequestMapping("/toUpdateBook")
+    public String toUpdateBook(HttpSession session, String bookId){
+        Book book = bookService.findBookByBookId(Integer.valueOf(bookId));
+        //查找所有的图书类型
+        List<BookCategory> bookCategories = bookService.findAllBookcategorys();
+        session.setAttribute("bookCategories", bookCategories);
+        session.setAttribute("book", book);
+        session.setAttribute("nav_link", 2);
+        return "updateBookInfo";
     }
 
     @RequestMapping("/switchNavLink")
@@ -165,5 +182,15 @@ public class GuideController {
         }
     }
 
-
+    @RequestMapping("/toUserInfoAdmin")
+    public String adminUserInfo(HttpSession session, String userId){
+        Integer uid = Integer.valueOf(userId);
+        BsUser user = userService.findUserById(uid);
+        //根据userId 拿到用户的订单数据
+        List<OrderMaster> userOrders = orderService.findOrderMasterByUserId(uid);
+        session.setAttribute("userOrders", userOrders);
+        session.setAttribute("bsUser", user);
+        session.setAttribute("nav_link", 3);
+        return "userInfoAdmin";
+    }
 }
