@@ -76,11 +76,11 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="cardno1" class="col-form-label col-sm-3">设置支付密码</label>
+                                <label for="cardno1" class="col-form-label col-sm-3" style="color: black">设置支付密码</label>
                                 <input type="password" class="form-control" name="cardno" id="cardno1" maxlength="6" required placeholder="设置6位支付密码"/>
                             </div>
                             <div class="form-group row">
-                                <label for="cardno2" class="col-form-label col-sm-3">确认支付密码</label>
+                                <label for="cardno2" class="col-form-label col-sm-3" style="color: black">确认支付密码</label>
                                 <input type="password" class="form-control"  id="cardno2" required maxlength="6" placeholder="确认6位支付密码"/>
                             </div>
                             <button type="submit" class="btn btn-success">提交</button>

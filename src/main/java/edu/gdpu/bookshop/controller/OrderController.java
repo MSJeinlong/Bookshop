@@ -263,13 +263,12 @@ public class OrderController {
         session.setAttribute("pageInfo_orders", pageInfo_orders);
         session.setAttribute("pills_nav_link_actived", 1);
         session.setAttribute("nav_link", 1);
+
         return "adminManage";
     }
 
     @RequestMapping("/findUnpaidOrder")
     public String findUnpaidOrder(HttpSession session){
-        Integer pageSize = (Integer)session.getAttribute("pageSize");
-        Integer pageNum = (Integer)session.getAttribute("pageNum");
         String orderId = (String)session.getAttribute("orderId");
         String userName = (String)session.getAttribute("userName");
         if(orderId == null){
@@ -277,17 +276,17 @@ public class OrderController {
         }
         if(userName == null)
             userName = "";
-        List<OrderMaster> orderUnpaid = orderService.findOrderUnpaid(userName, orderId, pageNum);
+        List<OrderMaster> orderUnpaid = orderService.findOrderUnpaid(userName, orderId, 1);
         PageInfo<OrderMaster> pageInfo_orders = new PageInfo<>(orderUnpaid);
         session.setAttribute("pageInfo_orders", pageInfo_orders);
         session.setAttribute("pills_nav_link_actived", 2);
+        session.setAttribute("pageNum", 1);
         session.setAttribute("nav_link", 1);
         return "adminManage";
     }
 
     @RequestMapping("/findUnDeliveryOrder")
     public String findUnDeliveryOrder(HttpSession session){
-        Integer pageNum = (Integer)session.getAttribute("pageNum");
         String orderId = (String)session.getAttribute("orderId");
         String userName = (String)session.getAttribute("userName");
         if(orderId == null){
@@ -296,18 +295,17 @@ public class OrderController {
         if(userName == null)
             userName = "";
         //PageHelper.startPage(pageNum, pageSize);
-        List<OrderMaster> orderUnpaid = orderService.findOrderUnDelivery(userName, orderId, pageNum);
+        List<OrderMaster> orderUnpaid = orderService.findOrderUnDelivery(userName, orderId, 1);
         PageInfo<OrderMaster> pageInfo_orders = new PageInfo<>(orderUnpaid);
         session.setAttribute("pageInfo_orders", pageInfo_orders);
         session.setAttribute("pills_nav_link_actived", 3);
         session.setAttribute("nav_link", 1);
+        session.setAttribute("pageNum", 1);
         return "adminManage";
     }
 
     @RequestMapping("/findUnReceivedOrder")
     public String findUnReceivedOrder(HttpSession session){
-        Integer pageSize = (Integer)session.getAttribute("pageSize");
-        Integer pageNum = (Integer)session.getAttribute("pageNum");
         String orderId = (String)session.getAttribute("orderId");
         String userName = (String)session.getAttribute("userName");
         if(orderId == null){
@@ -315,17 +313,17 @@ public class OrderController {
         }
         if(userName == null)
             userName = "";
-        List<OrderMaster> orderUnpaid = orderService.findOrderUnReceived(userName, orderId, pageNum);
+        List<OrderMaster> orderUnpaid = orderService.findOrderUnReceived(userName, orderId, 1);
         PageInfo<OrderMaster> pageInfo_orders = new PageInfo<>(orderUnpaid);
         session.setAttribute("pageInfo_orders", pageInfo_orders);
         session.setAttribute("pills_nav_link_actived", 4);
+        session.setAttribute("pageNum", 1);
         session.setAttribute("nav_link", 1);
         return "adminManage";
     }
 
     @RequestMapping("/OrderByTime")
     public String OrderByTime(HttpSession session){
-        Integer pageNum = (Integer)session.getAttribute("pageNum");
         String orderId = (String)session.getAttribute("orderId");
         String userName = (String)session.getAttribute("userName");
         if(orderId == null){
@@ -333,12 +331,12 @@ public class OrderController {
         }
         if(userName == null)
             userName = "";
-        System.out.println("pageNum:"+pageNum);
         //PageHelper.startPage(pageNum, pageSize);
-        List<OrderMaster> orderMasterList = orderService.findOrderByTime(userName, orderId, pageNum);
+        List<OrderMaster> orderMasterList = orderService.findOrderByTime(userName, orderId, 1);
         PageInfo<OrderMaster> pageInfo_orders = new PageInfo<>(orderMasterList);
         session.setAttribute("pageInfo_orders", pageInfo_orders);
         session.setAttribute("pills_nav_link_actived", 5);
+        session.setAttribute("pageNum", 1);
         session.setAttribute("nav_link", 1);
         return "adminManage";
     }

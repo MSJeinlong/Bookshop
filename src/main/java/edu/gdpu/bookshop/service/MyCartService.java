@@ -103,4 +103,9 @@ public class MyCartService {
         criteria.andCartIdIn(cartIds);
         return myCartMapper.selectByExample(myCartExample);
     }
+
+    /*根据  cartId 和 userId 查询购物车记录*/
+    public MyCart findMyCartByCartId(Integer cartId){
+        return myCartMapper.selectByPrimaryKey(cartId);
+    }
 }

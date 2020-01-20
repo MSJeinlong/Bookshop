@@ -17,7 +17,7 @@
     </style>
     <script>
         $(function () {
-            $('[data-toggle="popover"]').popover();
+            $('[data-toggle="tooltip"]').tooltip();
             /*全选控制*/
             $("input[name='allCheck']").click(function () {
                 $("input[type='checkbox']").prop("checked",this.checked);
@@ -135,6 +135,13 @@
                     return true;
                 }
             });
+
+            $("#deleteBtn").click(function () {
+                if(confirm("确定删除商品？")){
+                    return true;
+                } else
+                    return false;
+            });
         });
     </script>
 </head>
@@ -167,6 +174,12 @@
         </div>
     </#if>
 
+    <#if updateCartTips??>
+        <div class="alert alert-danger alert-dismissible" style="width:auto">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong>${updateCartTips!""}</strong>
+        </div>
+    </#if>
 
     <div class="card ">
 
@@ -183,9 +196,9 @@
                         </th>
                         <th>商品信息</th>
                         <th>单价(元)</th>
-                        <th>减一件</th>
+                        <th>操作</th>
                         <th>数量</th>
-                        <th>加一件</th>
+                        <th>操作</th>
                         <th>库存状态</th>
                         <th>小计(元)</th>
                         <th>操作</th>
@@ -206,15 +219,23 @@
                                 &nbsp;   《${myCart.bookName!""}》
                             </td>
                             <td><span style="color: red">￥${myCart.bookPrice?string("0.00")}</span></td>
-                            <td><a href="#" data-toggle="tooltip" title="购买数量减1"><span class="badge badge-primary">-</span></a></td>
                             <td>
-                                <div class="form-group row">
-                                    <div class="col-sm-6">
-                                        <input type="number" class="form-control" name="amount" min="1" max="10" value="${myCart.bookAmount!"1"}" maxlength="2" readonly/>
-                                    </div>
-                                </div>
+                                <#if myCart.bookAmount == 1>
+                                    <a href="#" disabled=><span class="badge badge-primary">减一件</span></a>
+                                <#else>
+                                    <a href="/reduceBookAmount?cartId=${myCart.cartId}"><span class="badge badge-primary">减一件</span></a>
+                                </#if>
                             </td>
-                            <td><a href="#" class="btn btn-sm btn-primary" data-toggle="tooltip" title="购买数量加1">+</a></td>
+                            <td>
+                               <span class="text-info">${myCart.bookAmount!"1"}</span>
+                            </td>
+                            <td>
+                                <#if myCart.bookAmount == 10>
+                                    <a href="#" data-toggle="tooltip" title="每个用户最多购买10件" disabled><span class="badge badge-primary">加一件</span></a>
+                                <#else>
+                                    <a href="/addBookAmount?cartId=${myCart.cartId}" data-toggle="tooltip" title="每个用户最多购买10件"><span class="badge badge-primary">加一件</span></a>
+                                </#if>
+                            </td>
                             <td>
                                 <input type="hidden" id="myCartStatus${myCart.cartId!""}" value="${myCart.status!""}"/>
                                 <#if myCart.status == 1>
@@ -227,7 +248,7 @@
                                 <span style="color: red">￥</span><span class="priceSum" id="subtotal${myCart.cartId!""}" style="color: red">${(myCart.bookPrice * myCart.bookAmount)?string("0.00")}</span>
                             </td>
                             <td>
-                                <a href="/deleteMyCart?cartIds=${myCart.cartId!""}" class="btn btn-sm btn-danger" id="delOne">删除</a>
+                                <a href="/deleteMyCart?cartIds=${myCart.cartId!""}" id="deleteBtn" class="btn btn-sm btn-danger" id="delOne">删除</a>
                             </td>
                         </tr>
                     </#list>

@@ -5,13 +5,14 @@
     <script src="/jQuery-3.4.1/jquery-3.4.1.min.js"></script>
     <script src="/bootstrap-4.3.1/js/bootstrap.bundle.min.js"></script>
     <script src="/bootstrap-4.3.1/js/bootstrap.min.js"></script>
+    <title>修改图书</title>
 </head>
 <body>
 <div class="container">
     <div class="row">
         <div class="card offset-md-3 col-md-6">
             <div class="card-header">
-                <h5>添加图书</h5>
+                <h5>修改图书</h5>
             </div>
             <div class="card-body">
                 <form action="/adminUpdateBook" method="post">

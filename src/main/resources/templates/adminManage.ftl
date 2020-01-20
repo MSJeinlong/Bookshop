@@ -460,8 +460,8 @@
                     </li>
                     <li class="nav-item">
                         <form class="form-inline" action="/adminFindUser" method="post">
-                            <input type="search" name="nickname" class="form-control" value="${RequestParameters['bookName']?default("")}" placeholder="用户名"/>
-                            <input type="search" name="cellphone" class="form-control" value="${RequestParameters['author']?default("")}" placeholder="手机号码"/>
+                            <input type="search" name="nickname" class="form-control" value="${RequestParameters['nickname']?default("")}" placeholder="用户名"/>
+                            <input type="search" name="cellphone" class="form-control" value="${RequestParameters['cellphone']?default("")}" placeholder="手机号码"/>
                             <button type="submit" class="btn btn-primary">搜索</button>
                         </form>
                     </li>

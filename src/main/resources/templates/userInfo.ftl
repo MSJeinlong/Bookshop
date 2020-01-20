@@ -43,13 +43,18 @@
                         <div class="col-sm-9">
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input" type="radio" name="gender" id="male" value="男"
-                                <#if bsUser.gender == "男">checked</#if>
+                                       <#if bsUser.gender??>
+                                           <#if bsUser.gender == "男">checked</#if>
+                                       </#if>
+
                                 />
                                 <label class="form-check-label" for="male">男</label>
                             </div>
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input" type="radio" name="gender" id="female" value="女"
-                                       <#if bsUser.gender == "女">checked</#if>
+                                       <#if bsUser.gender??>
+                                           <#if bsUser.gender == "女">checked</#if>
+                                       </#if>
                                 />
                                 <label class="form-check-label" for="female">女</label>
                             </div>
@@ -59,7 +64,11 @@
                     <div class="form-group row">
                         <label for="birthday" class="col-sm-3 col-form-label">出生日期:</label>
                         <div class="col-sm-9">
-                            <input type="date" name="birthday" id="birthday" class="form-control" value="${bsUser.birthday?string("yyyy-MM-dd")}">
+                            <input type="date" name="birthday" id="birthday" class="form-control"
+                                   <#if bsUser.birthday??>
+                                       value="${bsUser.birthday?string("yyyy-MM-dd")}"
+                                   </#if>
+                            >
                         </div>
                     </div>
 

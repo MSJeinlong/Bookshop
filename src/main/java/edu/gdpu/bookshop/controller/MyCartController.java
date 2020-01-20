@@ -55,7 +55,6 @@ public class MyCartController {
     /*添加商品到购物车*/
     @RequestMapping("/addToMyCart")
     public String addToMyCart(Model model, HttpSession session, String bookId, String amount, String flag){
-
         //检查用户是否已经登录
         BsUser user = (BsUser)session.getAttribute("bsUser");
         //如果用户未登录，则让用户先登录
@@ -107,7 +106,7 @@ public class MyCartController {
         BsUser user = (BsUser)session.getAttribute("bsUser");
         List<MyCart> myCartList = myCartService.findMyCartByBookName(user.getUserId(), bookName);
         session.setAttribute("myCartList", myCartList);
-        session.setAttribute("cartCount", myCartList.size());
+        session.setAttribute("cartCount", (long)myCartList.size());
         return "myCart";
     }
 
@@ -119,7 +118,7 @@ public class MyCartController {
         logger.info("全部清空购物车结果：", res);
         List<MyCart> myCartList = myCartService.findMyCartByUserId(user.getUserId());
         session.setAttribute("myCartList", myCartList);
-        session.setAttribute("cartCount", myCartList.size());
+        session.setAttribute("cartCount", (long)myCartList.size());
 
         return "myCart";
     }
@@ -139,7 +138,7 @@ public class MyCartController {
         //model.addAttribute("deleteMyCartTips", "已成功删除选中的商品！");
         List<MyCart> myCartList = myCartService.findMyCartByUserId(user.getUserId());
         session.setAttribute("myCartList", myCartList);
-        session.setAttribute("cartCount", myCartList.size());
+        session.setAttribute("cartCount", (long)myCartList.size());
         return "myCart";
     }
 
@@ -198,5 +197,41 @@ public class MyCartController {
         session.setAttribute("totalPrice", totalPrice);
         session.setAttribute("readyOrders", readyOrders);
         return "confirmOrderInfo";
+    }
+
+    /*减一件*/
+    @RequestMapping("/reduceBookAmount")
+    public String reduceBookAmount(HttpSession session, String cartId){
+        BsUser user = (BsUser)session.getAttribute("bsUser");
+        Integer ctId = Integer.valueOf(cartId);
+        MyCart myCart = myCartService.findMyCartByCartId(ctId);
+        myCart.setBookAmount(myCart.getBookAmount() - 1);
+        myCartService.updateMyCart(myCart);
+        List<MyCart> myCartList = myCartService.findMyCartByUserId(user.getUserId());
+        session.setAttribute("myCartList", myCartList);
+        return "myCart";
+    }
+
+    @RequestMapping("/addBookAmount")
+    public String addBookAmount(HttpSession session, Model model,  String cartId){
+        BsUser user = (BsUser)session.getAttribute("bsUser");
+        Integer ctId = Integer.valueOf(cartId);
+        MyCart myCart = myCartService.findMyCartByCartId(ctId);
+        //根据 bookId检查 图书库存是否充足
+        Book book = bookService.findBookByBookId(myCart.getBookId());
+        Integer bookAmount = myCart.getBookAmount();
+        bookAmount += 1;
+        //库存不足
+        if(bookAmount > book.getNumbers()){
+            model.addAttribute("updateCartTips", bookAmount);
+            return "myCart";
+        } else {
+            //库存充足
+            myCart.setBookAmount(bookAmount);
+            myCartService.updateMyCart(myCart);
+            List<MyCart> myCartList = myCartService.findMyCartByUserId(user.getUserId());
+            session.setAttribute("myCartList", myCartList);
+            return "myCart";
+        }
     }
 }

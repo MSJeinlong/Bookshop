@@ -86,6 +86,14 @@ public class AdminController {
         admin.setSignOutTime(new Date());
         adminService.updateAdmin(admin);
         session.removeAttribute("admin");
+        session.removeAttribute("pageInfo_orders");
+        session.removeAttribute("pageInfo_books");
+        session.removeAttribute("pageInfo_users");
+        session.removeAttribute("pageNum");
+        session.removeAttribute("book_pageNum");
+        session.removeAttribute("user_pageNum");
+        session.removeAttribute("nav_link");
+        session.removeAttribute("pills_nav_link_actived");
         return "adminLogin";
     }
 }

@@ -173,7 +173,8 @@ public class GuideController {
         }
         //表示用户加入购物车
         if(isBuyNow.equals("0")){
-           // return "/addToMyCart?bookId="+bookId+"&amount="+amount+"&flag="+flag;
+           // return "/addToMyCart?bookId="+bookId+"&amount="+amount+"&flag="+flag
+           // session.setAttribute("flag", "2");
             return "/addToMyCart";
         }
         //表示用户立即购买

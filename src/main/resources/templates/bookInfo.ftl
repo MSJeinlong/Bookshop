@@ -52,6 +52,7 @@
                     <form action="/buyNowOrAdd2Cart" method="post">
                         <input type="hidden" name="isBuyNow" id="isBuyNow" value="0"/>
                         <input type="hidden" name="bookId" value="${book.bookId!""}"/>
+                        <input type="hidden" name="flag" value="2"/>
                         <div class="form-group form-inline">
                             <label for="amount">数量：</label>&nbsp;
                             <input type="number" class="form-control" name="amount" id="amount" min="1"

@@ -427,6 +427,9 @@ public class BookController {
         String orderBy = "book_id asc";
         List<Book> bookList = bookService.findBookByBookNameAuthorPublisher(bookName, author, publisher, orderBy, 1);
         PageInfo<Book> pageInfo_books = new PageInfo<>(bookList);
+        session.setAttribute("bookName", bookName);
+        session.setAttribute("author", author);
+        session.setAttribute("publisher", publisher);
         session.setAttribute("pageInfo_books", pageInfo_books);
         session.setAttribute("nav_link", 2);
         session.setAttribute("book_nav_link_actived", 1);
@@ -487,6 +490,7 @@ public class BookController {
             bookService.updateBook(book);
             model.addAttribute("updateBookTips", "图书信息更新成功！");
             PageHelper.startPage(1, 10);
+            session.setAttribute("book_pageNum", 1);
             List<Book> bookList = bookService.findAllBooks();
             PageInfo<Book> pageInfo_books = new PageInfo<>(bookList);
             session.setAttribute("pageInfo_books", pageInfo_books);
